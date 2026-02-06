@@ -38,11 +38,6 @@
     "body": "<div class=\"divider\">◆</div>",
     "description": "Calvino diamond section divider"
   },
-  "Section Heading": {
-    "prefix": "h2",
-    "body": "<h2>${1:Section Title}</h2>",
-    "description": "Section heading (twilight purple)"
-  },
   "Paragraph": {
     "prefix": "pp",
     "body": [
@@ -60,52 +55,6 @@
       "</aside>"
     ],
     "description": "Calvino-style direct address to reader"
-  },
-  "Frame (Full Nested)": {
-    "prefix": "frame",
-    "body": [
-      "<div class=\"frame frame--outer\">",
-      "  <span class=\"frame-label\">${1:The Outer Frame}</span>",
-      "  <div class=\"frame frame--middle\">",
-      "    <span class=\"frame-label\">${2:The Middle Frame}</span>",
-      "    <div class=\"frame frame--inner\">",
-      "      <span class=\"frame-label\">${3:The Inner Frame}</span>",
-      "      <p style=\"margin:0\">${4:Core content here.}</p>",
-      "    </div>",
-      "  </div>",
-      "</div>"
-    ],
-    "description": "Calvino frame-within-frame (all three levels)"
-  },
-  "Frame Outer": {
-    "prefix": "frameo",
-    "body": [
-      "<div class=\"frame frame--outer\">",
-      "  <span class=\"frame-label\">${1:Label}</span>",
-      "  ${2:content}",
-      "</div>"
-    ],
-    "description": "Single outer frame"
-  },
-  "Frame Middle": {
-    "prefix": "framem",
-    "body": [
-      "<div class=\"frame frame--middle\">",
-      "  <span class=\"frame-label\">${1:Label}</span>",
-      "  ${2:content}",
-      "</div>"
-    ],
-    "description": "Single middle frame"
-  },
-  "Frame Inner": {
-    "prefix": "framei",
-    "body": [
-      "<div class=\"frame frame--inner\">",
-      "  <span class=\"frame-label\">${1:Label}</span>",
-      "  <p style=\"margin:0\">${2:content}</p>",
-      "</div>"
-    ],
-    "description": "Single inner frame"
   },
   "Multiple Paths": {
     "prefix": "paths",
@@ -143,15 +92,6 @@
       "</div>"
     ],
     "description": "Single path content block"
-  },
-  "Blockquote": {
-    "prefix": "bq",
-    "body": [
-      "<blockquote>",
-      "  ${1:Quoted text here.}",
-      "</blockquote>"
-    ],
-    "description": "Blockquote"
   },
   "Emphasis": {
     "prefix": "em",
@@ -217,19 +157,55 @@
     "description": "Severance-style corporate/institutional notice"
   },
 
-  "Jenny Holzer Truism": {
-    "prefix": "truism",
-    "body": "<div class=\"truism\">${1:PROTECT ME FROM WHAT I WANT}</div>",
-    "description": "Jenny Holzer-style truism statement"
-  },
-
   "Jenny Holzer LED Marquee": {
     "prefix": "led",
     "body": [
       "<div class=\"led-marquee\">",
-      "  <div class=\"led-text${1| ,amber,green|}\">${2:The beginning of the war will be secret}</div>",
+      "  <div class=\"led-text${1| , amber, green|}\">${2:The beginning of the war will be secret}</div>",
       "</div>"
     ],
     "description": "Jenny Holzer-style LED scrolling marquee"
+  },
+
+  "James Turrell Ganzfeld Block": {
+    "prefix": "ganzfeld",
+    "body": [
+      "<div class=\"ganzfeld-block\">",
+      "  <div class=\"ganzfeld-text\">",
+      "    <p>${1:Light becomes material here. It has weight, presence.}</p>",
+      "  </div>",
+      "</div>"
+    ],
+    "description": "James Turrell-style immersive light field (responds to mouse)"
+  },
+
+  "Wes Anderson Title Card": {
+    "prefix": "titlecard",
+    "body": [
+      "<div class=\"title-card\">",
+      "  <div class=\"title-card-chapter\">${1:Ch. 1}</div>",
+      "  <h3 class=\"title-card-title\">${2:The Chapter Title}</h3>",
+      "  <p class=\"title-card-subtitle\">${3:In which our protagonist begins}</p>",
+      "</div>"
+    ],
+    "description": "Wes Anderson-style symmetrical title card"
+  },
+
+  "Radiohead Glitch Text": {
+    "prefix": "glitch",
+    "body": "<p class=\"glitch-text\" data-text=\"${1:Everything in its right place}\">${1:Everything in its right place}</p>",
+    "description": "Radiohead-style glitch text (animates on hover)"
+  },
+
+  "Radiohead Fragment Block": {
+    "prefix": "fragment",
+    "body": [
+      "<div class=\"fragment-block\">",
+      "  <span class=\"fragment\">${1:I'm not here}</span>",
+      "  <span class=\"fragment\">${2:This isn't happening}</span>",
+      "  <span class=\"fragment\">${3:I'm not here}</span>",
+      "</div>"
+    ],
+    "description": "Radiohead-style fragmented, layered text"
   }
 }

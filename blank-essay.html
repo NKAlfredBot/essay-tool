@@ -118,6 +118,36 @@
     .led-marquee .led-text.green { color: hsl(120, 100%, 40%); text-shadow: 0 0 10px hsl(120, 100%, 40%), 0 0 20px hsl(120, 100%, 40%); }
     @keyframes marquee-scroll { from { transform: translateX(100%); } to { transform: translateX(-100%); } }
 
+    /* James Turrell - Ganzfeld Block */
+    .ganzfeld-block { min-height: 200px; position: relative; overflow: hidden; background: radial-gradient(ellipse 120% 100% at var(--gx, 50%) var(--gy, 50%), hsl(320, 70%, 75%) 0%, hsl(280, 60%, 55%) 30%, hsl(260, 65%, 35%) 60%, hsl(250, 70%, 20%) 100%); transition: background 0.3s ease; display: flex; align-items: center; justify-content: center; margin: var(--space-lg) 0; }
+    .ganzfeld-block .ganzfeld-text { position: relative; z-index: 1; text-align: center; padding: 2rem; }
+    .ganzfeld-block .ganzfeld-text p { font-family: var(--font-serif); font-size: 1.2rem; font-style: italic; color: hsla(45, 100%, 95%, 0.9); text-shadow: 0 0 30px hsla(280, 60%, 55%, 0.5); margin: 0; }
+
+    /* Wes Anderson - Title Card */
+    .title-card { font-family: var(--font-serif); text-align: center; padding: 2.5rem 3rem; background: hsl(340, 60%, 75%); border: 3px solid hsl(350, 50%, 35%); position: relative; transition: transform 0.3s ease; margin: var(--space-lg) 0; }
+    .title-card:hover { transform: scale(1.02); }
+    .title-card::before { content: ''; position: absolute; inset: 6px; border: 1.5px solid hsl(350, 50%, 35%); pointer-events: none; }
+    .title-card-chapter { width: 50px; height: 50px; border: 2px solid hsl(350, 50%, 35%); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; font-size: 0.9rem; font-weight: 500; color: hsl(355, 40%, 30%); }
+    .title-card-title { font-size: 1.5rem; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: hsl(355, 40%, 25%); margin: 0 0 0.5rem; }
+    .title-card-subtitle { font-style: italic; font-size: 1rem; color: hsl(350, 50%, 35%); margin: 0; }
+
+    /* Radiohead - Glitch Text */
+    .glitch-text { font-family: var(--font-sans); font-size: 1.3rem; font-weight: 600; color: var(--ink); position: relative; display: inline-block; cursor: pointer; }
+    .glitch-text::before, .glitch-text::after { content: attr(data-text); position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0; }
+    .glitch-text::before { color: hsl(180, 100%, 40%); }
+    .glitch-text::after { color: hsl(0, 100%, 50%); }
+    .glitch-text:hover::before { opacity: 0.8; animation: glitch-shift-1 0.3s steps(2) infinite; }
+    .glitch-text:hover::after { opacity: 0.8; animation: glitch-shift-2 0.25s steps(2) infinite; }
+    @keyframes glitch-shift-1 { 0%, 100% { transform: translate(0); } 25% { transform: translate(-2px, 1px); } 75% { transform: translate(2px, -1px); } }
+    @keyframes glitch-shift-2 { 0%, 100% { transform: translate(0); } 33% { transform: translate(2px, 1px); } 66% { transform: translate(-2px, -1px); } }
+
+    /* Radiohead - Fragment Block */
+    .fragment-block { background: hsl(220, 30%, 10%); padding: 1.5rem 2rem; margin: var(--space-lg) 0; position: relative; overflow: hidden; }
+    .fragment-block .fragment { display: block; font-family: var(--font-sans); font-size: 1rem; color: hsla(200, 20%, 90%, 0.7); margin: 0.3rem 0; transform: translateX(var(--offset, 0)); }
+    .fragment-block .fragment:nth-child(1) { --offset: 0; opacity: 1; }
+    .fragment-block .fragment:nth-child(2) { --offset: 25px; opacity: 0.5; }
+    .fragment-block .fragment:nth-child(3) { --offset: 50px; opacity: 0.3; }
+
     @media print { body { background: white; } .essay { max-width: 100%; padding: 2rem; } .fn-content { max-height: none; opacity: 1; padding: 1rem 1.25rem; } .progress-bar { display: none; } }
   </style>
 </head>
@@ -191,6 +221,20 @@
         paths.forEach(p => p.classList.remove('active'));
         path.classList.add('active');
         pathContents.forEach(c => c.classList.toggle('visible', c.dataset.path === path.dataset.path));
+      });
+    });
+    // Turrell Ganzfeld - mouse tracking
+    document.querySelectorAll('.ganzfeld-block').forEach(ganz => {
+      ganz.addEventListener('mousemove', e => {
+        const rect = ganz.getBoundingClientRect();
+        const x = ((e.clientX - rect.left) / rect.width) * 100;
+        const y = ((e.clientY - rect.top) / rect.height) * 100;
+        ganz.style.setProperty('--gx', x + '%');
+        ganz.style.setProperty('--gy', y + '%');
+      });
+      ganz.addEventListener('mouseleave', () => {
+        ganz.style.setProperty('--gx', '50%');
+        ganz.style.setProperty('--gy', '50%');
       });
     });
     const progressBar = document.getElementById('progress');

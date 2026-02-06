@@ -350,6 +350,150 @@
     }
     .demo-area .led-marquee .led-text.amber { color: hsl(30, 100%, 50%); text-shadow: 0 0 10px hsl(30, 100%, 50%), 0 0 20px hsl(30, 100%, 50%); }
     .demo-area .led-marquee .led-text.green { color: hsl(120, 100%, 40%); text-shadow: 0 0 10px hsl(120, 100%, 40%), 0 0 20px hsl(120, 100%, 40%); }
+
+    /* ========================================
+       JAMES TURRELL STYLES
+       ======================================== */
+    .demo-area .ganzfeld-block {
+      min-height: 180px;
+      position: relative;
+      overflow: hidden;
+      background: radial-gradient(
+        ellipse 120% 100% at var(--gx, 50%) var(--gy, 50%),
+        hsl(320, 70%, 75%) 0%,
+        hsl(280, 60%, 55%) 30%,
+        hsl(260, 65%, 35%) 60%,
+        hsl(250, 70%, 20%) 100%
+      );
+      transition: background 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .demo-area .ganzfeld-block .ganzfeld-text {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 2rem;
+    }
+    .demo-area .ganzfeld-block .ganzfeld-text p {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 1.1rem;
+      font-style: italic;
+      color: hsla(45, 100%, 95%, 0.9);
+      text-shadow: 0 0 30px hsla(280, 60%, 55%, 0.5);
+      margin: 0;
+    }
+
+    /* ========================================
+       WES ANDERSON STYLES
+       ======================================== */
+    .demo-area .title-card {
+      font-family: 'EB Garamond', Georgia, serif;
+      text-align: center;
+      padding: 2rem 2.5rem;
+      background: hsl(340, 60%, 75%);
+      border: 3px solid hsl(350, 50%, 35%);
+      position: relative;
+      transition: transform 0.3s ease;
+    }
+    .demo-area .title-card:hover { transform: scale(1.02); }
+    .demo-area .title-card::before {
+      content: '';
+      position: absolute;
+      inset: 6px;
+      border: 1.5px solid hsl(350, 50%, 35%);
+      pointer-events: none;
+    }
+    .demo-area .title-card-chapter {
+      width: 45px;
+      height: 45px;
+      border: 2px solid hsl(350, 50%, 35%);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1rem;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: hsl(355, 40%, 30%);
+    }
+    .demo-area .title-card-title {
+      font-size: 1.4rem;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: hsl(355, 40%, 25%);
+      margin: 0 0 0.5rem;
+    }
+    .demo-area .title-card-subtitle {
+      font-style: italic;
+      font-size: 0.9rem;
+      color: hsl(350, 50%, 35%);
+      margin: 0;
+    }
+
+    /* ========================================
+       RADIOHEAD STYLES
+       ======================================== */
+    .demo-area .glitch-text {
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: hsl(30, 10%, 15%);
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      margin: 0;
+    }
+    .demo-area .glitch-text::before,
+    .demo-area .glitch-text::after {
+      content: attr(data-text);
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+    }
+    .demo-area .glitch-text::before { color: hsl(180, 100%, 40%); }
+    .demo-area .glitch-text::after { color: hsl(0, 100%, 50%); }
+    .demo-area .glitch-text:hover::before {
+      opacity: 0.8;
+      animation: glitch-shift-1 0.3s steps(2) infinite;
+    }
+    .demo-area .glitch-text:hover::after {
+      opacity: 0.8;
+      animation: glitch-shift-2 0.25s steps(2) infinite;
+    }
+    @keyframes glitch-shift-1 {
+      0%, 100% { transform: translate(0); }
+      25% { transform: translate(-2px, 1px); }
+      75% { transform: translate(2px, -1px); }
+    }
+    @keyframes glitch-shift-2 {
+      0%, 100% { transform: translate(0); }
+      33% { transform: translate(2px, 1px); }
+      66% { transform: translate(-2px, -1px); }
+    }
+
+    .demo-area .fragment-block {
+      background: hsl(220, 30%, 10%);
+      padding: 1.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .demo-area .fragment-block .fragment {
+      display: block;
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 0.9rem;
+      color: hsla(200, 20%, 90%, 0.7);
+      margin: 0.25rem 0;
+      transform: translateX(var(--offset, 0));
+    }
+    .demo-area .fragment-block .fragment:nth-child(1) { --offset: 0; opacity: 1; }
+    .demo-area .fragment-block .fragment:nth-child(2) { --offset: 20px; opacity: 0.5; }
+    .demo-area .fragment-block .fragment:nth-child(3) { --offset: 40px; opacity: 0.3; }
   </style>
 </head>
 <body>
@@ -437,38 +581,6 @@
         <textarea class="code-editor" data-editor="reader" spellcheck="false"><aside class="reader-address">
   You, reader, have reached a point of decision. What you expected to find here may not be what you find.
 </aside></textarea>
-        <div class="code-footer"><span>Auto-updates as you type</span></div>
-      </div>
-    </div>
-  </div>
-
-  <div class="component" data-id="frame">
-    <div class="component-header">
-      <div>
-        <span class="component-name">Frame Within Frame</span>
-        <span class="component-snippet">frame + Tab</span>
-      </div>
-      <div class="btn-group">
-        <button class="btn btn-secondary" onclick="resetCode('frame')">Reset</button>
-        <button class="btn" onclick="copyCode('frame')">Copy</button>
-      </div>
-    </div>
-    <div class="component-body">
-      <div class="component-demo">
-        <p class="demo-label">Nested containers for layered meaning</p>
-        <div class="demo-area" data-demo="frame"></div>
-      </div>
-      <div class="component-code">
-        <textarea class="code-editor" data-editor="frame" spellcheck="false"><div class="frame frame--outer">
-  <span class="frame-label">What you see</span>
-  <div class="frame frame--middle">
-    <span class="frame-label">How it's made</span>
-    <div class="frame frame--inner">
-      <span class="frame-label">Why it matters</span>
-      <p style="margin:0">Each layer recontextualizes the others.</p>
-    </div>
-  </div>
-</div></textarea>
         <div class="code-footer"><span>Auto-updates as you type</span></div>
       </div>
     </div>
@@ -605,31 +717,6 @@
   <!-- ==================== JENNY HOLZER ==================== -->
   <p class="section-title">Jenny Holzer — Text as Art</p>
 
-  <div class="component" data-id="truism">
-    <div class="component-header">
-      <div>
-        <span class="component-name">Truism</span>
-        <span class="component-snippet">truism + Tab</span>
-      </div>
-      <div class="btn-group">
-        <button class="btn btn-secondary" onclick="resetCode('truism')">Reset</button>
-        <button class="btn" onclick="copyCode('truism')">Copy</button>
-      </div>
-    </div>
-    <div class="component-body">
-      <div class="component-demo">
-        <p class="demo-label">Click for emphasis effect</p>
-        <div class="demo-area" data-demo="truism"></div>
-      </div>
-      <div class="component-code">
-        <textarea class="code-editor" data-editor="truism" spellcheck="false"><div class="truism">Protect me from what I want</div>
-<div class="truism">Abuse of power comes as no surprise</div>
-<div class="truism">Money creates taste</div></textarea>
-        <div class="code-footer"><span>Auto-updates as you type</span></div>
-      </div>
-    </div>
-  </div>
-
   <div class="component" data-id="ledmarquee">
     <div class="component-header">
       <div>
@@ -683,27 +770,115 @@
     </div>
   </div>
 
-  <div class="component" data-id="heading">
+  <!-- ==================== JAMES TURRELL ==================== -->
+  <p class="section-title">James Turrell — Light & Perception</p>
+
+  <div class="component" data-id="ganzfeld">
     <div class="component-header">
       <div>
-        <span class="component-name">Section Heading + Blockquote</span>
-        <span class="component-snippet">h2 / bq + Tab</span>
+        <span class="component-name">Ganzfeld Block</span>
+        <span class="component-snippet">ganzfeld + Tab</span>
       </div>
       <div class="btn-group">
-        <button class="btn btn-secondary" onclick="resetCode('heading')">Reset</button>
-        <button class="btn" onclick="copyCode('heading')">Copy</button>
+        <button class="btn btn-secondary" onclick="resetCode('ganzfeld')">Reset</button>
+        <button class="btn" onclick="copyCode('ganzfeld')">Copy</button>
       </div>
     </div>
     <div class="component-body">
       <div class="component-demo">
-        <p class="demo-label">Typography elements</p>
-        <div class="demo-area" data-demo="heading"></div>
+        <p class="demo-label">Move your cursor slowly across the field</p>
+        <div class="demo-area" data-demo="ganzfeld"></div>
       </div>
       <div class="component-code">
-        <textarea class="code-editor" data-editor="heading" spellcheck="false"><h2>The Question of Translation</h2>
-<p>As Calvino wrote:</p>
-<blockquote>The work doesn't exist until you participate.</blockquote></textarea>
+        <textarea class="code-editor" data-editor="ganzfeld" spellcheck="false"><div class="ganzfeld-block">
+  <div class="ganzfeld-text">
+    <p>Light becomes material here. It has weight, presence.</p>
+  </div>
+</div></textarea>
+        <div class="code-footer"><span>Move mouse to shift light</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== WES ANDERSON ==================== -->
+  <p class="section-title">Wes Anderson — Symmetry & Whimsy</p>
+
+  <div class="component" data-id="titlecard">
+    <div class="component-header">
+      <div>
+        <span class="component-name">Title Card</span>
+        <span class="component-snippet">titlecard + Tab</span>
+      </div>
+      <div class="btn-group">
+        <button class="btn btn-secondary" onclick="resetCode('titlecard')">Reset</button>
+        <button class="btn" onclick="copyCode('titlecard')">Copy</button>
+      </div>
+    </div>
+    <div class="component-body">
+      <div class="component-demo">
+        <p class="demo-label">Hover for subtle effect</p>
+        <div class="demo-area" data-demo="titlecard"></div>
+      </div>
+      <div class="component-code">
+        <textarea class="code-editor" data-editor="titlecard" spellcheck="false"><div class="title-card">
+  <div class="title-card-chapter">Ch. 1</div>
+  <h3 class="title-card-title">The Lobby Boy</h3>
+  <p class="title-card-subtitle">In which our protagonist begins</p>
+</div></textarea>
         <div class="code-footer"><span>Auto-updates as you type</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== RADIOHEAD ==================== -->
+  <p class="section-title">Radiohead — Fragmentation & Glitch</p>
+
+  <div class="component" data-id="glitchtext">
+    <div class="component-header">
+      <div>
+        <span class="component-name">Glitch Text</span>
+        <span class="component-snippet">glitch + Tab</span>
+      </div>
+      <div class="btn-group">
+        <button class="btn btn-secondary" onclick="resetCode('glitchtext')">Reset</button>
+        <button class="btn" onclick="copyCode('glitchtext')">Copy</button>
+      </div>
+    </div>
+    <div class="component-body">
+      <div class="component-demo">
+        <p class="demo-label">Hover over the text</p>
+        <div class="demo-area" data-demo="glitchtext"></div>
+      </div>
+      <div class="component-code">
+        <textarea class="code-editor" data-editor="glitchtext" spellcheck="false"><p class="glitch-text" data-text="Everything in its right place">Everything in its right place</p></textarea>
+        <div class="code-footer"><span>Glitch animates on hover</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="component" data-id="fragmentblock">
+    <div class="component-header">
+      <div>
+        <span class="component-name">Fragment Block</span>
+        <span class="component-snippet">fragment + Tab</span>
+      </div>
+      <div class="btn-group">
+        <button class="btn btn-secondary" onclick="resetCode('fragmentblock')">Reset</button>
+        <button class="btn" onclick="copyCode('fragmentblock')">Copy</button>
+      </div>
+    </div>
+    <div class="component-body">
+      <div class="component-demo">
+        <p class="demo-label">Fragmented, layered text</p>
+        <div class="demo-area" data-demo="fragmentblock"></div>
+      </div>
+      <div class="component-code">
+        <textarea class="code-editor" data-editor="fragmentblock" spellcheck="false"><div class="fragment-block">
+  <span class="fragment">I'm not here</span>
+  <span class="fragment">This isn't happening</span>
+  <span class="fragment">I'm not here</span>
+</div></textarea>
+        <div class="code-footer"><span>Staggered, overlapping text</span></div>
       </div>
     </div>
   </div>
@@ -759,6 +934,21 @@
           if (response) {
             response.textContent = 'The imagining was the work.';
           }
+        });
+      });
+
+      // James Turrell Ganzfeld — mouse tracking
+      container.querySelectorAll('.ganzfeld-block').forEach(ganz => {
+        ganz.addEventListener('mousemove', e => {
+          const rect = ganz.getBoundingClientRect();
+          const x = ((e.clientX - rect.left) / rect.width) * 100;
+          const y = ((e.clientY - rect.top) / rect.height) * 100;
+          ganz.style.setProperty('--gx', x + '%');
+          ganz.style.setProperty('--gy', y + '%');
+        });
+        ganz.addEventListener('mouseleave', () => {
+          ganz.style.setProperty('--gx', '50%');
+          ganz.style.setProperty('--gy', '50%');
         });
       });
     }
