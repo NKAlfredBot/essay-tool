@@ -709,7 +709,7 @@
     .demo-area .morph-card.morphed .morph-alt { display: block; }
 
     /* ========================================
-       APHEX TWIN STYLES
+       APHEX TWIN STYLES (Scratch-to-Reveal)
        ======================================== */
     .demo-area .static-block {
       background: hsl(240, 10%, 8%);
@@ -717,18 +717,12 @@
       position: relative;
       overflow: hidden;
     }
-    .demo-area .static-block::before {
-      content: '';
+    .demo-area .static-block .static-canvas {
       position: absolute;
       inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-      opacity: 0.15;
-      animation: static-flicker 0.1s infinite;
-      pointer-events: none;
-    }
-    @keyframes static-flicker {
-      0%, 100% { opacity: 0.15; }
-      50% { opacity: 0.12; }
+      z-index: 2;
+      cursor: crosshair;
+      touch-action: none;
     }
     .demo-area .static-block .static-text {
       position: relative;
@@ -739,91 +733,274 @@
       color: hsl(90, 100%, 50%);
       text-shadow: 0 0 10px hsla(90, 100%, 50%, 0.5);
     }
-
-    /* ========================================
-       FERRAN ADRIÀ STYLES
-       ======================================== */
-    .demo-area .specimen-card {
-      font-family: 'IBM Plex Mono', monospace;
-      background: hsl(0, 0%, 100%);
-      border: 1px solid hsl(220, 10%, 80%);
-      padding: 1.5rem;
-      position: relative;
-    }
-    .demo-area .specimen-card::before {
-      content: '';
+    .demo-area .static-block .static-hint {
       position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: 
-        linear-gradient(90deg, transparent 49.5%, hsl(220, 10%, 90%) 49.5%, hsl(220, 10%, 90%) 50.5%, transparent 50.5%),
-        linear-gradient(0deg, transparent 49.5%, hsl(220, 10%, 90%) 49.5%, hsl(220, 10%, 90%) 50.5%, transparent 50.5%);
-      background-size: 20px 20px;
-      opacity: 0.3;
-      pointer-events: none;
-    }
-    .demo-area .specimen-card .specimen-label {
-      font-size: 0.6rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: hsl(200, 60%, 45%);
-      margin-bottom: 0.75rem;
-      position: relative;
-    }
-    .demo-area .specimen-card .specimen-title {
-      font-size: 1rem;
-      font-weight: 500;
-      margin-bottom: 0.5rem;
-      color: hsl(0, 0%, 15%);
-      position: relative;
-    }
-    .demo-area .specimen-card .specimen-body {
-      font-size: 0.85rem;
-      line-height: 1.7;
-      color: hsl(0, 0%, 40%);
-      position: relative;
-    }
-    .demo-area .specimen-card .specimen-id {
-      position: absolute;
-      top: 0.75rem;
+      bottom: 0.5rem;
       right: 0.75rem;
+      font-family: 'IBM Plex Mono', monospace;
       font-size: 0.55rem;
       letter-spacing: 0.1em;
-      color: hsl(220, 10%, 60%);
+      text-transform: uppercase;
+      color: hsla(90, 100%, 50%, 0.4);
+      z-index: 3;
+      pointer-events: none;
+      transition: opacity 0.5s ease;
+    }
+    .demo-area .static-block.revealed .static-hint {
+      opacity: 0;
     }
 
     /* ========================================
-       J DILLA STYLES
+       IGOR STRAVINSKY STYLES
        ======================================== */
-    .demo-area .loose-quote {
+    .demo-area .score-block {
       font-family: 'EB Garamond', Georgia, serif;
-      font-size: 1.15rem;
-      font-style: italic;
-      line-height: 1.9;
-      color: hsl(25, 40%, 25%);
-      padding: 1.5rem 2rem;
-      background: linear-gradient(180deg, hsl(40, 40%, 94%) 0%, hsl(35, 35%, 92%) 100%);
-      border-left: none;
-      position: relative;
-      transform: rotate(-0.3deg);
+      background: hsl(45, 30%, 96%);
+      border: 1px solid hsl(35, 20%, 80%);
+      overflow: hidden;
     }
-    .demo-area .loose-quote::before {
-      content: '"';
-      position: absolute;
-      top: 0.5rem;
-      left: 0.75rem;
-      font-size: 3rem;
-      color: hsl(45, 70%, 55%);
-      opacity: 0.4;
-      font-style: normal;
-      line-height: 1;
+    .demo-area .score-block .score-header {
+      background: hsl(35, 25%, 90%);
+      padding: 0.75rem 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid hsl(35, 20%, 80%);
     }
-    .demo-area .loose-quote .loose-source {
-      display: block;
-      margin-top: 1rem;
+    .demo-area .score-block .score-title {
       font-size: 0.8rem;
-      font-style: normal;
-      color: hsl(25, 30%, 45%);
-      transform: translateX(10px);
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      color: hsl(30, 10%, 15%);
+    }
+    .demo-area .score-block .score-nav {
+      display: flex;
+      gap: 0.5rem;
+    }
+    .demo-area .score-block .score-nav button {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.7rem;
+      padding: 0.35rem 0.75rem;
+      background: transparent;
+      border: 1px solid hsl(35, 20%, 70%);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .demo-area .score-block .score-nav button:hover {
+      background: hsl(35, 25%, 85%);
+    }
+    .demo-area .score-block .score-nav button.active {
+      background: hsl(30, 10%, 15%);
+      color: hsl(45, 40%, 96%);
+      border-color: hsl(30, 10%, 15%);
+    }
+    .demo-area .score-block .score-body {
+      padding: 1rem;
+    }
+    .demo-area .score-block .score-measure {
+      display: none;
+    }
+    .demo-area .score-block .score-measure.active {
+      display: block;
+    }
+    .demo-area .score-block .score-measure .measure-num {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.65rem;
+      color: hsl(0, 0%, 50%);
+      margin-bottom: 0.5rem;
+    }
+    .demo-area .score-block .score-measure .measure-content {
+      font-size: 1rem;
+      line-height: 1.8;
+    }
+    .demo-area .score-block .score-measure .measure-annotation {
+      margin-top: 0.75rem;
+      padding: 0.75rem;
+      background: hsla(210, 60%, 45%, 0.08);
+      border-left: 2px solid hsl(210, 60%, 45%);
+      font-size: 0.85rem;
+      line-height: 1.6;
+      color: hsl(0, 0%, 50%);
+    }
+    .demo-area .score-block .score-progress {
+      height: 3px;
+      background: hsl(35, 20%, 85%);
+    }
+    .demo-area .score-block .score-progress-bar {
+      height: 100%;
+      background: hsl(210, 60%, 45%);
+      transition: width 0.3s ease;
+    }
+
+    /* ========================================
+       NERI OXMAN STYLES
+       ======================================== */
+    .demo-area .growth-block {
+      background: linear-gradient(135deg, hsl(160, 30%, 95%) 0%, hsl(180, 25%, 92%) 100%);
+      border: 1px solid hsl(170, 20%, 80%);
+      padding: 1.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .demo-area .growth-block::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at var(--mx, 50%) var(--my, 50%), hsla(160, 50%, 60%, 0.15) 0%, transparent 50%);
+      transition: background 0.3s ease;
+      pointer-events: none;
+    }
+    .demo-area .growth-block .growth-header {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: hsl(170, 40%, 40%);
+      margin-bottom: 1rem;
+      position: relative;
+    }
+    .demo-area .growth-block .growth-content {
+      position: relative;
+    }
+    .demo-area .growth-block .growth-content p {
+      font-size: 1rem;
+      line-height: 1.8;
+      margin-bottom: 1rem;
+    }
+    .demo-area .growth-block .growth-content p:last-child {
+      margin-bottom: 0;
+    }
+    .demo-area .growth-block .growth-nodes {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      margin-top: 1rem;
+    }
+    .demo-area .growth-block .growth-node {
+      flex: 1;
+      min-width: 100px;
+      padding: 0.75rem;
+      background: hsla(170, 30%, 98%, 0.8);
+      border: 1px solid hsl(170, 20%, 80%);
+      border-radius: 20% 80% 60% 40% / 40% 60% 40% 60%;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.75rem;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.4s ease;
+    }
+    .demo-area .growth-block .growth-node:hover {
+      border-radius: 60% 40% 30% 70% / 50% 70% 30% 50%;
+      background: hsla(160, 40%, 90%, 0.9);
+      transform: scale(1.05);
+    }
+    .demo-area .growth-block .growth-node.active {
+      background: hsl(160, 40%, 45%);
+      color: white;
+      border-color: hsl(160, 40%, 45%);
+    }
+    .demo-area .growth-block .growth-detail {
+      margin-top: 1rem;
+      padding: 1rem;
+      background: hsla(0, 0%, 100%, 0.7);
+      border-left: 2px solid hsl(160, 40%, 45%);
+      font-size: 0.9rem;
+      line-height: 1.7;
+      display: none;
+    }
+    .demo-area .growth-block .growth-detail.visible {
+      display: block;
+    }
+
+    /* ========================================
+       JACK WHITTEN STYLES
+       ======================================== */
+    .demo-area .texture-block {
+      background: hsl(30, 5%, 20%);
+      overflow: hidden;
+    }
+    .demo-area .texture-block .texture-layers {
+      position: relative;
+      min-height: 160px;
+    }
+    .demo-area .texture-block .texture-layer {
+      position: absolute;
+      inset: 0;
+      padding: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .demo-area .texture-block .texture-layer:nth-child(1) {
+      background: linear-gradient(45deg, hsl(200, 60%, 25%) 0%, hsl(220, 50%, 35%) 100%);
+      z-index: 3;
+    }
+    .demo-area .texture-block .texture-layer:nth-child(2) {
+      background: linear-gradient(135deg, hsl(35, 70%, 50%) 0%, hsl(25, 60%, 40%) 100%);
+      z-index: 2;
+      transform: translateY(100%);
+      opacity: 0;
+    }
+    .demo-area .texture-block .texture-layer:nth-child(3) {
+      background: linear-gradient(180deg, hsl(350, 50%, 40%) 0%, hsl(330, 40%, 30%) 100%);
+      z-index: 1;
+      transform: translateY(100%);
+      opacity: 0;
+    }
+    .demo-area .texture-block .texture-layer p {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 1rem;
+      line-height: 1.7;
+      color: hsla(0, 0%, 100%, 0.9);
+      max-width: 400px;
+      margin: 0;
+    }
+    .demo-area .texture-block.layer-2 .texture-layer:nth-child(1) {
+      transform: translateY(-100%);
+      opacity: 0;
+    }
+    .demo-area .texture-block.layer-2 .texture-layer:nth-child(2) {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    .demo-area .texture-block.layer-3 .texture-layer:nth-child(1) {
+      transform: translateY(-100%);
+      opacity: 0;
+    }
+    .demo-area .texture-block.layer-3 .texture-layer:nth-child(2) {
+      transform: translateY(-100%);
+      opacity: 0;
+    }
+    .demo-area .texture-block.layer-3 .texture-layer:nth-child(3) {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    .demo-area .texture-block .texture-controls {
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.75rem;
+      background: hsl(30, 5%, 15%);
+      position: relative;
+      z-index: 10;
+    }
+    .demo-area .texture-block .texture-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: hsl(30, 5%, 35%);
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .demo-area .texture-block .texture-dot:hover {
+      background: hsl(30, 5%, 50%);
+    }
+    .demo-area .texture-block .texture-dot.active {
+      background: hsl(45, 80%, 60%);
+      box-shadow: 0 0 8px hsla(45, 80%, 60%, 0.5);
     }
   </style>
 </head>
@@ -1388,79 +1565,148 @@
     </div>
     <div class="component-body">
       <div class="component-demo">
-        <p class="demo-label">Corrupted signal — text emerges from noise</p>
+        <p class="demo-label">Scratch with mouse/finger to reveal text</p>
         <div class="demo-area" data-demo="static"></div>
       </div>
       <div class="component-code">
         <textarea class="code-editor" data-editor="static" spellcheck="false"><div class="static-block">
-  <p class="static-text">The signal degrades. What remains is 
-  what was always there — beneath the noise, 
-  the truth persists.</p>
+  <div class="static-text">
+    <p>The signal degrades. What remains is 
+    what was always there — beneath the noise, 
+    the truth persists.</p>
+  </div>
+  <span class="static-hint">scratch to reveal</span>
 </div></textarea>
-        <div class="code-footer"><span>For corrupted transmissions, glitched thoughts</span></div>
+        <div class="code-footer"><span>Scratch with mouse/finger to reveal hidden text</span></div>
       </div>
     </div>
   </div>
 
-  <!-- ==================== FERRAN ADRIÀ ==================== -->
-  <p class="section-title">Ferran Adrià — Laboratory Analysis</p>
+  <!-- ==================== IGOR STRAVINSKY ==================== -->
+  <p class="section-title">Igor Stravinsky — Structure & Explainers</p>
 
-  <div class="component" data-id="specimen">
+  <div class="component" data-id="score">
     <div class="component-header">
       <div>
-        <span class="component-name">Specimen Card</span>
-        <span class="component-snippet">specimen + Tab</span>
+        <span class="component-name">Score Block</span>
+        <span class="component-snippet">score + Tab</span>
       </div>
       <div class="btn-group">
-        <button class="btn btn-secondary" onclick="resetCode('specimen')">Reset</button>
-        <button class="btn" onclick="copyCode('specimen')">Copy</button>
+        <button class="btn btn-secondary" onclick="resetCode('score')">Reset</button>
+        <button class="btn" onclick="copyCode('score')">Copy</button>
       </div>
     </div>
     <div class="component-body">
       <div class="component-demo">
-        <p class="demo-label">Clinical observation — analysis of a subject</p>
-        <div class="demo-area" data-demo="specimen"></div>
+        <p class="demo-label">Step-through explainer — click nav buttons</p>
+        <div class="demo-area" data-demo="score"></div>
       </div>
       <div class="component-code">
-        <textarea class="code-editor" data-editor="specimen" spellcheck="false"><div class="specimen-card">
-  <span class="specimen-id">SP-2024-017</span>
-  <p class="specimen-label">Observation</p>
-  <p class="specimen-title">Subject exhibits unusual properties</p>
-  <p class="specimen-body">Upon closer examination, the phenomenon reveals 
-  characteristics previously unobserved in similar specimens. 
-  Further analysis required.</p>
+        <textarea class="code-editor" data-editor="score" spellcheck="false"><div class="score-block">
+  <div class="score-header">
+    <span class="score-title">Understanding the Process</span>
+    <div class="score-nav">
+      <button class="active">1</button>
+      <button>2</button>
+      <button>3</button>
+    </div>
+  </div>
+  <div class="score-body">
+    <div class="score-measure active">
+      <div class="measure-num">Part 1: Foundation</div>
+      <div class="measure-content">Every system begins with first principles — the irreducible truths upon which everything else is built.</div>
+      <div class="measure-annotation">This is where we establish the ground rules.</div>
+    </div>
+    <div class="score-measure">
+      <div class="measure-num">Part 2: Development</div>
+      <div class="measure-content">From the foundation, complexity emerges through iteration and combination.</div>
+      <div class="measure-annotation">Patterns begin to reveal themselves.</div>
+    </div>
+    <div class="score-measure">
+      <div class="measure-num">Part 3: Synthesis</div>
+      <div class="measure-content">The parts unite into something greater — the whole system becomes visible.</div>
+      <div class="measure-annotation">Understanding clicks into place.</div>
+    </div>
+  </div>
+  <div class="score-progress"><div class="score-progress-bar"></div></div>
 </div></textarea>
-        <div class="code-footer"><span>For clinical observations, scientific asides</span></div>
+        <div class="code-footer"><span>Great for tutorials, walkthroughs, educational content</span></div>
       </div>
     </div>
   </div>
 
-  <!-- ==================== J DILLA ==================== -->
-  <p class="section-title">J Dilla — Organic Swing</p>
+  <!-- ==================== NERI OXMAN ==================== -->
+  <p class="section-title">Neri Oxman — Organic Systems</p>
 
-  <div class="component" data-id="loose">
+  <div class="component" data-id="growth">
     <div class="component-header">
       <div>
-        <span class="component-name">Loose Quote</span>
-        <span class="component-snippet">loose + Tab</span>
+        <span class="component-name">Growth Block</span>
+        <span class="component-snippet">growth + Tab</span>
       </div>
       <div class="btn-group">
-        <button class="btn btn-secondary" onclick="resetCode('loose')">Reset</button>
-        <button class="btn" onclick="copyCode('loose')">Copy</button>
+        <button class="btn btn-secondary" onclick="resetCode('growth')">Reset</button>
+        <button class="btn" onclick="copyCode('growth')">Copy</button>
       </div>
     </div>
     <div class="component-body">
       <div class="component-demo">
-        <p class="demo-label">Off-grid, warm, human — slightly askew</p>
-        <div class="demo-area" data-demo="loose"></div>
+        <p class="demo-label">Move cursor for glow — click nodes to expand</p>
+        <div class="demo-area" data-demo="growth"></div>
       </div>
       <div class="component-code">
-        <textarea class="code-editor" data-editor="loose" spellcheck="false"><div class="loose-quote">
-  The best things feel a little off. Not wrong — 
-  just human. The machine can't swing like this.
-  <span class="loose-source">— Someone who understood</span>
+        <textarea class="code-editor" data-editor="growth" spellcheck="false"><div class="growth-block">
+  <div class="growth-header">System Overview</div>
+  <div class="growth-content">
+    <p>Complex systems emerge from simple rules applied across many agents.</p>
+    <div class="growth-nodes">
+      <div class="growth-node">Input</div>
+      <div class="growth-node">Process</div>
+      <div class="growth-node">Output</div>
+    </div>
+    <div class="growth-detail">Raw materials and initial conditions enter the system.</div>
+    <div class="growth-detail">Transformation occurs through iterative cycles.</div>
+    <div class="growth-detail">Emergent properties appear at the boundary.</div>
+  </div>
 </div></textarea>
-        <div class="code-footer"><span>Warmer than a blockquote — for spoken words, memories</span></div>
+        <div class="code-footer"><span>For biological/systems thinking, process explanations</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== JACK WHITTEN ==================== -->
+  <p class="section-title">Jack Whitten — Layered Material</p>
+
+  <div class="component" data-id="texture">
+    <div class="component-header">
+      <div>
+        <span class="component-name">Texture Block</span>
+        <span class="component-snippet">texture + Tab</span>
+      </div>
+      <div class="btn-group">
+        <button class="btn btn-secondary" onclick="resetCode('texture')">Reset</button>
+        <button class="btn" onclick="copyCode('texture')">Copy</button>
+      </div>
+    </div>
+    <div class="component-body">
+      <div class="component-demo">
+        <p class="demo-label">Click dots to navigate layers</p>
+        <div class="demo-area" data-demo="texture"></div>
+      </div>
+      <div class="component-code">
+        <textarea class="code-editor" data-editor="texture" spellcheck="false"><div class="texture-block">
+  <div class="texture-layers">
+    <div class="texture-layer"><p>The surface layer — what appears first, the immediate impression.</p></div>
+    <div class="texture-layer"><p>Beneath — context accumulates, history reveals itself.</p></div>
+    <div class="texture-layer"><p>The foundation — bedrock truths that support everything above.</p></div>
+  </div>
+  <div class="texture-controls">
+    <button class="texture-dot active"></button>
+    <button class="texture-dot"></button>
+    <button class="texture-dot"></button>
+  </div>
+</div></textarea>
+        <div class="code-footer"><span>For progression, contrasting perspectives, depth</span></div>
       </div>
     </div>
   </div>
@@ -1567,6 +1813,124 @@
       container.querySelectorAll('.sediment-layer').forEach(layer => {
         layer.addEventListener('click', () => {
           layer.classList.toggle('open');
+        });
+      });
+
+      // Aphex Twin Static Block - Scratch-to-reveal
+      container.querySelectorAll('.static-block').forEach(block => {
+        const canvas = document.createElement('canvas');
+        canvas.className = 'static-canvas';
+        block.insertBefore(canvas, block.firstChild);
+        const ctx = canvas.getContext('2d');
+        let isDrawing = false;
+        let totalRevealed = 0;
+        function initCanvas() {
+          const rect = block.getBoundingClientRect();
+          canvas.width = rect.width;
+          canvas.height = rect.height;
+          const imageData = ctx.createImageData(canvas.width, canvas.height);
+          for (let i = 0; i < imageData.data.length; i += 4) {
+            const noise = Math.random() * 60 + 10;
+            imageData.data[i] = noise;
+            imageData.data[i + 1] = noise;
+            imageData.data[i + 2] = noise + Math.random() * 20;
+            imageData.data[i + 3] = 255;
+          }
+          ctx.putImageData(imageData, 0, 0);
+          ctx.fillStyle = 'rgba(0, 0, 0, 0.3)';
+          for (let y = 0; y < canvas.height; y += 3) {
+            ctx.fillRect(0, y, canvas.width, 1);
+          }
+          totalRevealed = 0;
+          block.classList.remove('revealed');
+        }
+        function scratch(x, y) {
+          ctx.globalCompositeOperation = 'destination-out';
+          const radius = 20 + Math.random() * 10;
+          const gradient = ctx.createRadialGradient(x, y, 0, x, y, radius);
+          gradient.addColorStop(0, 'rgba(0, 0, 0, 1)');
+          gradient.addColorStop(0.5, 'rgba(0, 0, 0, 0.8)');
+          gradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
+          ctx.fillStyle = gradient;
+          ctx.beginPath();
+          ctx.arc(x, y, radius, 0, Math.PI * 2);
+          ctx.fill();
+          totalRevealed += radius * radius * Math.PI * 0.01;
+          if (totalRevealed > canvas.width * canvas.height * 0.4) {
+            block.classList.add('revealed');
+          }
+        }
+        function getPos(e) {
+          const rect = canvas.getBoundingClientRect();
+          const touch = e.touches ? e.touches[0] : e;
+          return { x: touch.clientX - rect.left, y: touch.clientY - rect.top };
+        }
+        canvas.addEventListener('mousedown', e => { isDrawing = true; scratch(getPos(e).x, getPos(e).y); });
+        canvas.addEventListener('mousemove', e => { if (isDrawing) scratch(getPos(e).x, getPos(e).y); });
+        canvas.addEventListener('mouseup', () => isDrawing = false);
+        canvas.addEventListener('mouseleave', () => isDrawing = false);
+        canvas.addEventListener('touchstart', e => { e.preventDefault(); isDrawing = true; scratch(getPos(e).x, getPos(e).y); }, { passive: false });
+        canvas.addEventListener('touchmove', e => { e.preventDefault(); if (isDrawing) scratch(getPos(e).x, getPos(e).y); }, { passive: false });
+        canvas.addEventListener('touchend', () => isDrawing = false);
+        initCanvas();
+      });
+
+      // Stravinsky Score Block - measure navigation
+      container.querySelectorAll('.score-block').forEach(block => {
+        const navBtns = block.querySelectorAll('.score-nav button');
+        const measures = block.querySelectorAll('.score-measure');
+        const progressBar = block.querySelector('.score-progress-bar');
+        function updateProgress() {
+          const activeIndex = Array.from(navBtns).findIndex(b => b.classList.contains('active'));
+          if (progressBar) progressBar.style.width = ((activeIndex + 1) / navBtns.length * 100) + '%';
+        }
+        navBtns.forEach((btn, i) => {
+          btn.addEventListener('click', () => {
+            navBtns.forEach(b => b.classList.remove('active'));
+            measures.forEach(m => m.classList.remove('active'));
+            btn.classList.add('active');
+            if (measures[i]) measures[i].classList.add('active');
+            updateProgress();
+          });
+        });
+        updateProgress();
+      });
+
+      // Neri Oxman Growth Block - organic interaction
+      container.querySelectorAll('.growth-block').forEach(block => {
+        block.addEventListener('mousemove', e => {
+          const rect = block.getBoundingClientRect();
+          const x = ((e.clientX - rect.left) / rect.width) * 100;
+          const y = ((e.clientY - rect.top) / rect.height) * 100;
+          block.style.setProperty('--mx', x + '%');
+          block.style.setProperty('--my', y + '%');
+        });
+        const nodes = block.querySelectorAll('.growth-node');
+        const details = block.querySelectorAll('.growth-detail');
+        nodes.forEach((node, i) => {
+          node.addEventListener('click', () => {
+            const wasActive = node.classList.contains('active');
+            nodes.forEach(n => n.classList.remove('active'));
+            details.forEach(d => d.classList.remove('visible'));
+            if (!wasActive) {
+              node.classList.add('active');
+              if (details[i]) details[i].classList.add('visible');
+            }
+          });
+        });
+      });
+
+      // Jack Whitten Texture Block - layer transitions
+      container.querySelectorAll('.texture-block').forEach(block => {
+        const dots = block.querySelectorAll('.texture-dot');
+        dots.forEach((dot, i) => {
+          dot.addEventListener('click', () => {
+            block.classList.remove('layer-2', 'layer-3');
+            dots.forEach(d => d.classList.remove('active'));
+            dot.classList.add('active');
+            if (i === 1) block.classList.add('layer-2');
+            if (i === 2) block.classList.add('layer-3');
+          });
         });
       });
 
