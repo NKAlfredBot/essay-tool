@@ -4,8 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Essay Components — Palette</title>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
+    /* ========================================
+       PALETTE UI STYLES
+       ======================================== */
     :root {
       --bg: hsl(220, 15%, 12%);
       --surface: hsl(220, 15%, 16%);
@@ -23,7 +26,7 @@
       color: var(--text);
       line-height: 1.5;
       padding: 2rem;
-      max-width: 900px;
+      max-width: 1000px;
       margin: 0 auto;
     }
     h1 {
@@ -40,7 +43,7 @@
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: 8px;
-      margin-bottom: 1.5rem;
+      margin-bottom: 2rem;
       overflow: hidden;
     }
     .component-header {
@@ -62,6 +65,7 @@
       background: hsla(0,0%,0%,0.3);
       padding: 2px 8px;
       border-radius: 4px;
+      margin-left: 0.75rem;
     }
     .copy-btn {
       font-family: 'Inter', sans-serif;
@@ -75,24 +79,37 @@
       cursor: pointer;
       transition: background 0.2s, transform 0.1s;
     }
-    .copy-btn:hover {
-      background: hsl(210, 80%, 55%);
+    .copy-btn:hover { background: hsl(210, 80%, 55%); }
+    .copy-btn:active { transform: scale(0.97); }
+    .copy-btn.copied { background: var(--success); }
+    
+    .component-body {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
     }
-    .copy-btn:active {
-      transform: scale(0.97);
+    @media (max-width: 768px) {
+      .component-body { grid-template-columns: 1fr; }
     }
-    .copy-btn.copied {
-      background: var(--success);
+    
+    .component-demo {
+      padding: 1.5rem;
+      border-right: 1px solid var(--border);
+      background: hsl(45, 40%, 96%);
     }
+    @media (max-width: 768px) {
+      .component-demo { border-right: none; border-bottom: 1px solid var(--border); }
+    }
+    
     .component-code {
       padding: 1.25rem;
       overflow-x: auto;
+      background: hsla(0,0%,0%,0.2);
     }
     pre {
       font-family: 'IBM Plex Mono', monospace;
-      font-size: 0.8rem;
+      font-size: 0.75rem;
       line-height: 1.6;
-      color: hsl(220, 15%, 80%);
+      color: hsl(220, 15%, 75%);
       white-space: pre-wrap;
       word-break: break-word;
     }
@@ -112,26 +129,177 @@
       border-bottom: 1px solid var(--border);
     }
     
-    .tip {
-      background: hsla(210, 80%, 60%, 0.1);
-      border-left: 3px solid var(--accent);
-      padding: 1rem 1.25rem;
-      margin-bottom: 1.5rem;
-      font-size: 0.9rem;
-      border-radius: 0 6px 6px 0;
+    .demo-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: hsl(220, 10%, 50%);
+      margin-bottom: 0.75rem;
     }
-    .tip strong {
-      color: var(--accent);
+
+    /* ========================================
+       ESSAY COMPONENT STYLES (for demos)
+       ======================================== */
+    .demo-area {
+      font-family: 'EB Garamond', Georgia, serif;
+      color: hsl(30, 10%, 15%);
+      font-size: 16px;
+      line-height: 1.7;
+    }
+    
+    /* Footnotes */
+    .fn {
+      cursor: pointer;
+      border-bottom: 1px dotted hsl(210, 60%, 45%);
+      transition: background 0.2s;
+    }
+    .fn:hover { background: hsla(210, 60%, 45%, 0.1); }
+    .fn::after {
+      content: attr(data-fn);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.65em;
+      font-weight: 500;
+      color: hsl(210, 60%, 45%);
+      vertical-align: super;
+      margin-left: 2px;
+      padding: 1px 4px;
+      background: hsla(210, 60%, 45%, 0.1);
+      border-radius: 2px;
+    }
+    .fn.active { background: hsla(210, 60%, 45%, 0.15); }
+    .fn.active::after { background: hsl(210, 60%, 45%); color: white; }
+    
+    .fn-content {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.8rem;
+      line-height: 1.6;
+      background: hsl(45, 15%, 92%);
+      border-left: 3px solid hsl(210, 60%, 45%);
+      margin: 0.75rem 0;
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      padding: 0 1rem;
+      transition: max-height 0.4s ease-out, opacity 0.3s ease-out, padding 0.3s ease-out;
+    }
+    .fn-content.open {
+      max-height: 500px;
+      opacity: 1;
+      padding: 0.75rem 1rem;
+    }
+    .fn-content p { margin: 0 0 0.5rem; }
+    .fn-content p:last-child { margin: 0; }
+    .fn-content .fn-content { background: hsl(45, 15%, 88%); margin-left: 0; font-size: 0.95em; }
+    
+    /* Reader address */
+    .reader-address {
+      background: hsla(260, 30%, 60%, 0.08);
+      border-left: 2px solid hsl(260, 30%, 60%);
+      padding: 1rem;
+      font-size: 1rem;
+      font-style: italic;
+      line-height: 1.8;
+    }
+    .reader-address::before {
+      content: 'To the reader';
+      display: block;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.65rem;
+      font-style: normal;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: hsl(260, 30%, 60%);
+      margin-bottom: 0.5rem;
+    }
+    
+    /* Frames */
+    .frame { padding: 1rem; margin: 0; }
+    .frame--outer { background: hsl(35, 30%, 88%); }
+    .frame--middle { background: hsl(40, 30%, 94%); margin-left: 0.75rem; }
+    .frame--inner { background: white; margin-left: 0.75rem; text-align: center; font-style: italic; }
+    .frame-label {
+      display: block;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.6rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: hsl(40, 10%, 55%);
+      margin-bottom: 0.5rem;
+    }
+    .frame--middle .frame-label { color: hsl(260, 30%, 60%); }
+    .frame--inner .frame-label { color: hsl(210, 60%, 45%); }
+    
+    /* Paths */
+    .paths {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: hsl(40, 10%, 55%);
+    }
+    .path {
+      font-family: 'EB Garamond', serif;
+      font-size: 0.9rem;
+      background: hsl(45, 40%, 96%);
+      border: none;
+      padding: 0.75rem;
+      cursor: pointer;
+      text-align: center;
+      transition: background 0.3s, color 0.3s;
+    }
+    .path:hover { background: hsla(260, 30%, 60%, 0.1); }
+    .path.active { background: hsl(30, 10%, 15%); color: hsl(45, 40%, 96%); }
+    .path-content {
+      background: hsla(260, 30%, 60%, 0.05);
+      padding: 1rem;
+      margin-top: -1px;
+      display: none;
+      font-size: 0.9rem;
+    }
+    .path-content.visible { display: block; }
+    .path-content p { margin: 0; }
+    
+    /* Divider */
+    .divider {
+      text-align: center;
+      margin: 1.5rem 0;
+      color: hsl(40, 10%, 55%);
+      font-size: 0.9rem;
+      letter-spacing: 0.3em;
+    }
+    .divider::before, .divider::after {
+      content: '';
+      display: inline-block;
+      width: 40px;
+      height: 1px;
+      background: hsl(40, 10%, 55%);
+      vertical-align: middle;
+      margin: 0 0.75rem;
+      opacity: 0.5;
+    }
+    
+    /* Blockquote */
+    .demo-blockquote {
+      border-left: 2px solid hsl(40, 10%, 55%);
+      padding-left: 1rem;
+      font-style: italic;
+      color: hsl(40, 10%, 55%);
+      margin: 0;
+    }
+    
+    /* Section heading */
+    .demo-h2 {
+      font-family: 'EB Garamond', serif;
+      font-size: 1.25rem;
+      font-weight: 500;
+      color: hsl(260, 30%, 60%);
+      margin: 0;
     }
   </style>
 </head>
 <body>
   <h1>Essay Component Palette</h1>
-  <p class="subtitle">Click "Copy" to grab the HTML. Paste into your essay file.</p>
-  
-  <div class="tip">
-    <strong>Tip:</strong> Open your essay in VS Code, type the snippet shortcut (e.g., <code>fn</code>), and press Tab for auto-complete.
-  </div>
+  <p class="subtitle">Interactive demos on the left, copy-able code on the right. Click components to try them!</p>
 
   <!-- ==================== DFW FOOTNOTES ==================== -->
   <p class="section-title">David Foster Wallace — Footnotes</p>
@@ -144,11 +312,22 @@
       </div>
       <button class="copy-btn" onclick="copyCode('fn-basic')">Copy</button>
     </div>
-    <div class="component-code">
-<pre id="code-fn-basic"><span class="tag">&lt;span</span> <span class="attr">class</span>=<span class="string">"fn"</span> <span class="attr">data-fn</span>=<span class="string">"1"</span><span class="tag">&gt;</span>text with footnote<span class="tag">&lt;/span&gt;</span>
+    <div class="component-body">
+      <div class="component-demo">
+        <p class="demo-label">Try it — click the footnote</p>
+        <div class="demo-area">
+          <p style="margin:0">The project began with a simple <span class="fn" data-fn="d1">question about translation</span>.</p>
+          <aside class="fn-content" data-fn="d1">
+            <p>Translation here means something specific: converting aesthetic principles into functional code. Not copying, but interpreting.</p>
+          </aside>
+        </div>
+      </div>
+      <div class="component-code">
+<pre><span class="tag">&lt;span</span> <span class="attr">class</span>=<span class="string">"fn"</span> <span class="attr">data-fn</span>=<span class="string">"1"</span><span class="tag">&gt;</span>text with footnote<span class="tag">&lt;/span&gt;</span>
 <span class="tag">&lt;aside</span> <span class="attr">class</span>=<span class="string">"fn-content"</span> <span class="attr">data-fn</span>=<span class="string">"1"</span><span class="tag">&gt;</span>
   <span class="tag">&lt;p&gt;</span>Footnote content here.<span class="tag">&lt;/p&gt;</span>
 <span class="tag">&lt;/aside&gt;</span></pre>
+      </div>
     </div>
   </div>
 
@@ -160,29 +339,26 @@
       </div>
       <button class="copy-btn" onclick="copyCode('fn-nested')">Copy</button>
     </div>
-    <div class="component-code">
-<pre id="code-fn-nested"><span class="comment">&lt;!-- Place this INSIDE an existing fn-content --&gt;</span>
+    <div class="component-body">
+      <div class="component-demo">
+        <p class="demo-label">Click both levels</p>
+        <div class="demo-area">
+          <p style="margin:0">This creates a <span class="fn" data-fn="d2">recursive structure</span>.</p>
+          <aside class="fn-content" data-fn="d2">
+            <p>Recursion is when something <span class="fn" data-fn="d2a">contains a version of itself</span>.</p>
+            <aside class="fn-content" data-fn="d2a">
+              <p>Like this footnote inside a footnote. The nesting can go as deep as you want.</p>
+            </aside>
+          </aside>
+        </div>
+      </div>
+      <div class="component-code">
+<pre><span class="comment">&lt;!-- Inside an existing fn-content: --&gt;</span>
 <span class="tag">&lt;span</span> <span class="attr">class</span>=<span class="string">"fn"</span> <span class="attr">data-fn</span>=<span class="string">"1a"</span><span class="tag">&gt;</span>nested text<span class="tag">&lt;/span&gt;</span>
 <span class="tag">&lt;aside</span> <span class="attr">class</span>=<span class="string">"fn-content"</span> <span class="attr">data-fn</span>=<span class="string">"1a"</span><span class="tag">&gt;</span>
-  <span class="tag">&lt;p&gt;</span>A footnote within a footnote.<span class="tag">&lt;/p&gt;</span>
+  <span class="tag">&lt;p&gt;</span>Nested footnote content.<span class="tag">&lt;/p&gt;</span>
 <span class="tag">&lt;/aside&gt;</span></pre>
-    </div>
-  </div>
-
-  <div class="component" data-code="fn-multi">
-    <div class="component-header">
-      <div>
-        <span class="component-name">Footnote with Multiple Paragraphs</span>
       </div>
-      <button class="copy-btn" onclick="copyCode('fn-multi')">Copy</button>
-    </div>
-    <div class="component-code">
-<pre id="code-fn-multi"><span class="tag">&lt;span</span> <span class="attr">class</span>=<span class="string">"fn"</span> <span class="attr">data-fn</span>=<span class="string">"2"</span><span class="tag">&gt;</span>text here<span class="tag">&lt;/span&gt;</span>
-<span class="tag">&lt;aside</span> <span class="attr">class</span>=<span class="string">"fn-content"</span> <span class="attr">data-fn</span>=<span class="string">"2"</span><span class="tag">&gt;</span>
-  <span class="tag">&lt;p&gt;</span>First paragraph of the footnote.<span class="tag">&lt;/p&gt;</span>
-  <span class="tag">&lt;p&gt;</span>Second paragraph continues the thought.<span class="tag">&lt;/p&gt;</span>
-  <span class="tag">&lt;p&gt;</span>Third paragraph if needed.<span class="tag">&lt;/p&gt;</span>
-<span class="tag">&lt;/aside&gt;</span></pre>
     </div>
   </div>
 
@@ -197,10 +373,20 @@
       </div>
       <button class="copy-btn" onclick="copyCode('reader')">Copy</button>
     </div>
-    <div class="component-code">
-<pre id="code-reader"><span class="tag">&lt;aside</span> <span class="attr">class</span>=<span class="string">"reader-address"</span><span class="tag">&gt;</span>
-  You, reader, have now reached the point where...
+    <div class="component-body">
+      <div class="component-demo">
+        <p class="demo-label">Breaks the fourth wall</p>
+        <div class="demo-area">
+          <aside class="reader-address">
+            You, reader, have now reached a point of decision. What you expected to find here may not be what you find.
+          </aside>
+        </div>
+      </div>
+      <div class="component-code">
+<pre><span class="tag">&lt;aside</span> <span class="attr">class</span>=<span class="string">"reader-address"</span><span class="tag">&gt;</span>
+  You, reader, have now reached...
 <span class="tag">&lt;/aside&gt;</span></pre>
+      </div>
     </div>
   </div>
 
@@ -212,17 +398,34 @@
       </div>
       <button class="copy-btn" onclick="copyCode('frame')">Copy</button>
     </div>
-    <div class="component-code">
-<pre id="code-frame"><span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="string">"frame frame--outer"</span><span class="tag">&gt;</span>
-  <span class="tag">&lt;span</span> <span class="attr">class</span>=<span class="string">"frame-label"</span><span class="tag">&gt;</span>The Outer Frame<span class="tag">&lt;/span&gt;</span>
+    <div class="component-body">
+      <div class="component-demo">
+        <p class="demo-label">Nested containers for layered meaning</p>
+        <div class="demo-area">
+          <div class="frame frame--outer">
+            <span class="frame-label">What you see</span>
+            <div class="frame frame--middle">
+              <span class="frame-label">How it's made</span>
+              <div class="frame frame--inner">
+                <span class="frame-label">Why it matters</span>
+                <p style="margin:0;font-size:0.9rem">Each layer recontextualizes the others.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="component-code">
+<pre><span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="string">"frame frame--outer"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;span</span> <span class="attr">class</span>=<span class="string">"frame-label"</span><span class="tag">&gt;</span>Outer<span class="tag">&lt;/span&gt;</span>
   <span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="string">"frame frame--middle"</span><span class="tag">&gt;</span>
-    <span class="tag">&lt;span</span> <span class="attr">class</span>=<span class="string">"frame-label"</span><span class="tag">&gt;</span>The Middle Frame<span class="tag">&lt;/span&gt;</span>
+    <span class="tag">&lt;span</span> <span class="attr">class</span>=<span class="string">"frame-label"</span><span class="tag">&gt;</span>Middle<span class="tag">&lt;/span&gt;</span>
     <span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="string">"frame frame--inner"</span><span class="tag">&gt;</span>
-      <span class="tag">&lt;span</span> <span class="attr">class</span>=<span class="string">"frame-label"</span><span class="tag">&gt;</span>The Inner Frame<span class="tag">&lt;/span&gt;</span>
-      <span class="tag">&lt;p</span> <span class="attr">style</span>=<span class="string">"margin:0"</span><span class="tag">&gt;</span>Core content here.<span class="tag">&lt;/p&gt;</span>
+      <span class="tag">&lt;span</span> <span class="attr">class</span>=<span class="string">"frame-label"</span><span class="tag">&gt;</span>Inner<span class="tag">&lt;/span&gt;</span>
+      <span class="tag">&lt;p&gt;</span>Content<span class="tag">&lt;/p&gt;</span>
     <span class="tag">&lt;/div&gt;</span>
   <span class="tag">&lt;/div&gt;</span>
 <span class="tag">&lt;/div&gt;</span></pre>
+      </div>
     </div>
   </div>
 
@@ -234,24 +437,38 @@
       </div>
       <button class="copy-btn" onclick="copyCode('paths')">Copy</button>
     </div>
-    <div class="component-code">
-<pre id="code-paths"><span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="string">"paths"</span><span class="tag">&gt;</span>
-  <span class="tag">&lt;button</span> <span class="attr">class</span>=<span class="string">"path"</span> <span class="attr">data-path</span>=<span class="string">"craft"</span><span class="tag">&gt;</span>The Craft<span class="tag">&lt;/button&gt;</span>
-  <span class="tag">&lt;button</span> <span class="attr">class</span>=<span class="string">"path"</span> <span class="attr">data-path</span>=<span class="string">"meaning"</span><span class="tag">&gt;</span>The Meaning<span class="tag">&lt;/button&gt;</span>
-  <span class="tag">&lt;button</span> <span class="attr">class</span>=<span class="string">"path"</span> <span class="attr">data-path</span>=<span class="string">"process"</span><span class="tag">&gt;</span>The Process<span class="tag">&lt;/button&gt;</span>
+    <div class="component-body">
+      <div class="component-demo">
+        <p class="demo-label">Click to choose a path</p>
+        <div class="demo-area">
+          <div class="paths">
+            <button class="path" data-path="demo-craft">The Craft</button>
+            <button class="path" data-path="demo-meaning">The Meaning</button>
+            <button class="path" data-path="demo-process">The Process</button>
+          </div>
+          <div class="path-content" data-path="demo-craft">
+            <p>Here you explain the technical details. Tools, methods, decisions.</p>
+          </div>
+          <div class="path-content" data-path="demo-meaning">
+            <p>Here you explore what it represents. The larger questions.</p>
+          </div>
+          <div class="path-content" data-path="demo-process">
+            <p>Here you share the journey. What surprised you, what you learned.</p>
+          </div>
+        </div>
+      </div>
+      <div class="component-code">
+<pre><span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="string">"paths"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;button</span> <span class="attr">class</span>=<span class="string">"path"</span> <span class="attr">data-path</span>=<span class="string">"a"</span><span class="tag">&gt;</span>Path A<span class="tag">&lt;/button&gt;</span>
+  <span class="tag">&lt;button</span> <span class="attr">class</span>=<span class="string">"path"</span> <span class="attr">data-path</span>=<span class="string">"b"</span><span class="tag">&gt;</span>Path B<span class="tag">&lt;/button&gt;</span>
 <span class="tag">&lt;/div&gt;</span>
-
-<span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="string">"path-content"</span> <span class="attr">data-path</span>=<span class="string">"craft"</span><span class="tag">&gt;</span>
-  <span class="tag">&lt;p&gt;</span>Technical details about how it was made...<span class="tag">&lt;/p&gt;</span>
+<span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="string">"path-content"</span> <span class="attr">data-path</span>=<span class="string">"a"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;p&gt;</span>Content for A...<span class="tag">&lt;/p&gt;</span>
 <span class="tag">&lt;/div&gt;</span>
-
-<span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="string">"path-content"</span> <span class="attr">data-path</span>=<span class="string">"meaning"</span><span class="tag">&gt;</span>
-  <span class="tag">&lt;p&gt;</span>What it represents, what questions it raises...<span class="tag">&lt;/p&gt;</span>
-<span class="tag">&lt;/div&gt;</span>
-
-<span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="string">"path-content"</span> <span class="attr">data-path</span>=<span class="string">"process"</span><span class="tag">&gt;</span>
-  <span class="tag">&lt;p&gt;</span>The journey of making it, what surprised you...<span class="tag">&lt;/p&gt;</span>
+<span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="string">"path-content"</span> <span class="attr">data-path</span>=<span class="string">"b"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;p&gt;</span>Content for B...<span class="tag">&lt;/p&gt;</span>
 <span class="tag">&lt;/div&gt;</span></pre>
+      </div>
     </div>
   </div>
 
@@ -266,8 +483,18 @@
       </div>
       <button class="copy-btn" onclick="copyCode('divider')">Copy</button>
     </div>
-    <div class="component-code">
-<pre id="code-divider"><span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="string">"divider"</span><span class="tag">&gt;</span>◆<span class="tag">&lt;/div&gt;</span></pre>
+    <div class="component-body">
+      <div class="component-demo">
+        <p class="demo-label">Separates sections elegantly</p>
+        <div class="demo-area">
+          <p style="margin:0 0 0.5rem;font-size:0.9rem">End of one section...</p>
+          <div class="divider">◆</div>
+          <p style="margin:0.5rem 0 0;font-size:0.9rem">Beginning of another.</p>
+        </div>
+      </div>
+      <div class="component-code">
+<pre><span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="string">"divider"</span><span class="tag">&gt;</span>◆<span class="tag">&lt;/div&gt;</span></pre>
+      </div>
     </div>
   </div>
 
@@ -279,23 +506,16 @@
       </div>
       <button class="copy-btn" onclick="copyCode('h2')">Copy</button>
     </div>
-    <div class="component-code">
-<pre id="code-h2"><span class="tag">&lt;h2&gt;</span>Section Title<span class="tag">&lt;/h2&gt;</span></pre>
-    </div>
-  </div>
-
-  <div class="component" data-code="para">
-    <div class="component-header">
-      <div>
-        <span class="component-name">Paragraph</span>
-        <span class="component-snippet">pp + Tab</span>
+    <div class="component-body">
+      <div class="component-demo">
+        <p class="demo-label">Twilight purple accent</p>
+        <div class="demo-area">
+          <h2 class="demo-h2">The Question of Translation</h2>
+        </div>
       </div>
-      <button class="copy-btn" onclick="copyCode('para')">Copy</button>
-    </div>
-    <div class="component-code">
-<pre id="code-para"><span class="tag">&lt;p&gt;</span>
-  Your paragraph text here.
-<span class="tag">&lt;/p&gt;</span></pre>
+      <div class="component-code">
+<pre><span class="tag">&lt;h2&gt;</span>Section Title<span class="tag">&lt;/h2&gt;</span></pre>
+      </div>
     </div>
   </div>
 
@@ -307,23 +527,20 @@
       </div>
       <button class="copy-btn" onclick="copyCode('blockquote')">Copy</button>
     </div>
-    <div class="component-code">
-<pre id="code-blockquote"><span class="tag">&lt;blockquote&gt;</span>
+    <div class="component-body">
+      <div class="component-demo">
+        <p class="demo-label">For quotations</p>
+        <div class="demo-area">
+          <blockquote class="demo-blockquote">
+            The work doesn't exist until you participate.
+          </blockquote>
+        </div>
+      </div>
+      <div class="component-code">
+<pre><span class="tag">&lt;blockquote&gt;</span>
   Quoted text here.
 <span class="tag">&lt;/blockquote&gt;</span></pre>
-    </div>
-  </div>
-
-  <div class="component" data-code="link">
-    <div class="component-header">
-      <div>
-        <span class="component-name">Link</span>
-        <span class="component-snippet">link + Tab</span>
       </div>
-      <button class="copy-btn" onclick="copyCode('link')">Copy</button>
-    </div>
-    <div class="component-code">
-<pre id="code-link"><span class="tag">&lt;a</span> <span class="attr">href</span>=<span class="string">"https://example.com"</span><span class="tag">&gt;</span>link text<span class="tag">&lt;/a&gt;</span></pre>
     </div>
   </div>
 
@@ -336,16 +553,10 @@
 </aside>`,
       'fn-nested': `<span class="fn" data-fn="1a">nested text</span>
 <aside class="fn-content" data-fn="1a">
-  <p>A footnote within a footnote.</p>
-</aside>`,
-      'fn-multi': `<span class="fn" data-fn="2">text here</span>
-<aside class="fn-content" data-fn="2">
-  <p>First paragraph of the footnote.</p>
-  <p>Second paragraph continues the thought.</p>
-  <p>Third paragraph if needed.</p>
+  <p>Nested footnote content.</p>
 </aside>`,
       'reader': `<aside class="reader-address">
-  You, reader, have now reached the point where...
+  You, reader, have now reached...
 </aside>`,
       'frame': `<div class="frame frame--outer">
   <span class="frame-label">The Outer Frame</span>
@@ -364,25 +575,21 @@
 </div>
 
 <div class="path-content" data-path="craft">
-  <p>Technical details about how it was made...</p>
+  <p>Technical details...</p>
 </div>
 
 <div class="path-content" data-path="meaning">
-  <p>What it represents, what questions it raises...</p>
+  <p>What it represents...</p>
 </div>
 
 <div class="path-content" data-path="process">
-  <p>The journey of making it, what surprised you...</p>
+  <p>The journey...</p>
 </div>`,
       'divider': `<div class="divider">◆</div>`,
       'h2': `<h2>Section Title</h2>`,
-      'para': `<p>
-  Your paragraph text here.
-</p>`,
       'blockquote': `<blockquote>
   Quoted text here.
-</blockquote>`,
-      'link': `<a href="https://example.com">link text</a>`
+</blockquote>`
     };
 
     function copyCode(id) {
@@ -397,6 +604,37 @@
         }, 1500);
       });
     }
+
+    // Footnote interactivity
+    document.querySelectorAll('.fn').forEach(fn => {
+      fn.addEventListener('click', e => {
+        e.stopPropagation();
+        const content = document.querySelector(`.fn-content[data-fn="${fn.dataset.fn}"]`);
+        if (content) {
+          const isOpen = content.classList.contains('open');
+          if (isOpen) {
+            content.classList.remove('open');
+            fn.classList.remove('active');
+          } else {
+            content.classList.add('open');
+            fn.classList.add('active');
+          }
+        }
+      });
+    });
+
+    // Path interactivity
+    document.querySelectorAll('.path').forEach(path => {
+      path.addEventListener('click', () => {
+        const pathId = path.dataset.path;
+        const container = path.closest('.demo-area');
+        container.querySelectorAll('.path').forEach(p => p.classList.remove('active'));
+        path.classList.add('active');
+        container.querySelectorAll('.path-content').forEach(c => {
+          c.classList.toggle('visible', c.dataset.path === pathId);
+        });
+      });
+    });
   </script>
 </body>
 </html>
