@@ -707,6 +707,124 @@
     }
     .demo-area .morph-card.morphed .morph-default { display: none; }
     .demo-area .morph-card.morphed .morph-alt { display: block; }
+
+    /* ========================================
+       APHEX TWIN STYLES
+       ======================================== */
+    .demo-area .static-block {
+      background: hsl(240, 10%, 8%);
+      padding: 1.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .demo-area .static-block::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      opacity: 0.15;
+      animation: static-flicker 0.1s infinite;
+      pointer-events: none;
+    }
+    @keyframes static-flicker {
+      0%, 100% { opacity: 0.15; }
+      50% { opacity: 0.12; }
+    }
+    .demo-area .static-block .static-text {
+      position: relative;
+      z-index: 1;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.9rem;
+      line-height: 1.8;
+      color: hsl(90, 100%, 50%);
+      text-shadow: 0 0 10px hsla(90, 100%, 50%, 0.5);
+    }
+
+    /* ========================================
+       FERRAN ADRIÀ STYLES
+       ======================================== */
+    .demo-area .specimen-card {
+      font-family: 'IBM Plex Mono', monospace;
+      background: hsl(0, 0%, 100%);
+      border: 1px solid hsl(220, 10%, 80%);
+      padding: 1.5rem;
+      position: relative;
+    }
+    .demo-area .specimen-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: 
+        linear-gradient(90deg, transparent 49.5%, hsl(220, 10%, 90%) 49.5%, hsl(220, 10%, 90%) 50.5%, transparent 50.5%),
+        linear-gradient(0deg, transparent 49.5%, hsl(220, 10%, 90%) 49.5%, hsl(220, 10%, 90%) 50.5%, transparent 50.5%);
+      background-size: 20px 20px;
+      opacity: 0.3;
+      pointer-events: none;
+    }
+    .demo-area .specimen-card .specimen-label {
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: hsl(200, 60%, 45%);
+      margin-bottom: 0.75rem;
+      position: relative;
+    }
+    .demo-area .specimen-card .specimen-title {
+      font-size: 1rem;
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+      color: hsl(0, 0%, 15%);
+      position: relative;
+    }
+    .demo-area .specimen-card .specimen-body {
+      font-size: 0.85rem;
+      line-height: 1.7;
+      color: hsl(0, 0%, 40%);
+      position: relative;
+    }
+    .demo-area .specimen-card .specimen-id {
+      position: absolute;
+      top: 0.75rem;
+      right: 0.75rem;
+      font-size: 0.55rem;
+      letter-spacing: 0.1em;
+      color: hsl(220, 10%, 60%);
+    }
+
+    /* ========================================
+       J DILLA STYLES
+       ======================================== */
+    .demo-area .loose-quote {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 1.15rem;
+      font-style: italic;
+      line-height: 1.9;
+      color: hsl(25, 40%, 25%);
+      padding: 1.5rem 2rem;
+      background: linear-gradient(180deg, hsl(40, 40%, 94%) 0%, hsl(35, 35%, 92%) 100%);
+      border-left: none;
+      position: relative;
+      transform: rotate(-0.3deg);
+    }
+    .demo-area .loose-quote::before {
+      content: '"';
+      position: absolute;
+      top: 0.5rem;
+      left: 0.75rem;
+      font-size: 3rem;
+      color: hsl(45, 70%, 55%);
+      opacity: 0.4;
+      font-style: normal;
+      line-height: 1;
+    }
+    .demo-area .loose-quote .loose-source {
+      display: block;
+      margin-top: 1rem;
+      font-size: 0.8rem;
+      font-style: normal;
+      color: hsl(25, 30%, 45%);
+      transform: translateX(10px);
+    }
   </style>
 </head>
 <body>
@@ -1250,6 +1368,99 @@
   </div>
 </div></textarea>
         <div class="code-footer"><span>Click to shift perspective — content transforms</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== APHEX TWIN ==================== -->
+  <p class="section-title">Aphex Twin — Signal Decay</p>
+
+  <div class="component" data-id="static">
+    <div class="component-header">
+      <div>
+        <span class="component-name">Static Block</span>
+        <span class="component-snippet">static + Tab</span>
+      </div>
+      <div class="btn-group">
+        <button class="btn btn-secondary" onclick="resetCode('static')">Reset</button>
+        <button class="btn" onclick="copyCode('static')">Copy</button>
+      </div>
+    </div>
+    <div class="component-body">
+      <div class="component-demo">
+        <p class="demo-label">Corrupted signal — text emerges from noise</p>
+        <div class="demo-area" data-demo="static"></div>
+      </div>
+      <div class="component-code">
+        <textarea class="code-editor" data-editor="static" spellcheck="false"><div class="static-block">
+  <p class="static-text">The signal degrades. What remains is 
+  what was always there — beneath the noise, 
+  the truth persists.</p>
+</div></textarea>
+        <div class="code-footer"><span>For corrupted transmissions, glitched thoughts</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== FERRAN ADRIÀ ==================== -->
+  <p class="section-title">Ferran Adrià — Laboratory Analysis</p>
+
+  <div class="component" data-id="specimen">
+    <div class="component-header">
+      <div>
+        <span class="component-name">Specimen Card</span>
+        <span class="component-snippet">specimen + Tab</span>
+      </div>
+      <div class="btn-group">
+        <button class="btn btn-secondary" onclick="resetCode('specimen')">Reset</button>
+        <button class="btn" onclick="copyCode('specimen')">Copy</button>
+      </div>
+    </div>
+    <div class="component-body">
+      <div class="component-demo">
+        <p class="demo-label">Clinical observation — analysis of a subject</p>
+        <div class="demo-area" data-demo="specimen"></div>
+      </div>
+      <div class="component-code">
+        <textarea class="code-editor" data-editor="specimen" spellcheck="false"><div class="specimen-card">
+  <span class="specimen-id">SP-2024-017</span>
+  <p class="specimen-label">Observation</p>
+  <p class="specimen-title">Subject exhibits unusual properties</p>
+  <p class="specimen-body">Upon closer examination, the phenomenon reveals 
+  characteristics previously unobserved in similar specimens. 
+  Further analysis required.</p>
+</div></textarea>
+        <div class="code-footer"><span>For clinical observations, scientific asides</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== J DILLA ==================== -->
+  <p class="section-title">J Dilla — Organic Swing</p>
+
+  <div class="component" data-id="loose">
+    <div class="component-header">
+      <div>
+        <span class="component-name">Loose Quote</span>
+        <span class="component-snippet">loose + Tab</span>
+      </div>
+      <div class="btn-group">
+        <button class="btn btn-secondary" onclick="resetCode('loose')">Reset</button>
+        <button class="btn" onclick="copyCode('loose')">Copy</button>
+      </div>
+    </div>
+    <div class="component-body">
+      <div class="component-demo">
+        <p class="demo-label">Off-grid, warm, human — slightly askew</p>
+        <div class="demo-area" data-demo="loose"></div>
+      </div>
+      <div class="component-code">
+        <textarea class="code-editor" data-editor="loose" spellcheck="false"><div class="loose-quote">
+  The best things feel a little off. Not wrong — 
+  just human. The machine can't swing like this.
+  <span class="loose-source">— Someone who understood</span>
+</div></textarea>
+        <div class="code-footer"><span>Warmer than a blockquote — for spoken words, memories</span></div>
       </div>
     </div>
   </div>

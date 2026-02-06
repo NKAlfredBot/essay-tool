@@ -307,5 +307,39 @@
       "</div>"
     ],
     "description": "Fantastic Planet-style morph card (click to transform)"
+  },
+
+  "Aphex Twin Static Block": {
+    "prefix": "static",
+    "body": [
+      "<div class=\"static-block\">",
+      "  <p class=\"static-text\">${1:The signal degrades. What remains is what was always there.}</p>",
+      "</div>"
+    ],
+    "description": "Aphex Twin-style static/noise block (corrupted transmission)"
+  },
+
+  "Ferran Adrià Specimen Card": {
+    "prefix": "specimen",
+    "body": [
+      "<div class=\"specimen-card\">",
+      "  <span class=\"specimen-id\">${1:SP-001}</span>",
+      "  <p class=\"specimen-label\">${2:Observation}</p>",
+      "  <p class=\"specimen-title\">${3:Subject exhibits unusual properties}</p>",
+      "  <p class=\"specimen-body\">${4:Upon closer examination, the phenomenon reveals characteristics previously unobserved.}</p>",
+      "</div>"
+    ],
+    "description": "Ferran Adrià-style clinical specimen card (lab analysis)"
+  },
+
+  "J Dilla Loose Quote": {
+    "prefix": "loose",
+    "body": [
+      "<div class=\"loose-quote\">",
+      "  ${1:The best things feel a little off. Not wrong — just human.}",
+      "  <span class=\"loose-source\">— ${2:Someone who understood}</span>",
+      "</div>"
+    ],
+    "description": "J Dilla-style loose quote (warm, off-grid, organic)"
   }
 }
