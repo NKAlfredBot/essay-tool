@@ -3,16 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Essay Components — Palette</title>
+  <title>Essay Components — Live Playground</title>
   <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
-    /* ========================================
-       PALETTE UI STYLES
-       ======================================== */
     :root {
       --bg: hsl(220, 15%, 12%);
       --surface: hsl(220, 15%, 16%);
-      --surface-hover: hsl(220, 15%, 20%);
       --border: hsl(220, 15%, 25%);
       --text: hsl(220, 15%, 90%);
       --text-dim: hsl(220, 10%, 60%);
@@ -26,19 +22,12 @@
       color: var(--text);
       line-height: 1.5;
       padding: 2rem;
-      max-width: 1000px;
+      max-width: 1100px;
       margin: 0 auto;
     }
-    h1 {
-      font-size: 1.5rem;
-      font-weight: 600;
-      margin-bottom: 0.5rem;
-    }
-    .subtitle {
-      color: var(--text-dim);
-      font-size: 0.9rem;
-      margin-bottom: 2rem;
-    }
+    h1 { font-size: 1.5rem; font-weight: 600; margin-bottom: 0.5rem; }
+    .subtitle { color: var(--text-dim); font-size: 0.9rem; margin-bottom: 2rem; }
+    
     .component {
       background: var(--surface);
       border: 1px solid var(--border);
@@ -54,10 +43,7 @@
       border-bottom: 1px solid var(--border);
       background: hsla(0,0%,100%,0.02);
     }
-    .component-name {
-      font-weight: 600;
-      font-size: 0.95rem;
-    }
+    .component-name { font-weight: 600; font-size: 0.95rem; }
     .component-snippet {
       font-family: 'IBM Plex Mono', monospace;
       font-size: 0.75rem;
@@ -67,7 +53,8 @@
       border-radius: 4px;
       margin-left: 0.75rem;
     }
-    .copy-btn {
+    .btn-group { display: flex; gap: 0.5rem; }
+    .btn {
       font-family: 'Inter', sans-serif;
       font-size: 0.8rem;
       font-weight: 500;
@@ -79,44 +66,64 @@
       cursor: pointer;
       transition: background 0.2s, transform 0.1s;
     }
-    .copy-btn:hover { background: hsl(210, 80%, 55%); }
-    .copy-btn:active { transform: scale(0.97); }
-    .copy-btn.copied { background: var(--success); }
+    .btn:hover { background: hsl(210, 80%, 55%); }
+    .btn:active { transform: scale(0.97); }
+    .btn.copied, .btn.success { background: var(--success); }
+    .btn-secondary {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text-dim);
+    }
+    .btn-secondary:hover { background: hsla(0,0%,100%,0.05); color: var(--text); }
     
-    .component-body {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-    }
-    @media (max-width: 768px) {
-      .component-body { grid-template-columns: 1fr; }
-    }
+    .component-body { display: grid; grid-template-columns: 1fr 1fr; }
+    @media (max-width: 800px) { .component-body { grid-template-columns: 1fr; } }
     
     .component-demo {
       padding: 1.5rem;
       border-right: 1px solid var(--border);
       background: hsl(45, 40%, 96%);
+      min-height: 150px;
     }
-    @media (max-width: 768px) {
+    @media (max-width: 800px) {
       .component-demo { border-right: none; border-bottom: 1px solid var(--border); }
     }
     
-    .component-code {
-      padding: 1.25rem;
-      overflow-x: auto;
-      background: hsla(0,0%,0%,0.2);
-    }
-    pre {
+    .component-code { display: flex; flex-direction: column; }
+    .code-editor {
+      flex: 1;
       font-family: 'IBM Plex Mono', monospace;
-      font-size: 0.75rem;
+      font-size: 0.8rem;
       line-height: 1.6;
-      color: hsl(220, 15%, 75%);
-      white-space: pre-wrap;
-      word-break: break-word;
+      background: hsla(0,0%,0%,0.3);
+      color: hsl(220, 15%, 85%);
+      border: none;
+      padding: 1rem;
+      resize: none;
+      min-height: 120px;
+      width: 100%;
     }
-    .tag { color: hsl(340, 70%, 70%); }
-    .attr { color: hsl(40, 70%, 70%); }
-    .string { color: hsl(100, 50%, 65%); }
-    .comment { color: hsl(220, 10%, 50%); font-style: italic; }
+    .code-editor:focus { outline: 2px solid var(--accent); outline-offset: -2px; }
+    
+    .code-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.5rem 1rem;
+      background: hsla(0,0%,0%,0.2);
+      border-top: 1px solid var(--border);
+      font-size: 0.75rem;
+      color: var(--text-dim);
+    }
+    
+    .demo-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: hsl(220, 10%, 50%);
+      margin-bottom: 0.75rem;
+    }
     
     .section-title {
       font-size: 0.75rem;
@@ -128,18 +135,9 @@
       padding-bottom: 0.5rem;
       border-bottom: 1px solid var(--border);
     }
-    
-    .demo-label {
-      font-family: 'Inter', sans-serif;
-      font-size: 0.65rem;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: hsl(220, 10%, 50%);
-      margin-bottom: 0.75rem;
-    }
 
     /* ========================================
-       ESSAY COMPONENT STYLES (for demos)
+       ESSAY STYLES (injected into demos)
        ======================================== */
     .demo-area {
       font-family: 'EB Garamond', Georgia, serif;
@@ -147,15 +145,17 @@
       font-size: 16px;
       line-height: 1.7;
     }
+    .demo-area p { margin: 0 0 1rem; }
+    .demo-area p:last-child { margin-bottom: 0; }
     
     /* Footnotes */
-    .fn {
+    .demo-area .fn {
       cursor: pointer;
       border-bottom: 1px dotted hsl(210, 60%, 45%);
       transition: background 0.2s;
     }
-    .fn:hover { background: hsla(210, 60%, 45%, 0.1); }
-    .fn::after {
+    .demo-area .fn:hover { background: hsla(210, 60%, 45%, 0.1); }
+    .demo-area .fn::after {
       content: attr(data-fn);
       font-family: 'Inter', sans-serif;
       font-size: 0.65em;
@@ -167,10 +167,10 @@
       background: hsla(210, 60%, 45%, 0.1);
       border-radius: 2px;
     }
-    .fn.active { background: hsla(210, 60%, 45%, 0.15); }
-    .fn.active::after { background: hsl(210, 60%, 45%); color: white; }
+    .demo-area .fn.active { background: hsla(210, 60%, 45%, 0.15); }
+    .demo-area .fn.active::after { background: hsl(210, 60%, 45%); color: white; }
     
-    .fn-content {
+    .demo-area .fn-content {
       font-family: 'IBM Plex Mono', monospace;
       font-size: 0.8rem;
       line-height: 1.6;
@@ -183,17 +183,17 @@
       padding: 0 1rem;
       transition: max-height 0.4s ease-out, opacity 0.3s ease-out, padding 0.3s ease-out;
     }
-    .fn-content.open {
+    .demo-area .fn-content.open {
       max-height: 500px;
       opacity: 1;
       padding: 0.75rem 1rem;
     }
-    .fn-content p { margin: 0 0 0.5rem; }
-    .fn-content p:last-child { margin: 0; }
-    .fn-content .fn-content { background: hsl(45, 15%, 88%); margin-left: 0; font-size: 0.95em; }
+    .demo-area .fn-content p { margin: 0 0 0.5rem; font-family: inherit; }
+    .demo-area .fn-content p:last-child { margin: 0; }
+    .demo-area .fn-content .fn-content { background: hsl(45, 15%, 88%); }
     
     /* Reader address */
-    .reader-address {
+    .demo-area .reader-address {
       background: hsla(260, 30%, 60%, 0.08);
       border-left: 2px solid hsl(260, 30%, 60%);
       padding: 1rem;
@@ -201,7 +201,7 @@
       font-style: italic;
       line-height: 1.8;
     }
-    .reader-address::before {
+    .demo-area .reader-address::before {
       content: 'To the reader';
       display: block;
       font-family: 'Inter', sans-serif;
@@ -214,11 +214,11 @@
     }
     
     /* Frames */
-    .frame { padding: 1rem; margin: 0; }
-    .frame--outer { background: hsl(35, 30%, 88%); }
-    .frame--middle { background: hsl(40, 30%, 94%); margin-left: 0.75rem; }
-    .frame--inner { background: white; margin-left: 0.75rem; text-align: center; font-style: italic; }
-    .frame-label {
+    .demo-area .frame { padding: 1rem; margin: 0; }
+    .demo-area .frame--outer { background: hsl(35, 30%, 88%); }
+    .demo-area .frame--middle { background: hsl(40, 30%, 94%); margin-left: 0.75rem; }
+    .demo-area .frame--inner { background: white; margin-left: 0.75rem; text-align: center; font-style: italic; }
+    .demo-area .frame-label {
       display: block;
       font-family: 'Inter', sans-serif;
       font-size: 0.6rem;
@@ -227,17 +227,17 @@
       color: hsl(40, 10%, 55%);
       margin-bottom: 0.5rem;
     }
-    .frame--middle .frame-label { color: hsl(260, 30%, 60%); }
-    .frame--inner .frame-label { color: hsl(210, 60%, 45%); }
+    .demo-area .frame--middle .frame-label { color: hsl(260, 30%, 60%); }
+    .demo-area .frame--inner .frame-label { color: hsl(210, 60%, 45%); }
     
     /* Paths */
-    .paths {
+    .demo-area .paths {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
       gap: 1px;
       background: hsl(40, 10%, 55%);
     }
-    .path {
+    .demo-area .path {
       font-family: 'EB Garamond', serif;
       font-size: 0.9rem;
       background: hsl(45, 40%, 96%);
@@ -247,27 +247,26 @@
       text-align: center;
       transition: background 0.3s, color 0.3s;
     }
-    .path:hover { background: hsla(260, 30%, 60%, 0.1); }
-    .path.active { background: hsl(30, 10%, 15%); color: hsl(45, 40%, 96%); }
-    .path-content {
+    .demo-area .path:hover { background: hsla(260, 30%, 60%, 0.1); }
+    .demo-area .path.active { background: hsl(30, 10%, 15%); color: hsl(45, 40%, 96%); }
+    .demo-area .path-content {
       background: hsla(260, 30%, 60%, 0.05);
       padding: 1rem;
       margin-top: -1px;
       display: none;
       font-size: 0.9rem;
     }
-    .path-content.visible { display: block; }
-    .path-content p { margin: 0; }
+    .demo-area .path-content.visible { display: block; }
     
     /* Divider */
-    .divider {
+    .demo-area .divider {
       text-align: center;
       margin: 1.5rem 0;
       color: hsl(40, 10%, 55%);
       font-size: 0.9rem;
       letter-spacing: 0.3em;
     }
-    .divider::before, .divider::after {
+    .demo-area .divider::before, .demo-area .divider::after {
       content: '';
       display: inline-block;
       width: 40px;
@@ -278,86 +277,87 @@
       opacity: 0.5;
     }
     
+    /* Headings */
+    .demo-area h2 {
+      font-family: 'EB Garamond', serif;
+      font-size: 1.25rem;
+      font-weight: 500;
+      color: hsl(260, 30%, 60%);
+      margin: 0 0 0.75rem;
+    }
+    
     /* Blockquote */
-    .demo-blockquote {
+    .demo-area blockquote {
       border-left: 2px solid hsl(40, 10%, 55%);
       padding-left: 1rem;
       font-style: italic;
       color: hsl(40, 10%, 55%);
       margin: 0;
     }
-    
-    /* Section heading */
-    .demo-h2 {
-      font-family: 'EB Garamond', serif;
-      font-size: 1.25rem;
-      font-weight: 500;
-      color: hsl(260, 30%, 60%);
-      margin: 0;
-    }
   </style>
 </head>
 <body>
-  <h1>Essay Component Palette</h1>
-  <p class="subtitle">Interactive demos on the left, copy-able code on the right. Click components to try them!</p>
+  <h1>Essay Components — Live Playground</h1>
+  <p class="subtitle">Edit code on the right → see changes instantly on the left. Click "Copy" to grab the code.</p>
 
   <!-- ==================== DFW FOOTNOTES ==================== -->
   <p class="section-title">David Foster Wallace — Footnotes</p>
   
-  <div class="component" data-code="fn-basic">
+  <div class="component" data-id="fn-basic">
     <div class="component-header">
       <div>
         <span class="component-name">Basic Footnote</span>
         <span class="component-snippet">fn + Tab</span>
       </div>
-      <button class="copy-btn" onclick="copyCode('fn-basic')">Copy</button>
+      <div class="btn-group">
+        <button class="btn btn-secondary" onclick="resetCode('fn-basic')">Reset</button>
+        <button class="btn" onclick="copyCode('fn-basic')">Copy</button>
+      </div>
     </div>
     <div class="component-body">
       <div class="component-demo">
-        <p class="demo-label">Try it — click the footnote</p>
-        <div class="demo-area">
-          <p style="margin:0">The project began with a simple <span class="fn" data-fn="d1">question about translation</span>.</p>
-          <aside class="fn-content" data-fn="d1">
-            <p>Translation here means something specific: converting aesthetic principles into functional code. Not copying, but interpreting.</p>
-          </aside>
-        </div>
+        <p class="demo-label">Live preview — click the footnote!</p>
+        <div class="demo-area" data-demo="fn-basic"></div>
       </div>
       <div class="component-code">
-<pre><span class="tag">&lt;span</span> <span class="attr">class</span>=<span class="string">"fn"</span> <span class="attr">data-fn</span>=<span class="string">"1"</span><span class="tag">&gt;</span>text with footnote<span class="tag">&lt;/span&gt;</span>
-<span class="tag">&lt;aside</span> <span class="attr">class</span>=<span class="string">"fn-content"</span> <span class="attr">data-fn</span>=<span class="string">"1"</span><span class="tag">&gt;</span>
-  <span class="tag">&lt;p&gt;</span>Footnote content here.<span class="tag">&lt;/p&gt;</span>
-<span class="tag">&lt;/aside&gt;</span></pre>
+        <textarea class="code-editor" data-editor="fn-basic" spellcheck="false"><p>The project began with a <span class="fn" data-fn="1">simple question</span>.</p>
+<aside class="fn-content" data-fn="1">
+  <p>What would it mean to translate an artist's vision into code?</p>
+</aside></textarea>
+        <div class="code-footer">
+          <span>Auto-updates as you type</span>
+        </div>
       </div>
     </div>
   </div>
 
-  <div class="component" data-code="fn-nested">
+  <div class="component" data-id="fn-nested">
     <div class="component-header">
       <div>
         <span class="component-name">Nested Footnote</span>
         <span class="component-snippet">fnn + Tab</span>
       </div>
-      <button class="copy-btn" onclick="copyCode('fn-nested')">Copy</button>
+      <div class="btn-group">
+        <button class="btn btn-secondary" onclick="resetCode('fn-nested')">Reset</button>
+        <button class="btn" onclick="copyCode('fn-nested')">Copy</button>
+      </div>
     </div>
     <div class="component-body">
       <div class="component-demo">
-        <p class="demo-label">Click both levels</p>
-        <div class="demo-area">
-          <p style="margin:0">This creates a <span class="fn" data-fn="d2">recursive structure</span>.</p>
-          <aside class="fn-content" data-fn="d2">
-            <p>Recursion is when something <span class="fn" data-fn="d2a">contains a version of itself</span>.</p>
-            <aside class="fn-content" data-fn="d2a">
-              <p>Like this footnote inside a footnote. The nesting can go as deep as you want.</p>
-            </aside>
-          </aside>
-        </div>
+        <p class="demo-label">Click both levels of footnotes</p>
+        <div class="demo-area" data-demo="fn-nested"></div>
       </div>
       <div class="component-code">
-<pre><span class="comment">&lt;!-- Inside an existing fn-content: --&gt;</span>
-<span class="tag">&lt;span</span> <span class="attr">class</span>=<span class="string">"fn"</span> <span class="attr">data-fn</span>=<span class="string">"1a"</span><span class="tag">&gt;</span>nested text<span class="tag">&lt;/span&gt;</span>
-<span class="tag">&lt;aside</span> <span class="attr">class</span>=<span class="string">"fn-content"</span> <span class="attr">data-fn</span>=<span class="string">"1a"</span><span class="tag">&gt;</span>
-  <span class="tag">&lt;p&gt;</span>Nested footnote content.<span class="tag">&lt;/p&gt;</span>
-<span class="tag">&lt;/aside&gt;</span></pre>
+        <textarea class="code-editor" data-editor="fn-nested" spellcheck="false"><p>This creates a <span class="fn" data-fn="1">recursive structure</span>.</p>
+<aside class="fn-content" data-fn="1">
+  <p>Recursion is when something <span class="fn" data-fn="1a">contains itself</span>.</p>
+  <aside class="fn-content" data-fn="1a">
+    <p>Like this footnote inside a footnote. You can nest infinitely.</p>
+  </aside>
+</aside></textarea>
+        <div class="code-footer">
+          <span>Auto-updates as you type</span>
+        </div>
       </div>
     </div>
   </div>
@@ -365,109 +365,101 @@
   <!-- ==================== CALVINO ==================== -->
   <p class="section-title">Italo Calvino — Structure</p>
 
-  <div class="component" data-code="reader">
+  <div class="component" data-id="reader">
     <div class="component-header">
       <div>
         <span class="component-name">Reader Address</span>
         <span class="component-snippet">reader + Tab</span>
       </div>
-      <button class="copy-btn" onclick="copyCode('reader')">Copy</button>
+      <div class="btn-group">
+        <button class="btn btn-secondary" onclick="resetCode('reader')">Reset</button>
+        <button class="btn" onclick="copyCode('reader')">Copy</button>
+      </div>
     </div>
     <div class="component-body">
       <div class="component-demo">
         <p class="demo-label">Breaks the fourth wall</p>
-        <div class="demo-area">
-          <aside class="reader-address">
-            You, reader, have now reached a point of decision. What you expected to find here may not be what you find.
-          </aside>
-        </div>
+        <div class="demo-area" data-demo="reader"></div>
       </div>
       <div class="component-code">
-<pre><span class="tag">&lt;aside</span> <span class="attr">class</span>=<span class="string">"reader-address"</span><span class="tag">&gt;</span>
-  You, reader, have now reached...
-<span class="tag">&lt;/aside&gt;</span></pre>
+        <textarea class="code-editor" data-editor="reader" spellcheck="false"><aside class="reader-address">
+  You, reader, have reached a point of decision. What you expected to find here may not be what you find.
+</aside></textarea>
+        <div class="code-footer">
+          <span>Auto-updates as you type</span>
+        </div>
       </div>
     </div>
   </div>
 
-  <div class="component" data-code="frame">
+  <div class="component" data-id="frame">
     <div class="component-header">
       <div>
         <span class="component-name">Frame Within Frame</span>
         <span class="component-snippet">frame + Tab</span>
       </div>
-      <button class="copy-btn" onclick="copyCode('frame')">Copy</button>
+      <div class="btn-group">
+        <button class="btn btn-secondary" onclick="resetCode('frame')">Reset</button>
+        <button class="btn" onclick="copyCode('frame')">Copy</button>
+      </div>
     </div>
     <div class="component-body">
       <div class="component-demo">
         <p class="demo-label">Nested containers for layered meaning</p>
-        <div class="demo-area">
-          <div class="frame frame--outer">
-            <span class="frame-label">What you see</span>
-            <div class="frame frame--middle">
-              <span class="frame-label">How it's made</span>
-              <div class="frame frame--inner">
-                <span class="frame-label">Why it matters</span>
-                <p style="margin:0;font-size:0.9rem">Each layer recontextualizes the others.</p>
-              </div>
-            </div>
-          </div>
-        </div>
+        <div class="demo-area" data-demo="frame"></div>
       </div>
       <div class="component-code">
-<pre><span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="string">"frame frame--outer"</span><span class="tag">&gt;</span>
-  <span class="tag">&lt;span</span> <span class="attr">class</span>=<span class="string">"frame-label"</span><span class="tag">&gt;</span>Outer<span class="tag">&lt;/span&gt;</span>
-  <span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="string">"frame frame--middle"</span><span class="tag">&gt;</span>
-    <span class="tag">&lt;span</span> <span class="attr">class</span>=<span class="string">"frame-label"</span><span class="tag">&gt;</span>Middle<span class="tag">&lt;/span&gt;</span>
-    <span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="string">"frame frame--inner"</span><span class="tag">&gt;</span>
-      <span class="tag">&lt;span</span> <span class="attr">class</span>=<span class="string">"frame-label"</span><span class="tag">&gt;</span>Inner<span class="tag">&lt;/span&gt;</span>
-      <span class="tag">&lt;p&gt;</span>Content<span class="tag">&lt;/p&gt;</span>
-    <span class="tag">&lt;/div&gt;</span>
-  <span class="tag">&lt;/div&gt;</span>
-<span class="tag">&lt;/div&gt;</span></pre>
+        <textarea class="code-editor" data-editor="frame" spellcheck="false"><div class="frame frame--outer">
+  <span class="frame-label">What you see</span>
+  <div class="frame frame--middle">
+    <span class="frame-label">How it's made</span>
+    <div class="frame frame--inner">
+      <span class="frame-label">Why it matters</span>
+      <p style="margin:0">Each layer recontextualizes the others.</p>
+    </div>
+  </div>
+</div></textarea>
+        <div class="code-footer">
+          <span>Auto-updates as you type</span>
+        </div>
       </div>
     </div>
   </div>
 
-  <div class="component" data-code="paths">
+  <div class="component" data-id="paths">
     <div class="component-header">
       <div>
         <span class="component-name">Multiple Paths</span>
         <span class="component-snippet">paths + Tab</span>
       </div>
-      <button class="copy-btn" onclick="copyCode('paths')">Copy</button>
+      <div class="btn-group">
+        <button class="btn btn-secondary" onclick="resetCode('paths')">Reset</button>
+        <button class="btn" onclick="copyCode('paths')">Copy</button>
+      </div>
     </div>
     <div class="component-body">
       <div class="component-demo">
-        <p class="demo-label">Click to choose a path</p>
-        <div class="demo-area">
-          <div class="paths">
-            <button class="path" data-path="demo-craft">The Craft</button>
-            <button class="path" data-path="demo-meaning">The Meaning</button>
-            <button class="path" data-path="demo-process">The Process</button>
-          </div>
-          <div class="path-content" data-path="demo-craft">
-            <p>Here you explain the technical details. Tools, methods, decisions.</p>
-          </div>
-          <div class="path-content" data-path="demo-meaning">
-            <p>Here you explore what it represents. The larger questions.</p>
-          </div>
-          <div class="path-content" data-path="demo-process">
-            <p>Here you share the journey. What surprised you, what you learned.</p>
-          </div>
-        </div>
+        <p class="demo-label">Click buttons to switch paths</p>
+        <div class="demo-area" data-demo="paths"></div>
       </div>
       <div class="component-code">
-<pre><span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="string">"paths"</span><span class="tag">&gt;</span>
-  <span class="tag">&lt;button</span> <span class="attr">class</span>=<span class="string">"path"</span> <span class="attr">data-path</span>=<span class="string">"a"</span><span class="tag">&gt;</span>Path A<span class="tag">&lt;/button&gt;</span>
-  <span class="tag">&lt;button</span> <span class="attr">class</span>=<span class="string">"path"</span> <span class="attr">data-path</span>=<span class="string">"b"</span><span class="tag">&gt;</span>Path B<span class="tag">&lt;/button&gt;</span>
-<span class="tag">&lt;/div&gt;</span>
-<span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="string">"path-content"</span> <span class="attr">data-path</span>=<span class="string">"a"</span><span class="tag">&gt;</span>
-  <span class="tag">&lt;p&gt;</span>Content for A...<span class="tag">&lt;/p&gt;</span>
-<span class="tag">&lt;/div&gt;</span>
-<span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="string">"path-content"</span> <span class="attr">data-path</span>=<span class="string">"b"</span><span class="tag">&gt;</span>
-  <span class="tag">&lt;p&gt;</span>Content for B...<span class="tag">&lt;/p&gt;</span>
-<span class="tag">&lt;/div&gt;</span></pre>
+        <textarea class="code-editor" data-editor="paths" spellcheck="false"><div class="paths">
+  <button class="path" data-path="craft">The Craft</button>
+  <button class="path" data-path="meaning">The Meaning</button>
+  <button class="path" data-path="process">The Process</button>
+</div>
+<div class="path-content" data-path="craft">
+  <p>Here you explain the technical details.</p>
+</div>
+<div class="path-content" data-path="meaning">
+  <p>Here you explore what it represents.</p>
+</div>
+<div class="path-content" data-path="process">
+  <p>Here you share the journey.</p>
+</div></textarea>
+        <div class="code-footer">
+          <span>Auto-updates as you type</span>
+        </div>
       </div>
     </div>
   </div>
@@ -475,127 +467,112 @@
   <!-- ==================== BASIC ==================== -->
   <p class="section-title">Basic Elements</p>
 
-  <div class="component" data-code="divider">
+  <div class="component" data-id="divider">
     <div class="component-header">
       <div>
         <span class="component-name">Section Divider</span>
         <span class="component-snippet">div + Tab</span>
       </div>
-      <button class="copy-btn" onclick="copyCode('divider')">Copy</button>
+      <div class="btn-group">
+        <button class="btn btn-secondary" onclick="resetCode('divider')">Reset</button>
+        <button class="btn" onclick="copyCode('divider')">Copy</button>
+      </div>
     </div>
     <div class="component-body">
       <div class="component-demo">
-        <p class="demo-label">Separates sections elegantly</p>
-        <div class="demo-area">
-          <p style="margin:0 0 0.5rem;font-size:0.9rem">End of one section...</p>
-          <div class="divider">◆</div>
-          <p style="margin:0.5rem 0 0;font-size:0.9rem">Beginning of another.</p>
-        </div>
+        <p class="demo-label">Elegant section break</p>
+        <div class="demo-area" data-demo="divider"></div>
       </div>
       <div class="component-code">
-<pre><span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="string">"divider"</span><span class="tag">&gt;</span>◆<span class="tag">&lt;/div&gt;</span></pre>
+        <textarea class="code-editor" data-editor="divider" spellcheck="false"><p>End of one section...</p>
+<div class="divider">◆</div>
+<p>Beginning of another.</p></textarea>
+        <div class="code-footer">
+          <span>Auto-updates as you type</span>
+        </div>
       </div>
     </div>
   </div>
 
-  <div class="component" data-code="h2">
+  <div class="component" data-id="heading">
     <div class="component-header">
       <div>
-        <span class="component-name">Section Heading</span>
-        <span class="component-snippet">h2 + Tab</span>
+        <span class="component-name">Section Heading + Blockquote</span>
+        <span class="component-snippet">h2 / bq + Tab</span>
       </div>
-      <button class="copy-btn" onclick="copyCode('h2')">Copy</button>
+      <div class="btn-group">
+        <button class="btn btn-secondary" onclick="resetCode('heading')">Reset</button>
+        <button class="btn" onclick="copyCode('heading')">Copy</button>
+      </div>
     </div>
     <div class="component-body">
       <div class="component-demo">
-        <p class="demo-label">Twilight purple accent</p>
-        <div class="demo-area">
-          <h2 class="demo-h2">The Question of Translation</h2>
-        </div>
+        <p class="demo-label">Typography elements</p>
+        <div class="demo-area" data-demo="heading"></div>
       </div>
       <div class="component-code">
-<pre><span class="tag">&lt;h2&gt;</span>Section Title<span class="tag">&lt;/h2&gt;</span></pre>
-      </div>
-    </div>
-  </div>
-
-  <div class="component" data-code="blockquote">
-    <div class="component-header">
-      <div>
-        <span class="component-name">Blockquote</span>
-        <span class="component-snippet">bq + Tab</span>
-      </div>
-      <button class="copy-btn" onclick="copyCode('blockquote')">Copy</button>
-    </div>
-    <div class="component-body">
-      <div class="component-demo">
-        <p class="demo-label">For quotations</p>
-        <div class="demo-area">
-          <blockquote class="demo-blockquote">
-            The work doesn't exist until you participate.
-          </blockquote>
+        <textarea class="code-editor" data-editor="heading" spellcheck="false"><h2>The Question of Translation</h2>
+<p>As Calvino wrote:</p>
+<blockquote>
+  The work doesn't exist until you participate.
+</blockquote></textarea>
+        <div class="code-footer">
+          <span>Auto-updates as you type</span>
         </div>
-      </div>
-      <div class="component-code">
-<pre><span class="tag">&lt;blockquote&gt;</span>
-  Quoted text here.
-<span class="tag">&lt;/blockquote&gt;</span></pre>
       </div>
     </div>
   </div>
 
   <script>
-    // Plain text versions for copying
-    const codeSnippets = {
-      'fn-basic': `<span class="fn" data-fn="1">text with footnote</span>
-<aside class="fn-content" data-fn="1">
-  <p>Footnote content here.</p>
-</aside>`,
-      'fn-nested': `<span class="fn" data-fn="1a">nested text</span>
-<aside class="fn-content" data-fn="1a">
-  <p>Nested footnote content.</p>
-</aside>`,
-      'reader': `<aside class="reader-address">
-  You, reader, have now reached...
-</aside>`,
-      'frame': `<div class="frame frame--outer">
-  <span class="frame-label">The Outer Frame</span>
-  <div class="frame frame--middle">
-    <span class="frame-label">The Middle Frame</span>
-    <div class="frame frame--inner">
-      <span class="frame-label">The Inner Frame</span>
-      <p style="margin:0">Core content here.</p>
-    </div>
-  </div>
-</div>`,
-      'paths': `<div class="paths">
-  <button class="path" data-path="craft">The Craft</button>
-  <button class="path" data-path="meaning">The Meaning</button>
-  <button class="path" data-path="process">The Process</button>
-</div>
+    // Store original code for reset
+    const originalCode = {};
+    document.querySelectorAll('.code-editor').forEach(editor => {
+      originalCode[editor.dataset.editor] = editor.value;
+    });
 
-<div class="path-content" data-path="craft">
-  <p>Technical details...</p>
-</div>
+    // Render demo from code
+    function renderDemo(id) {
+      const editor = document.querySelector(`[data-editor="${id}"]`);
+      const demo = document.querySelector(`[data-demo="${id}"]`);
+      if (!editor || !demo) return;
+      
+      demo.innerHTML = editor.value;
+      attachInteractivity(demo);
+    }
 
-<div class="path-content" data-path="meaning">
-  <p>What it represents...</p>
-</div>
+    // Attach click handlers for footnotes and paths
+    function attachInteractivity(container) {
+      // Footnotes
+      container.querySelectorAll('.fn').forEach(fn => {
+        fn.addEventListener('click', e => {
+          e.stopPropagation();
+          const content = container.querySelector(`.fn-content[data-fn="${fn.dataset.fn}"]`);
+          if (content) {
+            const isOpen = content.classList.contains('open');
+            content.classList.toggle('open', !isOpen);
+            fn.classList.toggle('active', !isOpen);
+          }
+        });
+      });
 
-<div class="path-content" data-path="process">
-  <p>The journey...</p>
-</div>`,
-      'divider': `<div class="divider">◆</div>`,
-      'h2': `<h2>Section Title</h2>`,
-      'blockquote': `<blockquote>
-  Quoted text here.
-</blockquote>`
-    };
+      // Paths
+      container.querySelectorAll('.path').forEach(path => {
+        path.addEventListener('click', () => {
+          const pathId = path.dataset.path;
+          container.querySelectorAll('.path').forEach(p => p.classList.remove('active'));
+          path.classList.add('active');
+          container.querySelectorAll('.path-content').forEach(c => {
+            c.classList.toggle('visible', c.dataset.path === pathId);
+          });
+        });
+      });
+    }
 
+    // Copy code
     function copyCode(id) {
-      const code = codeSnippets[id];
-      navigator.clipboard.writeText(code).then(() => {
-        const btn = document.querySelector(`[data-code="${id}"] .copy-btn`);
+      const editor = document.querySelector(`[data-editor="${id}"]`);
+      navigator.clipboard.writeText(editor.value).then(() => {
+        const btn = document.querySelector(`[data-id="${id}"] .btn:not(.btn-secondary)`);
         btn.textContent = 'Copied!';
         btn.classList.add('copied');
         setTimeout(() => {
@@ -605,34 +582,42 @@
       });
     }
 
-    // Footnote interactivity
-    document.querySelectorAll('.fn').forEach(fn => {
-      fn.addEventListener('click', e => {
-        e.stopPropagation();
-        const content = document.querySelector(`.fn-content[data-fn="${fn.dataset.fn}"]`);
-        if (content) {
-          const isOpen = content.classList.contains('open');
-          if (isOpen) {
-            content.classList.remove('open');
-            fn.classList.remove('active');
-          } else {
-            content.classList.add('open');
-            fn.classList.add('active');
-          }
-        }
-      });
-    });
+    // Reset code
+    function resetCode(id) {
+      const editor = document.querySelector(`[data-editor="${id}"]`);
+      editor.value = originalCode[id];
+      renderDemo(id);
+    }
 
-    // Path interactivity
-    document.querySelectorAll('.path').forEach(path => {
-      path.addEventListener('click', () => {
-        const pathId = path.dataset.path;
-        const container = path.closest('.demo-area');
-        container.querySelectorAll('.path').forEach(p => p.classList.remove('active'));
-        path.classList.add('active');
-        container.querySelectorAll('.path-content').forEach(c => {
-          c.classList.toggle('visible', c.dataset.path === pathId);
-        });
+    // Debounce helper
+    function debounce(fn, ms) {
+      let timeout;
+      return (...args) => {
+        clearTimeout(timeout);
+        timeout = setTimeout(() => fn(...args), ms);
+      };
+    }
+
+    // Set up live editing
+    document.querySelectorAll('.code-editor').forEach(editor => {
+      const id = editor.dataset.editor;
+      
+      // Initial render
+      renderDemo(id);
+      
+      // Update on input (debounced)
+      editor.addEventListener('input', debounce(() => renderDemo(id), 150));
+      
+      // Handle tab key for indentation
+      editor.addEventListener('keydown', e => {
+        if (e.key === 'Tab') {
+          e.preventDefault();
+          const start = editor.selectionStart;
+          const end = editor.selectionEnd;
+          editor.value = editor.value.substring(0, start) + '  ' + editor.value.substring(end);
+          editor.selectionStart = editor.selectionEnd = start + 2;
+          renderDemo(id);
+        }
       });
     });
   </script>
