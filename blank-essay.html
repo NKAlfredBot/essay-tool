@@ -204,6 +204,36 @@
     .morph-card.morphed .morph-default { display: none; }
     .morph-card.morphed .morph-alt { display: block; }
 
+    /* Kanye West - Era Tabs */
+    .era-tabs-container { font-family: var(--font-sans); margin: var(--space-lg) 0; }
+    .era-tabs { display: flex; gap: 2px; background: var(--stone); }
+    .era-tab { flex: 1; padding: 0.75rem var(--space-md); background: hsl(0, 0%, 95%); border: none; font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; transition: all 0.3s ease; color: var(--stone); }
+    .era-tab:hover { background: hsl(0, 0%, 90%); }
+    .era-tab.active { background: hsl(45, 80%, 55%); color: var(--ink); font-weight: 500; }
+    .era-content { display: none; padding: var(--space-md); background: hsl(45, 40%, 97%); border: 1px solid hsl(45, 30%, 85%); border-top: none; }
+    .era-content.active { display: block; }
+    .era-content .era-title { font-family: var(--font-serif); font-size: 1.2rem; font-weight: 500; margin-bottom: var(--space-sm); color: hsl(25, 40%, 35%); }
+    .era-content .era-text { font-family: var(--font-serif); font-size: 1rem; line-height: 1.8; }
+
+    /* Donald Judd - Progression */
+    .progression { display: flex; align-items: flex-end; gap: 0.5rem; padding: var(--space-md); margin: var(--space-lg) 0; background: hsl(0, 0%, 96%); }
+    .progression-unit { flex: 1; background: hsl(210, 10%, 75%); min-height: 30px; display: flex; align-items: flex-end; justify-content: center; padding-bottom: 0.5rem; font-family: var(--font-mono); font-size: 0.7rem; color: var(--stone); transition: all 0.3s ease; }
+    .progression-unit:hover { background: hsl(210, 10%, 70%); transform: translateY(-3px); }
+    .progression-unit:nth-child(1) { height: 50px; }
+    .progression-unit:nth-child(2) { height: 80px; }
+    .progression-unit:nth-child(3) { height: 110px; }
+    .progression-unit:nth-child(4) { height: 140px; }
+    .progression-unit:nth-child(5) { height: 170px; }
+    .progression-unit:nth-child(6) { height: 200px; }
+
+    /* Dan Flavin - Neon Highlight */
+    .neon { display: inline; padding: 0.1em 0.3em; border-radius: 2px; animation: neon-flicker 4s ease-in-out infinite; }
+    .neon--pink { color: hsl(330, 100%, 75%); text-shadow: 0 0 5px hsl(330, 100%, 75%), 0 0 15px hsl(330, 100%, 75%), 0 0 30px hsl(330, 100%, 65%); background: hsla(330, 100%, 75%, 0.1); }
+    .neon--blue { color: hsl(210, 100%, 70%); text-shadow: 0 0 5px hsl(210, 100%, 70%), 0 0 15px hsl(210, 100%, 70%), 0 0 30px hsl(210, 100%, 60%); background: hsla(210, 100%, 70%, 0.1); }
+    .neon--green { color: hsl(120, 80%, 60%); text-shadow: 0 0 5px hsl(120, 80%, 60%), 0 0 15px hsl(120, 80%, 60%), 0 0 30px hsl(120, 80%, 50%); background: hsla(120, 80%, 60%, 0.1); }
+    .neon--yellow { color: hsl(55, 100%, 65%); text-shadow: 0 0 5px hsl(55, 100%, 65%), 0 0 15px hsl(55, 100%, 65%), 0 0 30px hsl(55, 100%, 55%); background: hsla(55, 100%, 65%, 0.1); }
+    @keyframes neon-flicker { 0%, 100% { opacity: 1; } 92% { opacity: 1; } 93% { opacity: 0.8; } 94% { opacity: 1; } 96% { opacity: 0.9; } 97% { opacity: 1; } }
+
     @media print { body { background: white; } .essay { max-width: 100%; padding: 2rem; } .fn-content { max-height: none; opacity: 1; padding: 1rem 1.25rem; } .progress-bar { display: none; } }
   </style>
 </head>
@@ -295,6 +325,17 @@
     // Robert Smithson sediment layers
     document.querySelectorAll('.sediment-layer').forEach(layer => {
       layer.addEventListener('click', () => layer.classList.toggle('open'));
+    });
+    // Kanye West era tabs
+    document.querySelectorAll('.era-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        const era = tab.dataset.era;
+        const container = tab.closest('.era-tabs-container');
+        container.querySelectorAll('.era-tab').forEach(t => t.classList.remove('active'));
+        container.querySelectorAll('.era-content').forEach(c => c.classList.remove('active'));
+        tab.classList.add('active');
+        container.querySelector(`.era-content[data-era="${era}"]`).classList.add('active');
+      });
     });
     paths.forEach(path => {
       path.addEventListener('click', () => {
