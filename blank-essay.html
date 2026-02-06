@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Essay Title</title>
+  
+  <meta property="og:title" content="Essay Title">
+  <meta property="og:description" content="Description">
+  <meta property="og:type" content="article">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --cream: hsl(45, 40%, 96%);
+      --ink: hsl(30, 10%, 15%);
+      --twilight: hsl(260, 30%, 60%);
+      --stone: hsl(40, 10%, 55%);
+      --fn-blue: hsl(210, 60%, 45%);
+      --fn-bg: hsl(45, 15%, 92%);
+      --fn-bg-nested: hsl(45, 15%, 88%);
+      --fn-bg-deep: hsl(45, 15%, 84%);
+      --frame-outer: hsl(35, 30%, 88%);
+      --frame-middle: hsl(40, 30%, 94%);
+      --frame-inner: hsl(0, 0%, 100%);
+      --font-serif: 'EB Garamond', Georgia, serif;
+      --font-mono: 'IBM Plex Mono', monospace;
+      --font-sans: 'Inter', system-ui, sans-serif;
+      --space-xs: 0.25rem;
+      --space-sm: 0.5rem;
+      --space-md: 1rem;
+      --space-lg: 2rem;
+      --space-xl: 4rem;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 18px; scroll-behavior: smooth; }
+    body { font-family: var(--font-serif); background: var(--cream); color: var(--ink); line-height: 1.75; min-height: 100vh; }
+    .essay { max-width: 680px; margin: 0 auto; padding: var(--space-xl) var(--space-lg) 6rem; }
+    h1 { font-size: clamp(2rem, 5vw, 2.75rem); font-weight: 500; line-height: 1.2; letter-spacing: -0.02em; margin-bottom: var(--space-sm); }
+    h2 { font-size: 1.4rem; font-weight: 500; color: var(--twilight); margin-top: var(--space-xl); margin-bottom: var(--space-md); }
+    h3 { font-size: 1.15rem; font-weight: 500; margin-top: var(--space-lg); margin-bottom: var(--space-sm); }
+    p { margin-bottom: 1.5rem; text-align: justify; hyphens: auto; }
+    .subtitle { font-style: italic; color: var(--stone); font-size: 1.1rem; margin-bottom: var(--space-xl); }
+    .section-label { font-family: var(--font-sans); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--stone); margin-bottom: var(--space-sm); }
+    em { font-style: italic; }
+    strong { font-weight: 600; }
+    a { color: var(--fn-blue); text-decoration: underline; text-underline-offset: 2px; }
+    a:hover { text-decoration-thickness: 2px; }
+    blockquote { border-left: 2px solid var(--stone); padding-left: var(--space-lg); margin: var(--space-lg) 0; font-style: italic; color: var(--stone); }
+    .divider { text-align: center; margin: var(--space-xl) 0; color: var(--stone); font-size: 0.9rem; letter-spacing: 0.3em; }
+    .divider::before, .divider::after { content: ''; display: inline-block; width: 50px; height: 1px; background: var(--stone); vertical-align: middle; margin: 0 1rem; opacity: 0.5; }
+    .fn { cursor: pointer; border-bottom: 1px dotted var(--fn-blue); transition: background 0.2s; }
+    .fn:hover { background: hsla(210, 60%, 45%, 0.1); }
+    .fn::after { content: attr(data-fn); font-family: var(--font-sans); font-size: 0.65em; font-weight: 500; color: var(--fn-blue); vertical-align: super; margin-left: 2px; padding: 1px 4px; background: hsla(210, 60%, 45%, 0.1); border-radius: 2px; }
+    .fn.active { background: hsla(210, 60%, 45%, 0.15); }
+    .fn.active::after { background: var(--fn-blue); color: white; }
+    .fn-content { font-family: var(--font-mono); font-size: 0.85rem; line-height: 1.6; background: var(--fn-bg); border-left: 3px solid var(--fn-blue); margin: var(--space-md) 0 1.5rem var(--space-md); max-height: 0; overflow: hidden; opacity: 0; padding: 0 1.25rem; transition: max-height 0.4s ease-out, opacity 0.3s ease-out, padding 0.3s ease-out; }
+    .fn-content.open { max-height: 2000px; opacity: 1; padding: 1rem 1.25rem; }
+    .fn-content p { text-align: left; margin-bottom: 0.75rem; }
+    .fn-content p:last-child { margin-bottom: 0; }
+    .fn-content .fn-content { background: var(--fn-bg-nested); margin-left: 0; font-size: 0.95em; }
+    .fn-content .fn-content .fn-content { background: var(--fn-bg-deep); }
+    .fn-stats { font-family: var(--font-mono); font-size: 0.7rem; color: var(--stone); text-align: right; margin: var(--space-lg) 0; padding: var(--space-sm) 0; border-top: 1px solid hsla(0,0%,0%,0.1); }
+    .frame { padding: var(--space-lg); margin: var(--space-lg) 0; }
+    .frame--outer { background: var(--frame-outer); }
+    .frame--middle { background: var(--frame-middle); margin-left: var(--space-md); }
+    .frame--inner { background: var(--frame-inner); margin-left: var(--space-md); text-align: center; font-style: italic; }
+    .frame-label { display: block; font-family: var(--font-sans); font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.2em; color: var(--stone); margin-bottom: var(--space-sm); }
+    .frame--middle .frame-label { color: var(--twilight); }
+    .frame--inner .frame-label { color: var(--fn-blue); }
+    .paths { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 1px; background: var(--stone); margin: var(--space-lg) 0; }
+    .path { font-family: var(--font-serif); font-size: 1rem; background: var(--cream); border: none; padding: var(--space-md) var(--space-lg); cursor: pointer; text-align: left; transition: background 0.3s, color 0.3s; }
+    .path:hover { background: hsla(260, 30%, 60%, 0.1); }
+    .path.active { background: var(--ink); color: var(--cream); }
+    .path-content { background: hsla(260, 30%, 60%, 0.05); padding: var(--space-lg); margin-top: -1px; display: none; }
+    .path-content.visible { display: block; }
+    .reader-address { background: hsla(260, 30%, 60%, 0.05); border-left: 2px solid var(--twilight); padding: var(--space-lg); margin: var(--space-lg) 0; font-size: 1.1rem; font-style: italic; line-height: 1.9; }
+    .reader-address::before { content: 'To the reader'; display: block; font-family: var(--font-sans); font-size: 0.7rem; font-style: normal; text-transform: uppercase; letter-spacing: 0.2em; color: var(--twilight); margin-bottom: var(--space-sm); }
+    .colophon { margin-top: 6rem; padding-top: var(--space-lg); border-top: 1px solid var(--stone); font-family: var(--font-sans); font-size: 0.75rem; color: var(--stone); text-align: center; }
+    .progress-bar { position: fixed; top: 0; left: 0; width: 0%; height: 2px; background: var(--fn-blue); z-index: 1000; transition: width 0.1s; }
+    @media print { body { background: white; } .essay { max-width: 100%; padding: 2rem; } .fn-content { max-height: none; opacity: 1; padding: 1rem 1.25rem; } .progress-bar { display: none; } }
+  </style>
+</head>
+<body>
+  <div class="progress-bar" id="progress"></div>
+
+  <article class="essay">
+    
+    <p class="section-label">An Interactive Essay</p>
+    <h1>Title</h1>
+    <p class="subtitle">Subtitle</p>
+
+    <!-- YOUR ESSAY STARTS HERE -->
+
+    <p>
+      First paragraph.
+    </p>
+
+    <!-- YOUR ESSAY ENDS HERE -->
+
+    <p class="fn-stats">
+      Footnotes expanded: <span id="fn-count">0</span> · 
+      Max depth: <span id="fn-depth">0</span>
+    </p>
+
+    <footer class="colophon">
+      <p>Nikhil Kumar · 2026</p>
+      <p style="margin-top:0.5rem"><a href="https://nikhilkumar.media">nikhilkumar.media</a></p>
+    </footer>
+
+  </article>
+
+  <script>
+    const footnotes = document.querySelectorAll('.fn');
+    const fnContents = document.querySelectorAll('.fn-content');
+    let expandedCount = 0, maxDepth = 0;
+    function updateStats() {
+      const c = document.getElementById('fn-count'), d = document.getElementById('fn-depth');
+      if (c) c.textContent = expandedCount;
+      if (d) d.textContent = maxDepth;
+    }
+    function getDepth(el) {
+      let depth = 0, parent = el.parentElement;
+      while (parent) { if (parent.classList.contains('fn-content')) depth++; parent = parent.parentElement; }
+      return depth;
+    }
+    footnotes.forEach(fn => {
+      fn.addEventListener('click', e => {
+        e.stopPropagation();
+        const content = document.querySelector(`.fn-content[data-fn="${fn.dataset.fn}"]`);
+        if (content) {
+          const isOpen = content.classList.contains('open');
+          if (isOpen) { content.classList.remove('open'); fn.classList.remove('active'); expandedCount = Math.max(0, expandedCount - 1); }
+          else { content.classList.add('open'); fn.classList.add('active'); expandedCount++; maxDepth = Math.max(maxDepth, getDepth(content) + 1); }
+          updateStats();
+        }
+      });
+    });
+    const paths = document.querySelectorAll('.path'), pathContents = document.querySelectorAll('.path-content');
+    paths.forEach(path => {
+      path.addEventListener('click', () => {
+        paths.forEach(p => p.classList.remove('active'));
+        path.classList.add('active');
+        pathContents.forEach(c => c.classList.toggle('visible', c.dataset.path === path.dataset.path));
+      });
+    });
+    const progressBar = document.getElementById('progress');
+    window.addEventListener('scroll', () => {
+      const progress = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+      progressBar.style.width = progress + '%';
+    });
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') {
+        fnContents.forEach(c => c.classList.remove('open'));
+        footnotes.forEach(fn => fn.classList.remove('active'));
+        expandedCount = 0; updateStats();
+      }
+    });
+  </script>
+</body>
+</html>

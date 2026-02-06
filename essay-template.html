@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Essay Title Here</title>
+  
+  <!-- Open Graph / Social -->
+  <meta property="og:title" content="Essay Title Here">
+  <meta property="og:description" content="A brief description of your essay.">
+  <meta property="og:type" content="article">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  
+  <style>
+    /* ========================================
+       DESIGN TOKENS
+       ======================================== */
+    :root {
+      /* Base palette (Calvino-inspired) */
+      --cream: hsl(45, 40%, 96%);
+      --ink: hsl(30, 10%, 15%);
+      --twilight: hsl(260, 30%, 60%);
+      --stone: hsl(40, 10%, 55%);
+      
+      /* DFW footnote colors */
+      --fn-blue: hsl(210, 60%, 45%);
+      --fn-bg: hsl(45, 15%, 92%);
+      --fn-bg-nested: hsl(45, 15%, 88%);
+      --fn-bg-deep: hsl(45, 15%, 84%);
+      
+      /* Calvino frame colors */
+      --frame-outer: hsl(35, 30%, 88%);
+      --frame-middle: hsl(40, 30%, 94%);
+      --frame-inner: hsl(0, 0%, 100%);
+      
+      /* Typography */
+      --font-serif: 'EB Garamond', Georgia, serif;
+      --font-mono: 'IBM Plex Mono', monospace;
+      --font-sans: 'Inter', system-ui, sans-serif;
+      
+      /* Spacing */
+      --space-xs: 0.25rem;
+      --space-sm: 0.5rem;
+      --space-md: 1rem;
+      --space-lg: 2rem;
+      --space-xl: 4rem;
+    }
+
+    /* ========================================
+       BASE STYLES
+       ======================================== */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      font-size: 18px;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-serif);
+      background: var(--cream);
+      color: var(--ink);
+      line-height: 1.75;
+      min-height: 100vh;
+    }
+
+    /* ========================================
+       ESSAY CONTAINER
+       ======================================== */
+    .essay {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: var(--space-xl) var(--space-lg) 6rem;
+    }
+
+    /* ========================================
+       TYPOGRAPHY
+       ======================================== */
+    h1 {
+      font-size: clamp(2rem, 5vw, 2.75rem);
+      font-weight: 500;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      margin-bottom: var(--space-sm);
+    }
+
+    h2 {
+      font-size: 1.4rem;
+      font-weight: 500;
+      color: var(--twilight);
+      margin-top: var(--space-xl);
+      margin-bottom: var(--space-md);
+    }
+
+    h3 {
+      font-size: 1.15rem;
+      font-weight: 500;
+      margin-top: var(--space-lg);
+      margin-bottom: var(--space-sm);
+    }
+
+    p {
+      margin-bottom: 1.5rem;
+      text-align: justify;
+      hyphens: auto;
+    }
+
+    .subtitle {
+      font-style: italic;
+      color: var(--stone);
+      font-size: 1.1rem;
+      margin-bottom: var(--space-xl);
+    }
+
+    .section-label {
+      font-family: var(--font-sans);
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--stone);
+      margin-bottom: var(--space-sm);
+    }
+
+    em { font-style: italic; }
+    strong { font-weight: 600; }
+
+    a {
+      color: var(--fn-blue);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    a:hover {
+      text-decoration-thickness: 2px;
+    }
+
+    blockquote {
+      border-left: 2px solid var(--stone);
+      padding-left: var(--space-lg);
+      margin: var(--space-lg) 0;
+      font-style: italic;
+      color: var(--stone);
+    }
+
+    /* ========================================
+       DIVIDER (Calvino diamond)
+       ======================================== */
+    .divider {
+      text-align: center;
+      margin: var(--space-xl) 0;
+      color: var(--stone);
+      font-size: 0.9rem;
+      letter-spacing: 0.3em;
+    }
+
+    .divider::before,
+    .divider::after {
+      content: '';
+      display: inline-block;
+      width: 50px;
+      height: 1px;
+      background: var(--stone);
+      vertical-align: middle;
+      margin: 0 1rem;
+      opacity: 0.5;
+    }
+
+    /* ========================================
+       DFW FOOTNOTES
+       
+       Usage:
+       <span class="fn" data-fn="1">text with footnote</span>
+       <aside class="fn-content" data-fn="1">Footnote content here.</aside>
+       
+       Nested footnotes: put another fn/fn-content inside the first fn-content
+       ======================================== */
+    .fn {
+      cursor: pointer;
+      border-bottom: 1px dotted var(--fn-blue);
+      transition: background 0.2s;
+    }
+
+    .fn:hover {
+      background: hsla(210, 60%, 45%, 0.1);
+    }
+
+    .fn::after {
+      content: attr(data-fn);
+      font-family: var(--font-sans);
+      font-size: 0.65em;
+      font-weight: 500;
+      color: var(--fn-blue);
+      vertical-align: super;
+      margin-left: 2px;
+      padding: 1px 4px;
+      background: hsla(210, 60%, 45%, 0.1);
+      border-radius: 2px;
+    }
+
+    .fn.active {
+      background: hsla(210, 60%, 45%, 0.15);
+    }
+
+    .fn.active::after {
+      background: var(--fn-blue);
+      color: white;
+    }
+
+    .fn-content {
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      line-height: 1.6;
+      background: var(--fn-bg);
+      border-left: 3px solid var(--fn-blue);
+      margin: var(--space-md) 0 1.5rem var(--space-md);
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      padding: 0 1.25rem;
+      transition: max-height 0.4s ease-out, opacity 0.3s ease-out, padding 0.3s ease-out;
+    }
+
+    .fn-content.open {
+      max-height: 2000px;
+      opacity: 1;
+      padding: 1rem 1.25rem;
+    }
+
+    .fn-content p {
+      text-align: left;
+      margin-bottom: 0.75rem;
+    }
+
+    .fn-content p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* Nested footnotes */
+    .fn-content .fn-content {
+      background: var(--fn-bg-nested);
+      margin-left: 0;
+      font-size: 0.95em;
+    }
+
+    .fn-content .fn-content .fn-content {
+      background: var(--fn-bg-deep);
+    }
+
+    /* Footnote stats */
+    .fn-stats {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--stone);
+      text-align: right;
+      margin: var(--space-lg) 0;
+      padding: var(--space-sm) 0;
+      border-top: 1px solid hsla(0,0%,0%,0.1);
+    }
+
+    /* ========================================
+       CALVINO: FRAME WITHIN FRAME
+       
+       Usage:
+       <div class="frame frame--outer">
+         <span class="frame-label">Outer</span>
+         <div class="frame frame--middle">
+           <span class="frame-label">Middle</span>
+           <div class="frame frame--inner">
+             <span class="frame-label">Inner</span>
+             Content here
+           </div>
+         </div>
+       </div>
+       ======================================== */
+    .frame {
+      padding: var(--space-lg);
+      margin: var(--space-lg) 0;
+    }
+
+    .frame--outer {
+      background: var(--frame-outer);
+    }
+
+    .frame--middle {
+      background: var(--frame-middle);
+      margin-left: var(--space-md);
+    }
+
+    .frame--inner {
+      background: var(--frame-inner);
+      margin-left: var(--space-md);
+      text-align: center;
+      font-style: italic;
+    }
+
+    .frame-label {
+      display: block;
+      font-family: var(--font-sans);
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--stone);
+      margin-bottom: var(--space-sm);
+    }
+
+    .frame--middle .frame-label { color: var(--twilight); }
+    .frame--inner .frame-label { color: var(--fn-blue); }
+
+    /* ========================================
+       CALVINO: MULTIPLICITY PATHS
+       
+       Usage:
+       <div class="paths">
+         <button class="path" data-path="a">Path A Title</button>
+         <button class="path" data-path="b">Path B Title</button>
+       </div>
+       <div class="path-content" data-path="a">Content for path A</div>
+       <div class="path-content" data-path="b">Content for path B</div>
+       ======================================== */
+    .paths {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 1px;
+      background: var(--stone);
+      margin: var(--space-lg) 0;
+    }
+
+    .path {
+      font-family: var(--font-serif);
+      font-size: 1rem;
+      background: var(--cream);
+      border: none;
+      padding: var(--space-md) var(--space-lg);
+      cursor: pointer;
+      text-align: left;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    .path:hover {
+      background: hsla(260, 30%, 60%, 0.1);
+    }
+
+    .path.active {
+      background: var(--ink);
+      color: var(--cream);
+    }
+
+    .path-content {
+      background: hsla(260, 30%, 60%, 0.05);
+      padding: var(--space-lg);
+      margin-top: -1px;
+      display: none;
+    }
+
+    .path-content.visible {
+      display: block;
+    }
+
+    /* ========================================
+       CALVINO: READER ADDRESS
+       
+       Usage:
+       <aside class="reader-address">
+         <p>You, reader, are now...</p>
+       </aside>
+       ======================================== */
+    .reader-address {
+      background: hsla(260, 30%, 60%, 0.05);
+      border-left: 2px solid var(--twilight);
+      padding: var(--space-lg);
+      margin: var(--space-lg) 0;
+      font-size: 1.1rem;
+      font-style: italic;
+      line-height: 1.9;
+    }
+
+    .reader-address::before {
+      content: 'To the reader';
+      display: block;
+      font-family: var(--font-sans);
+      font-size: 0.7rem;
+      font-style: normal;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--twilight);
+      margin-bottom: var(--space-sm);
+    }
+
+    /* ========================================
+       MARGINAL NOTES (alternative to footnotes)
+       
+       Usage:
+       <span class="marginal">Main text<span class="marginal-note">Side note</span></span>
+       ======================================== */
+    @media (min-width: 1100px) {
+      .essay {
+        max-width: 680px;
+        margin-left: calc(50% - 340px);
+      }
+
+      .marginal {
+        position: relative;
+      }
+
+      .marginal-note {
+        position: absolute;
+        left: calc(100% + 2rem);
+        width: 200px;
+        font-family: var(--font-sans);
+        font-size: 0.75rem;
+        line-height: 1.5;
+        color: var(--stone);
+        top: 0;
+      }
+    }
+
+    @media (max-width: 1099px) {
+      .marginal-note {
+        display: block;
+        font-family: var(--font-sans);
+        font-size: 0.8rem;
+        color: var(--stone);
+        padding: var(--space-sm) var(--space-md);
+        background: hsla(0,0%,0%,0.03);
+        margin: var(--space-sm) 0 var(--space-md);
+      }
+    }
+
+    /* ========================================
+       COLOPHON
+       ======================================== */
+    .colophon {
+      margin-top: 6rem;
+      padding-top: var(--space-lg);
+      border-top: 1px solid var(--stone);
+      font-family: var(--font-sans);
+      font-size: 0.75rem;
+      color: var(--stone);
+      text-align: center;
+    }
+
+    /* ========================================
+       READING PROGRESS (optional)
+       ======================================== */
+    .progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 0%;
+      height: 2px;
+      background: var(--fn-blue);
+      z-index: 1000;
+      transition: width 0.1s;
+    }
+
+    /* ========================================
+       PRINT STYLES
+       ======================================== */
+    @media print {
+      body { background: white; }
+      .essay { max-width: 100%; padding: 2rem; }
+      .fn-content { max-height: none; opacity: 1; padding: 1rem 1.25rem; }
+      .progress-bar { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="progress-bar" id="progress"></div>
+
+  <article class="essay">
+    
+    <p class="section-label">An Interactive Essay</p>
+    <h1>Your Essay Title</h1>
+    <p class="subtitle">An optional subtitle or description</p>
+
+    <!-- ==================== EXAMPLE CONTENT ==================== -->
+
+    <p>
+      This is your opening paragraph. You can add a 
+      <span class="fn" data-fn="1">footnote to any text</span> 
+      by wrapping it in a span with the <code>fn</code> class.
+    </p>
+
+    <aside class="fn-content" data-fn="1">
+      <p>This is the footnote content. It expands when clicked.</p>
+      <p>You can have multiple paragraphs, and even 
+        <span class="fn" data-fn="1a">nested footnotes</span>
+        for that true DFW experience.
+      </p>
+      <aside class="fn-content" data-fn="1a">
+        <p>A footnote within a footnote. The recursion is the point.</p>
+      </aside>
+    </aside>
+
+    <p>
+      Continue writing your essay. Each paragraph builds on the last.
+      The justified text and subtle typography create a literary feel.
+    </p>
+
+    <div class="divider">◆</div>
+
+    <h2>A New Section</h2>
+
+    <p>
+      Use h2 headings to break your essay into sections. The twilight 
+      purple color distinguishes them from body text.
+    </p>
+
+    <aside class="reader-address">
+      You, reader, have now entered the second section. 
+      Consider what brought you here.
+    </aside>
+
+    <p>
+      The reader address block (inspired by Calvino) speaks directly 
+      to whoever is reading. It breaks the fourth wall.
+    </p>
+
+    <!-- Frame within frame example -->
+    <div class="frame frame--outer">
+      <span class="frame-label">The Outer Frame: What You See</span>
+      <div class="frame frame--middle">
+        <span class="frame-label">The Middle Frame: How It's Made</span>
+        <div class="frame frame--inner">
+          <span class="frame-label">The Inner Frame: Why It Matters</span>
+          <p style="margin:0">Each layer contains and recontextualizes the others.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider">◆</div>
+
+    <h2>Multiple Paths</h2>
+
+    <p>
+      Calvino's <em>If on a winter's night a traveler</em> offers 
+      multiple beginnings. This component lets readers choose their path:
+    </p>
+
+    <div class="paths">
+      <button class="path" data-path="technical">The Technical Path</button>
+      <button class="path" data-path="personal">The Personal Path</button>
+      <button class="path" data-path="philosophical">The Philosophical Path</button>
+    </div>
+
+    <div class="path-content" data-path="technical">
+      <p>Here you would explain the technical details of your work. 
+      Code, process, tools, decisions.</p>
+    </div>
+
+    <div class="path-content" data-path="personal">
+      <p>Here you would share the personal story behind the work. 
+      What motivated it, what you learned, what surprised you.</p>
+    </div>
+
+    <div class="path-content" data-path="philosophical">
+      <p>Here you would explore the larger questions. 
+      What does this work mean? What does it say about the world?</p>
+    </div>
+
+    <p>
+      Each path describes the same project from a different angle. 
+      None is more true than the others.
+    </p>
+
+    <div class="divider">◆</div>
+
+    <h2>Closing</h2>
+
+    <p>
+      End your essay with intention. What do you want the reader 
+      to take away? What question remains open?
+    </p>
+
+    <p class="fn-stats">
+      Footnotes expanded: <span id="fn-count">0</span> · 
+      Max depth: <span id="fn-depth">0</span>
+    </p>
+
+    <!-- ==================== END EXAMPLE CONTENT ==================== -->
+
+    <footer class="colophon">
+      <p>Written by Your Name · 2026</p>
+      <p style="margin-top:0.5rem">
+        <a href="https://nikhilkumar.media">nikhilkumar.media</a>
+      </p>
+    </footer>
+
+  </article>
+
+  <script>
+    // ========================================
+    // DFW FOOTNOTE SYSTEM
+    // ========================================
+    const footnotes = document.querySelectorAll('.fn');
+    const fnContents = document.querySelectorAll('.fn-content');
+    let expandedCount = 0;
+    let maxDepth = 0;
+
+    function updateStats() {
+      const countEl = document.getElementById('fn-count');
+      const depthEl = document.getElementById('fn-depth');
+      if (countEl) countEl.textContent = expandedCount;
+      if (depthEl) depthEl.textContent = maxDepth;
+    }
+
+    function getDepth(el) {
+      let depth = 0;
+      let parent = el.parentElement;
+      while (parent) {
+        if (parent.classList.contains('fn-content')) depth++;
+        parent = parent.parentElement;
+      }
+      return depth;
+    }
+
+    footnotes.forEach(fn => {
+      fn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const id = fn.dataset.fn;
+        const content = document.querySelector(`.fn-content[data-fn="${id}"]`);
+        
+        if (content) {
+          const isOpen = content.classList.contains('open');
+          
+          if (isOpen) {
+            content.classList.remove('open');
+            fn.classList.remove('active');
+            expandedCount = Math.max(0, expandedCount - 1);
+          } else {
+            content.classList.add('open');
+            fn.classList.add('active');
+            expandedCount++;
+            const depth = getDepth(content) + 1;
+            maxDepth = Math.max(maxDepth, depth);
+          }
+          
+          updateStats();
+        }
+      });
+    });
+
+    // ========================================
+    // CALVINO PATH SYSTEM
+    // ========================================
+    const paths = document.querySelectorAll('.path');
+    const pathContents = document.querySelectorAll('.path-content');
+
+    paths.forEach(path => {
+      path.addEventListener('click', () => {
+        const pathId = path.dataset.path;
+        
+        // Toggle active state
+        paths.forEach(p => p.classList.remove('active'));
+        path.classList.add('active');
+        
+        // Show corresponding content
+        pathContents.forEach(content => {
+          if (content.dataset.path === pathId) {
+            content.classList.add('visible');
+          } else {
+            content.classList.remove('visible');
+          }
+        });
+      });
+    });
+
+    // ========================================
+    // READING PROGRESS
+    // ========================================
+    const progressBar = document.getElementById('progress');
+    
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = (scrollTop / docHeight) * 100;
+      progressBar.style.width = progress + '%';
+    });
+
+    // ========================================
+    // KEYBOARD NAVIGATION
+    // ========================================
+    document.addEventListener('keydown', (e) => {
+      // Press 'Escape' to close all footnotes
+      if (e.key === 'Escape') {
+        fnContents.forEach(content => content.classList.remove('open'));
+        footnotes.forEach(fn => fn.classList.remove('active'));
+        expandedCount = 0;
+        updateStats();
+      }
+    });
+  </script>
+</body>
+</html>
