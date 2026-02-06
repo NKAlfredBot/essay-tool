@@ -260,39 +260,39 @@
     "body": [
       "<div class=\"sediment-layers\">",
       "  <div class=\"sediment-layer\">",
-      "    <span>${1:Present}</span>",
-      "    <span class=\"layer-detail\">${2:The surface of things}</span>",
+      "    <div class=\"layer-header\">${1:Present}</div>",
+      "    <div class=\"layer-content\">${2:The surface of things — what we see today.}</div>",
       "  </div>",
       "  <div class=\"sediment-layer\">",
-      "    <span>${3:Recent Past}</span>",
-      "    <span class=\"layer-detail\">${4:What we remember}</span>",
+      "    <div class=\"layer-header\">${3:Recent Past}</div>",
+      "    <div class=\"layer-content\">${4:What we remember — living memory.}</div>",
       "  </div>",
       "  <div class=\"sediment-layer\">",
-      "    <span>${5:History}</span>",
-      "    <span class=\"layer-detail\">${6:What was recorded}</span>",
+      "    <div class=\"layer-header\">${5:History}</div>",
+      "    <div class=\"layer-content\">${6:What was recorded — documents and artifacts.}</div>",
       "  </div>",
       "  <div class=\"sediment-layer\">",
-      "    <span>${7:Deep Time}</span>",
-      "    <span class=\"layer-detail\">${8:What was forgotten}</span>",
+      "    <div class=\"layer-header\">${7:Deep Time}</div>",
+      "    <div class=\"layer-content\">${8:What was forgotten — buried truths.}</div>",
       "  </div>",
       "  <div class=\"sediment-layer\">",
-      "    <span>${9:Origin}</span>",
-      "    <span class=\"layer-detail\">${10:Where it all began}</span>",
+      "    <div class=\"layer-header\">${9:Origin}</div>",
+      "    <div class=\"layer-content\">${10:Where it all began — the first moment.}</div>",
       "  </div>",
       "</div>"
     ],
-    "description": "Robert Smithson-style sediment layers (time as strata)"
+    "description": "Robert Smithson-style sediment layers (click to expand drawers)"
   },
 
   "Robert Smithson Layer": {
     "prefix": "layer",
     "body": [
       "<div class=\"sediment-layer\">",
-      "  <span>${1:Layer Name}</span>",
-      "  <span class=\"layer-detail\">${2:Hidden detail on hover}</span>",
+      "  <div class=\"layer-header\">${1:Layer Name}</div>",
+      "  <div class=\"layer-content\">${2:Content revealed when clicked.}</div>",
       "</div>"
     ],
-    "description": "Single sediment layer (add to sediment-layers block)"
+    "description": "Single sediment layer drawer (add to sediment-layers block)"
   },
 
   "Fantastic Planet Morph Card": {

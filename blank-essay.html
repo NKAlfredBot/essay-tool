@@ -175,17 +175,23 @@
 
     /* Robert Smithson - Sediment Layers */
     .sediment-layers { border: 1px solid var(--stone); margin: var(--space-lg) 0; overflow: hidden; }
-    .sediment-layer { padding: 0.75rem var(--space-md); font-family: var(--font-mono); font-size: 0.75rem; display: flex; justify-content: space-between; align-items: center; cursor: pointer; transition: all 0.3s ease; position: relative; overflow: hidden; }
-    .sediment-layer::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, hsla(0, 0%, 100%, 0.15), transparent); transition: left 0.5s ease; }
-    .sediment-layer:hover::before { left: 100%; }
-    .sediment-layer:hover { padding-left: 1.5rem; }
-    .sediment-layer .layer-detail { font-size: 0.65rem; opacity: 0; transform: translateX(10px); transition: all 0.3s ease; }
-    .sediment-layer:hover .layer-detail { opacity: 0.7; transform: translateX(0); }
-    .sediment-layer:nth-child(1) { background: hsl(30, 10%, 80%); color: var(--ink); }
-    .sediment-layer:nth-child(2) { background: hsl(25, 30%, 50%); color: var(--cream); }
-    .sediment-layer:nth-child(3) { background: hsl(20, 50%, 40%); color: var(--cream); }
-    .sediment-layer:nth-child(4) { background: hsl(25, 25%, 30%); color: var(--cream); }
-    .sediment-layer:nth-child(5) { background: var(--ink); color: var(--cream); }
+    .sediment-layer { cursor: pointer; transition: all 0.3s ease; }
+    .sediment-layer .layer-header { padding: 0.75rem var(--space-md); font-family: var(--font-mono); font-size: 0.8rem; display: flex; justify-content: space-between; align-items: center; transition: all 0.3s ease; }
+    .sediment-layer .layer-header::after { content: '+'; font-size: 1rem; opacity: 0.5; transition: transform 0.3s ease; }
+    .sediment-layer.open .layer-header::after { transform: rotate(45deg); }
+    .sediment-layer:hover .layer-header { padding-left: 1.25rem; }
+    .sediment-layer .layer-content { max-height: 0; overflow: hidden; opacity: 0; padding: 0 var(--space-md); font-family: var(--font-serif); font-size: 1rem; line-height: 1.8; background: hsla(0, 0%, 100%, 0.1); transition: max-height 0.4s ease, opacity 0.3s ease, padding 0.3s ease; }
+    .sediment-layer.open .layer-content { max-height: 500px; opacity: 1; padding: var(--space-md); }
+    .sediment-layer:nth-child(1) .layer-header { background: hsl(30, 10%, 80%); color: var(--ink); }
+    .sediment-layer:nth-child(1) .layer-content { background: hsl(30, 10%, 88%); color: var(--ink); }
+    .sediment-layer:nth-child(2) .layer-header { background: hsl(25, 30%, 50%); color: var(--cream); }
+    .sediment-layer:nth-child(2) .layer-content { background: hsl(25, 30%, 58%); color: var(--cream); }
+    .sediment-layer:nth-child(3) .layer-header { background: hsl(20, 50%, 40%); color: var(--cream); }
+    .sediment-layer:nth-child(3) .layer-content { background: hsl(20, 50%, 48%); color: var(--cream); }
+    .sediment-layer:nth-child(4) .layer-header { background: hsl(25, 25%, 30%); color: var(--cream); }
+    .sediment-layer:nth-child(4) .layer-content { background: hsl(25, 25%, 38%); color: var(--cream); }
+    .sediment-layer:nth-child(5) .layer-header { background: var(--ink); color: var(--cream); }
+    .sediment-layer:nth-child(5) .layer-content { background: hsl(0, 0%, 22%); color: var(--cream); }
 
     /* Fantastic Planet - Morph Card */
     .morph-card { background: hsla(280, 30%, 95%, 0.9); padding: var(--space-lg); margin: var(--space-lg) 0; border-radius: 30% 70% 50% 50% / 50% 40% 60% 50%; text-align: center; cursor: pointer; transition: all 0.6s ease; font-family: var(--font-sans); }
@@ -285,6 +291,10 @@
     // Fantastic Planet morph cards
     document.querySelectorAll('.morph-card').forEach(card => {
       card.addEventListener('click', () => card.classList.toggle('morphed'));
+    });
+    // Robert Smithson sediment layers
+    document.querySelectorAll('.sediment-layer').forEach(layer => {
+      layer.addEventListener('click', () => layer.classList.toggle('open'));
     });
     paths.forEach(path => {
       path.addEventListener('click', () => {

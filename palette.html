@@ -620,44 +620,54 @@
       overflow: hidden;
     }
     .demo-area .sediment-layer {
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .demo-area .sediment-layer .layer-header {
       padding: 0.75rem 1rem;
       font-family: 'IBM Plex Mono', monospace;
       font-size: 0.75rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      cursor: pointer;
       transition: all 0.3s ease;
-      position: relative;
+    }
+    .demo-area .sediment-layer .layer-header::after {
+      content: '+';
+      font-size: 0.9rem;
+      opacity: 0.5;
+      transition: transform 0.3s ease;
+    }
+    .demo-area .sediment-layer.open .layer-header::after {
+      transform: rotate(45deg);
+    }
+    .demo-area .sediment-layer:hover .layer-header { padding-left: 1.25rem; }
+    .demo-area .sediment-layer .layer-content {
+      max-height: 0;
       overflow: hidden;
-    }
-    .demo-area .sediment-layer::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, hsla(0, 0%, 100%, 0.15), transparent);
-      transition: left 0.5s ease;
-    }
-    .demo-area .sediment-layer:hover::before { left: 100%; }
-    .demo-area .sediment-layer:hover { padding-left: 1.5rem; }
-    .demo-area .sediment-layer .layer-detail {
-      font-size: 0.6rem;
       opacity: 0;
-      transform: translateX(10px);
-      transition: all 0.3s ease;
+      padding: 0 1rem;
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 0.9rem;
+      line-height: 1.7;
+      background: hsla(0, 0%, 100%, 0.1);
+      transition: max-height 0.4s ease, opacity 0.3s ease, padding 0.3s ease;
     }
-    .demo-area .sediment-layer:hover .layer-detail {
-      opacity: 0.7;
-      transform: translateX(0);
+    .demo-area .sediment-layer.open .layer-content {
+      max-height: 300px;
+      opacity: 1;
+      padding: 1rem;
     }
-    .demo-area .sediment-layer:nth-child(1) { background: hsl(30, 10%, 80%); color: hsl(0, 0%, 15%); }
-    .demo-area .sediment-layer:nth-child(2) { background: hsl(25, 30%, 50%); color: hsl(0, 0%, 95%); }
-    .demo-area .sediment-layer:nth-child(3) { background: hsl(20, 50%, 40%); color: hsl(0, 0%, 95%); }
-    .demo-area .sediment-layer:nth-child(4) { background: hsl(25, 25%, 30%); color: hsl(0, 0%, 95%); }
-    .demo-area .sediment-layer:nth-child(5) { background: hsl(0, 0%, 15%); color: hsl(0, 0%, 95%); }
+    .demo-area .sediment-layer:nth-child(1) .layer-header { background: hsl(30, 10%, 80%); color: hsl(0, 0%, 15%); }
+    .demo-area .sediment-layer:nth-child(1) .layer-content { background: hsl(30, 10%, 88%); color: hsl(0, 0%, 15%); }
+    .demo-area .sediment-layer:nth-child(2) .layer-header { background: hsl(25, 30%, 50%); color: hsl(0, 0%, 95%); }
+    .demo-area .sediment-layer:nth-child(2) .layer-content { background: hsl(25, 30%, 58%); color: hsl(0, 0%, 95%); }
+    .demo-area .sediment-layer:nth-child(3) .layer-header { background: hsl(20, 50%, 40%); color: hsl(0, 0%, 95%); }
+    .demo-area .sediment-layer:nth-child(3) .layer-content { background: hsl(20, 50%, 48%); color: hsl(0, 0%, 95%); }
+    .demo-area .sediment-layer:nth-child(4) .layer-header { background: hsl(25, 25%, 30%); color: hsl(0, 0%, 95%); }
+    .demo-area .sediment-layer:nth-child(4) .layer-content { background: hsl(25, 25%, 38%); color: hsl(0, 0%, 95%); }
+    .demo-area .sediment-layer:nth-child(5) .layer-header { background: hsl(0, 0%, 15%); color: hsl(0, 0%, 95%); }
+    .demo-area .sediment-layer:nth-child(5) .layer-content { background: hsl(0, 0%, 22%); color: hsl(0, 0%, 95%); }
 
     /* ========================================
        FANTASTIC PLANET STYLES
@@ -1187,27 +1197,27 @@
       <div class="component-code">
         <textarea class="code-editor" data-editor="sediment" spellcheck="false"><div class="sediment-layers">
   <div class="sediment-layer">
-    <span>Present</span>
-    <span class="layer-detail">The surface of things</span>
+    <div class="layer-header">Present</div>
+    <div class="layer-content">The surface of things — what we see today, the immediate reality we inhabit.</div>
   </div>
   <div class="sediment-layer">
-    <span>Recent Past</span>
-    <span class="layer-detail">What we remember</span>
+    <div class="layer-header">Recent Past</div>
+    <div class="layer-content">What we remember — living memory, stories passed between generations.</div>
   </div>
   <div class="sediment-layer">
-    <span>History</span>
-    <span class="layer-detail">What was recorded</span>
+    <div class="layer-header">History</div>
+    <div class="layer-content">What was recorded — documents, artifacts, the official narrative.</div>
   </div>
   <div class="sediment-layer">
-    <span>Deep Time</span>
-    <span class="layer-detail">What was forgotten</span>
+    <div class="layer-header">Deep Time</div>
+    <div class="layer-content">What was forgotten — erased voices, lost civilizations, buried truths.</div>
   </div>
   <div class="sediment-layer">
-    <span>Origin</span>
-    <span class="layer-detail">Where it all began</span>
+    <div class="layer-header">Origin</div>
+    <div class="layer-content">Where it all began — before memory, before record, the first moment.</div>
   </div>
 </div></textarea>
-        <div class="code-footer"><span>Geological stratigraphy as narrative structure</span></div>
+        <div class="code-footer"><span>Click layers to excavate — each one opens like a drawer</span></div>
       </div>
     </div>
   </div>
@@ -1339,6 +1349,13 @@
       container.querySelectorAll('.morph-card').forEach(card => {
         card.addEventListener('click', () => {
           card.classList.toggle('morphed');
+        });
+      });
+
+      // Robert Smithson Sediment Layers
+      container.querySelectorAll('.sediment-layer').forEach(layer => {
+        layer.addEventListener('click', () => {
+          layer.classList.toggle('open');
         });
       });
     }
