@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Essay Components — Palette</title>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: hsl(220, 15%, 12%);
+      --surface: hsl(220, 15%, 16%);
+      --surface-hover: hsl(220, 15%, 20%);
+      --border: hsl(220, 15%, 25%);
+      --text: hsl(220, 15%, 90%);
+      --text-dim: hsl(220, 10%, 60%);
+      --accent: hsl(210, 80%, 60%);
+      --success: hsl(150, 70%, 50%);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+      padding: 2rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    h1 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+    .subtitle {
+      color: var(--text-dim);
+      font-size: 0.9rem;
+      margin-bottom: 2rem;
+    }
+    .component {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      margin-bottom: 1.5rem;
+      overflow: hidden;
+    }
+    .component-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 1.25rem;
+      border-bottom: 1px solid var(--border);
+      background: hsla(0,0%,100%,0.02);
+    }
+    .component-name {
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+    .component-snippet {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--text-dim);
+      background: hsla(0,0%,0%,0.3);
+      padding: 2px 8px;
+      border-radius: 4px;
+    }
+    .copy-btn {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 500;
+      background: var(--accent);
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s;
+    }
+    .copy-btn:hover {
+      background: hsl(210, 80%, 55%);
+    }
+    .copy-btn:active {
+      transform: scale(0.97);
+    }
+    .copy-btn.copied {
+      background: var(--success);
+    }
+    .component-code {
+      padding: 1.25rem;
+      overflow-x: auto;
+    }
+    pre {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.8rem;
+      line-height: 1.6;
+      color: hsl(220, 15%, 80%);
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+    .tag { color: hsl(340, 70%, 70%); }
+    .attr { color: hsl(40, 70%, 70%); }
+    .string { color: hsl(100, 50%, 65%); }
+    .comment { color: hsl(220, 10%, 50%); font-style: italic; }
+    
+    .section-title {
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-dim);
+      margin: 2.5rem 0 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    
+    .tip {
+      background: hsla(210, 80%, 60%, 0.1);
+      border-left: 3px solid var(--accent);
+      padding: 1rem 1.25rem;
+      margin-bottom: 1.5rem;
+      font-size: 0.9rem;
+      border-radius: 0 6px 6px 0;
+    }
+    .tip strong {
+      color: var(--accent);
+    }
+  </style>
+</head>
+<body>
+  <h1>Essay Component Palette</h1>
+  <p class="subtitle">Click "Copy" to grab the HTML. Paste into your essay file.</p>
+  
+  <div class="tip">
+    <strong>Tip:</strong> Open your essay in VS Code, type the snippet shortcut (e.g., <code>fn</code>), and press Tab for auto-complete.
+  </div>
+
+  <!-- ==================== DFW FOOTNOTES ==================== -->
+  <p class="section-title">David Foster Wallace — Footnotes</p>
+  
+  <div class="component" data-code="fn-basic">
+    <div class="component-header">
+      <div>
+        <span class="component-name">Basic Footnote</span>
+        <span class="component-snippet">fn + Tab</span>
+      </div>
+      <button class="copy-btn" onclick="copyCode('fn-basic')">Copy</button>
+    </div>
+    <div class="component-code">
+<pre id="code-fn-basic"><span class="tag">&lt;span</span> <span class="attr">class</span>=<span class="string">"fn"</span> <span class="attr">data-fn</span>=<span class="string">"1"</span><span class="tag">&gt;</span>text with footnote<span class="tag">&lt;/span&gt;</span>
+<span class="tag">&lt;aside</span> <span class="attr">class</span>=<span class="string">"fn-content"</span> <span class="attr">data-fn</span>=<span class="string">"1"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;p&gt;</span>Footnote content here.<span class="tag">&lt;/p&gt;</span>
+<span class="tag">&lt;/aside&gt;</span></pre>
+    </div>
+  </div>
+
+  <div class="component" data-code="fn-nested">
+    <div class="component-header">
+      <div>
+        <span class="component-name">Nested Footnote</span>
+        <span class="component-snippet">fnn + Tab</span>
+      </div>
+      <button class="copy-btn" onclick="copyCode('fn-nested')">Copy</button>
+    </div>
+    <div class="component-code">
+<pre id="code-fn-nested"><span class="comment">&lt;!-- Place this INSIDE an existing fn-content --&gt;</span>
+<span class="tag">&lt;span</span> <span class="attr">class</span>=<span class="string">"fn"</span> <span class="attr">data-fn</span>=<span class="string">"1a"</span><span class="tag">&gt;</span>nested text<span class="tag">&lt;/span&gt;</span>
+<span class="tag">&lt;aside</span> <span class="attr">class</span>=<span class="string">"fn-content"</span> <span class="attr">data-fn</span>=<span class="string">"1a"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;p&gt;</span>A footnote within a footnote.<span class="tag">&lt;/p&gt;</span>
+<span class="tag">&lt;/aside&gt;</span></pre>
+    </div>
+  </div>
+
+  <div class="component" data-code="fn-multi">
+    <div class="component-header">
+      <div>
+        <span class="component-name">Footnote with Multiple Paragraphs</span>
+      </div>
+      <button class="copy-btn" onclick="copyCode('fn-multi')">Copy</button>
+    </div>
+    <div class="component-code">
+<pre id="code-fn-multi"><span class="tag">&lt;span</span> <span class="attr">class</span>=<span class="string">"fn"</span> <span class="attr">data-fn</span>=<span class="string">"2"</span><span class="tag">&gt;</span>text here<span class="tag">&lt;/span&gt;</span>
+<span class="tag">&lt;aside</span> <span class="attr">class</span>=<span class="string">"fn-content"</span> <span class="attr">data-fn</span>=<span class="string">"2"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;p&gt;</span>First paragraph of the footnote.<span class="tag">&lt;/p&gt;</span>
+  <span class="tag">&lt;p&gt;</span>Second paragraph continues the thought.<span class="tag">&lt;/p&gt;</span>
+  <span class="tag">&lt;p&gt;</span>Third paragraph if needed.<span class="tag">&lt;/p&gt;</span>
+<span class="tag">&lt;/aside&gt;</span></pre>
+    </div>
+  </div>
+
+  <!-- ==================== CALVINO ==================== -->
+  <p class="section-title">Italo Calvino — Structure</p>
+
+  <div class="component" data-code="reader">
+    <div class="component-header">
+      <div>
+        <span class="component-name">Reader Address</span>
+        <span class="component-snippet">reader + Tab</span>
+      </div>
+      <button class="copy-btn" onclick="copyCode('reader')">Copy</button>
+    </div>
+    <div class="component-code">
+<pre id="code-reader"><span class="tag">&lt;aside</span> <span class="attr">class</span>=<span class="string">"reader-address"</span><span class="tag">&gt;</span>
+  You, reader, have now reached the point where...
+<span class="tag">&lt;/aside&gt;</span></pre>
+    </div>
+  </div>
+
+  <div class="component" data-code="frame">
+    <div class="component-header">
+      <div>
+        <span class="component-name">Frame Within Frame</span>
+        <span class="component-snippet">frame + Tab</span>
+      </div>
+      <button class="copy-btn" onclick="copyCode('frame')">Copy</button>
+    </div>
+    <div class="component-code">
+<pre id="code-frame"><span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="string">"frame frame--outer"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;span</span> <span class="attr">class</span>=<span class="string">"frame-label"</span><span class="tag">&gt;</span>The Outer Frame<span class="tag">&lt;/span&gt;</span>
+  <span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="string">"frame frame--middle"</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;span</span> <span class="attr">class</span>=<span class="string">"frame-label"</span><span class="tag">&gt;</span>The Middle Frame<span class="tag">&lt;/span&gt;</span>
+    <span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="string">"frame frame--inner"</span><span class="tag">&gt;</span>
+      <span class="tag">&lt;span</span> <span class="attr">class</span>=<span class="string">"frame-label"</span><span class="tag">&gt;</span>The Inner Frame<span class="tag">&lt;/span&gt;</span>
+      <span class="tag">&lt;p</span> <span class="attr">style</span>=<span class="string">"margin:0"</span><span class="tag">&gt;</span>Core content here.<span class="tag">&lt;/p&gt;</span>
+    <span class="tag">&lt;/div&gt;</span>
+  <span class="tag">&lt;/div&gt;</span>
+<span class="tag">&lt;/div&gt;</span></pre>
+    </div>
+  </div>
+
+  <div class="component" data-code="paths">
+    <div class="component-header">
+      <div>
+        <span class="component-name">Multiple Paths</span>
+        <span class="component-snippet">paths + Tab</span>
+      </div>
+      <button class="copy-btn" onclick="copyCode('paths')">Copy</button>
+    </div>
+    <div class="component-code">
+<pre id="code-paths"><span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="string">"paths"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;button</span> <span class="attr">class</span>=<span class="string">"path"</span> <span class="attr">data-path</span>=<span class="string">"craft"</span><span class="tag">&gt;</span>The Craft<span class="tag">&lt;/button&gt;</span>
+  <span class="tag">&lt;button</span> <span class="attr">class</span>=<span class="string">"path"</span> <span class="attr">data-path</span>=<span class="string">"meaning"</span><span class="tag">&gt;</span>The Meaning<span class="tag">&lt;/button&gt;</span>
+  <span class="tag">&lt;button</span> <span class="attr">class</span>=<span class="string">"path"</span> <span class="attr">data-path</span>=<span class="string">"process"</span><span class="tag">&gt;</span>The Process<span class="tag">&lt;/button&gt;</span>
+<span class="tag">&lt;/div&gt;</span>
+
+<span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="string">"path-content"</span> <span class="attr">data-path</span>=<span class="string">"craft"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;p&gt;</span>Technical details about how it was made...<span class="tag">&lt;/p&gt;</span>
+<span class="tag">&lt;/div&gt;</span>
+
+<span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="string">"path-content"</span> <span class="attr">data-path</span>=<span class="string">"meaning"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;p&gt;</span>What it represents, what questions it raises...<span class="tag">&lt;/p&gt;</span>
+<span class="tag">&lt;/div&gt;</span>
+
+<span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="string">"path-content"</span> <span class="attr">data-path</span>=<span class="string">"process"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;p&gt;</span>The journey of making it, what surprised you...<span class="tag">&lt;/p&gt;</span>
+<span class="tag">&lt;/div&gt;</span></pre>
+    </div>
+  </div>
+
+  <!-- ==================== BASIC ==================== -->
+  <p class="section-title">Basic Elements</p>
+
+  <div class="component" data-code="divider">
+    <div class="component-header">
+      <div>
+        <span class="component-name">Section Divider</span>
+        <span class="component-snippet">div + Tab</span>
+      </div>
+      <button class="copy-btn" onclick="copyCode('divider')">Copy</button>
+    </div>
+    <div class="component-code">
+<pre id="code-divider"><span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="string">"divider"</span><span class="tag">&gt;</span>◆<span class="tag">&lt;/div&gt;</span></pre>
+    </div>
+  </div>
+
+  <div class="component" data-code="h2">
+    <div class="component-header">
+      <div>
+        <span class="component-name">Section Heading</span>
+        <span class="component-snippet">h2 + Tab</span>
+      </div>
+      <button class="copy-btn" onclick="copyCode('h2')">Copy</button>
+    </div>
+    <div class="component-code">
+<pre id="code-h2"><span class="tag">&lt;h2&gt;</span>Section Title<span class="tag">&lt;/h2&gt;</span></pre>
+    </div>
+  </div>
+
+  <div class="component" data-code="para">
+    <div class="component-header">
+      <div>
+        <span class="component-name">Paragraph</span>
+        <span class="component-snippet">pp + Tab</span>
+      </div>
+      <button class="copy-btn" onclick="copyCode('para')">Copy</button>
+    </div>
+    <div class="component-code">
+<pre id="code-para"><span class="tag">&lt;p&gt;</span>
+  Your paragraph text here.
+<span class="tag">&lt;/p&gt;</span></pre>
+    </div>
+  </div>
+
+  <div class="component" data-code="blockquote">
+    <div class="component-header">
+      <div>
+        <span class="component-name">Blockquote</span>
+        <span class="component-snippet">bq + Tab</span>
+      </div>
+      <button class="copy-btn" onclick="copyCode('blockquote')">Copy</button>
+    </div>
+    <div class="component-code">
+<pre id="code-blockquote"><span class="tag">&lt;blockquote&gt;</span>
+  Quoted text here.
+<span class="tag">&lt;/blockquote&gt;</span></pre>
+    </div>
+  </div>
+
+  <div class="component" data-code="link">
+    <div class="component-header">
+      <div>
+        <span class="component-name">Link</span>
+        <span class="component-snippet">link + Tab</span>
+      </div>
+      <button class="copy-btn" onclick="copyCode('link')">Copy</button>
+    </div>
+    <div class="component-code">
+<pre id="code-link"><span class="tag">&lt;a</span> <span class="attr">href</span>=<span class="string">"https://example.com"</span><span class="tag">&gt;</span>link text<span class="tag">&lt;/a&gt;</span></pre>
+    </div>
+  </div>
+
+  <script>
+    // Plain text versions for copying
+    const codeSnippets = {
+      'fn-basic': `<span class="fn" data-fn="1">text with footnote</span>
+<aside class="fn-content" data-fn="1">
+  <p>Footnote content here.</p>
+</aside>`,
+      'fn-nested': `<span class="fn" data-fn="1a">nested text</span>
+<aside class="fn-content" data-fn="1a">
+  <p>A footnote within a footnote.</p>
+</aside>`,
+      'fn-multi': `<span class="fn" data-fn="2">text here</span>
+<aside class="fn-content" data-fn="2">
+  <p>First paragraph of the footnote.</p>
+  <p>Second paragraph continues the thought.</p>
+  <p>Third paragraph if needed.</p>
+</aside>`,
+      'reader': `<aside class="reader-address">
+  You, reader, have now reached the point where...
+</aside>`,
+      'frame': `<div class="frame frame--outer">
+  <span class="frame-label">The Outer Frame</span>
+  <div class="frame frame--middle">
+    <span class="frame-label">The Middle Frame</span>
+    <div class="frame frame--inner">
+      <span class="frame-label">The Inner Frame</span>
+      <p style="margin:0">Core content here.</p>
+    </div>
+  </div>
+</div>`,
+      'paths': `<div class="paths">
+  <button class="path" data-path="craft">The Craft</button>
+  <button class="path" data-path="meaning">The Meaning</button>
+  <button class="path" data-path="process">The Process</button>
+</div>
+
+<div class="path-content" data-path="craft">
+  <p>Technical details about how it was made...</p>
+</div>
+
+<div class="path-content" data-path="meaning">
+  <p>What it represents, what questions it raises...</p>
+</div>
+
+<div class="path-content" data-path="process">
+  <p>The journey of making it, what surprised you...</p>
+</div>`,
+      'divider': `<div class="divider">◆</div>`,
+      'h2': `<h2>Section Title</h2>`,
+      'para': `<p>
+  Your paragraph text here.
+</p>`,
+      'blockquote': `<blockquote>
+  Quoted text here.
+</blockquote>`,
+      'link': `<a href="https://example.com">link text</a>`
+    };
+
+    function copyCode(id) {
+      const code = codeSnippets[id];
+      navigator.clipboard.writeText(code).then(() => {
+        const btn = document.querySelector(`[data-code="${id}"] .copy-btn`);
+        btn.textContent = 'Copied!';
+        btn.classList.add('copied');
+        setTimeout(() => {
+          btn.textContent = 'Copy';
+          btn.classList.remove('copied');
+        }, 1500);
+      });
+    }
+  </script>
+</body>
+</html>

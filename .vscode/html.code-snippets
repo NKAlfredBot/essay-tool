@@ -1,0 +1,171 @@
+{
+  "Footnote": {
+    "prefix": "fn",
+    "body": [
+      "<span class=\"fn\" data-fn=\"${1:1}\">${2:text with footnote}</span>",
+      "<aside class=\"fn-content\" data-fn=\"${1:1}\">",
+      "  <p>${3:Footnote content here.}</p>",
+      "</aside>"
+    ],
+    "description": "DFW-style expanding footnote"
+  },
+  "Footnote Nested": {
+    "prefix": "fnn",
+    "body": [
+      "<span class=\"fn\" data-fn=\"${1:1a}\">${2:nested text}</span>",
+      "<aside class=\"fn-content\" data-fn=\"${1:1a}\">",
+      "  <p>${3:Nested footnote content.}</p>",
+      "</aside>"
+    ],
+    "description": "Nested footnote (use inside fn-content)"
+  },
+  "Footnote Marker Only": {
+    "prefix": "fnm",
+    "body": "<span class=\"fn\" data-fn=\"${1:1}\">${2:text}</span>",
+    "description": "Just the footnote marker (add content separately)"
+  },
+  "Footnote Content Only": {
+    "prefix": "fnc",
+    "body": [
+      "<aside class=\"fn-content\" data-fn=\"${1:1}\">",
+      "  <p>${2:Content}</p>",
+      "</aside>"
+    ],
+    "description": "Just the footnote content block"
+  },
+  "Section Divider": {
+    "prefix": "div",
+    "body": "<div class=\"divider\">◆</div>",
+    "description": "Calvino diamond section divider"
+  },
+  "Section Heading": {
+    "prefix": "h2",
+    "body": "<h2>${1:Section Title}</h2>",
+    "description": "Section heading (twilight purple)"
+  },
+  "Paragraph": {
+    "prefix": "pp",
+    "body": [
+      "<p>",
+      "  ${1:Your paragraph text here.}",
+      "</p>"
+    ],
+    "description": "Paragraph"
+  },
+  "Reader Address": {
+    "prefix": "reader",
+    "body": [
+      "<aside class=\"reader-address\">",
+      "  ${1:You, reader, have now...}",
+      "</aside>"
+    ],
+    "description": "Calvino-style direct address to reader"
+  },
+  "Frame (Full Nested)": {
+    "prefix": "frame",
+    "body": [
+      "<div class=\"frame frame--outer\">",
+      "  <span class=\"frame-label\">${1:The Outer Frame}</span>",
+      "  <div class=\"frame frame--middle\">",
+      "    <span class=\"frame-label\">${2:The Middle Frame}</span>",
+      "    <div class=\"frame frame--inner\">",
+      "      <span class=\"frame-label\">${3:The Inner Frame}</span>",
+      "      <p style=\"margin:0\">${4:Core content here.}</p>",
+      "    </div>",
+      "  </div>",
+      "</div>"
+    ],
+    "description": "Calvino frame-within-frame (all three levels)"
+  },
+  "Frame Outer": {
+    "prefix": "frameo",
+    "body": [
+      "<div class=\"frame frame--outer\">",
+      "  <span class=\"frame-label\">${1:Label}</span>",
+      "  ${2:content}",
+      "</div>"
+    ],
+    "description": "Single outer frame"
+  },
+  "Frame Middle": {
+    "prefix": "framem",
+    "body": [
+      "<div class=\"frame frame--middle\">",
+      "  <span class=\"frame-label\">${1:Label}</span>",
+      "  ${2:content}",
+      "</div>"
+    ],
+    "description": "Single middle frame"
+  },
+  "Frame Inner": {
+    "prefix": "framei",
+    "body": [
+      "<div class=\"frame frame--inner\">",
+      "  <span class=\"frame-label\">${1:Label}</span>",
+      "  <p style=\"margin:0\">${2:content}</p>",
+      "</div>"
+    ],
+    "description": "Single inner frame"
+  },
+  "Multiple Paths": {
+    "prefix": "paths",
+    "body": [
+      "<div class=\"paths\">",
+      "  <button class=\"path\" data-path=\"${1:a}\">${2:Path A Title}</button>",
+      "  <button class=\"path\" data-path=\"${3:b}\">${4:Path B Title}</button>",
+      "  <button class=\"path\" data-path=\"${5:c}\">${6:Path C Title}</button>",
+      "</div>",
+      "",
+      "<div class=\"path-content\" data-path=\"${1:a}\">",
+      "  <p>${7:Content for path A...}</p>",
+      "</div>",
+      "",
+      "<div class=\"path-content\" data-path=\"${3:b}\">",
+      "  <p>${8:Content for path B...}</p>",
+      "</div>",
+      "",
+      "<div class=\"path-content\" data-path=\"${5:c}\">",
+      "  <p>${9:Content for path C...}</p>",
+      "</div>"
+    ],
+    "description": "Calvino multiple paths (3 options)"
+  },
+  "Path Button": {
+    "prefix": "pathb",
+    "body": "<button class=\"path\" data-path=\"${1:id}\">${2:Title}</button>",
+    "description": "Single path button"
+  },
+  "Path Content": {
+    "prefix": "pathc",
+    "body": [
+      "<div class=\"path-content\" data-path=\"${1:id}\">",
+      "  <p>${2:Content for this path...}</p>",
+      "</div>"
+    ],
+    "description": "Single path content block"
+  },
+  "Blockquote": {
+    "prefix": "bq",
+    "body": [
+      "<blockquote>",
+      "  ${1:Quoted text here.}",
+      "</blockquote>"
+    ],
+    "description": "Blockquote"
+  },
+  "Emphasis": {
+    "prefix": "em",
+    "body": "<em>${1:emphasized text}</em>",
+    "description": "Italic emphasis"
+  },
+  "Strong": {
+    "prefix": "str",
+    "body": "<strong>${1:strong text}</strong>",
+    "description": "Bold text"
+  },
+  "Link": {
+    "prefix": "link",
+    "body": "<a href=\"${1:url}\">${2:link text}</a>",
+    "description": "Hyperlink"
+  }
+}
