@@ -611,6 +611,92 @@
     .demo-area .gut-punch.revealed .reveal-btn {
       display: none;
     }
+
+    /* ========================================
+       ROBERT SMITHSON STYLES
+       ======================================== */
+    .demo-area .sediment-layers {
+      border: 1px solid hsl(0, 0%, 85%);
+      overflow: hidden;
+    }
+    .demo-area .sediment-layer {
+      padding: 0.75rem 1rem;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.75rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .demo-area .sediment-layer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, hsla(0, 0%, 100%, 0.15), transparent);
+      transition: left 0.5s ease;
+    }
+    .demo-area .sediment-layer:hover::before { left: 100%; }
+    .demo-area .sediment-layer:hover { padding-left: 1.5rem; }
+    .demo-area .sediment-layer .layer-detail {
+      font-size: 0.6rem;
+      opacity: 0;
+      transform: translateX(10px);
+      transition: all 0.3s ease;
+    }
+    .demo-area .sediment-layer:hover .layer-detail {
+      opacity: 0.7;
+      transform: translateX(0);
+    }
+    .demo-area .sediment-layer:nth-child(1) { background: hsl(30, 10%, 80%); color: hsl(0, 0%, 15%); }
+    .demo-area .sediment-layer:nth-child(2) { background: hsl(25, 30%, 50%); color: hsl(0, 0%, 95%); }
+    .demo-area .sediment-layer:nth-child(3) { background: hsl(20, 50%, 40%); color: hsl(0, 0%, 95%); }
+    .demo-area .sediment-layer:nth-child(4) { background: hsl(25, 25%, 30%); color: hsl(0, 0%, 95%); }
+    .demo-area .sediment-layer:nth-child(5) { background: hsl(0, 0%, 15%); color: hsl(0, 0%, 95%); }
+
+    /* ========================================
+       FANTASTIC PLANET STYLES
+       ======================================== */
+    .demo-area .morph-card {
+      background: hsla(280, 30%, 95%, 0.9);
+      padding: 1.5rem;
+      border-radius: 30% 70% 50% 50% / 50% 40% 60% 50%;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.6s ease;
+      font-family: 'Inter', sans-serif;
+    }
+    .demo-area .morph-card:hover {
+      border-radius: 50% 50% 40% 60% / 60% 50% 50% 40%;
+      background: hsla(210, 50%, 55%, 0.2);
+    }
+    .demo-area .morph-card.morphed {
+      background: hsl(280, 40%, 45%);
+      color: white;
+      border-radius: 40% 60% 70% 30% / 30% 70% 30% 70%;
+    }
+    .demo-area .morph-card .morph-title {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: hsl(280, 40%, 45%);
+    }
+    .demo-area .morph-card.morphed .morph-title { color: white; }
+    .demo-area .morph-card .morph-text {
+      font-size: 0.85rem;
+      line-height: 1.6;
+      opacity: 0.8;
+    }
+    .demo-area .morph-card .morph-alt {
+      display: none;
+    }
+    .demo-area .morph-card.morphed .morph-default { display: none; }
+    .demo-area .morph-card.morphed .morph-alt { display: block; }
   </style>
 </head>
 <body>
@@ -1079,6 +1165,85 @@
     </div>
   </div>
 
+  <!-- ==================== ROBERT SMITHSON ==================== -->
+  <p class="section-title">Robert Smithson — Entropy & Time</p>
+
+  <div class="component" data-id="sediment">
+    <div class="component-header">
+      <div>
+        <span class="component-name">Sediment Layers</span>
+        <span class="component-snippet">sediment + Tab</span>
+      </div>
+      <div class="btn-group">
+        <button class="btn btn-secondary" onclick="resetCode('sediment')">Reset</button>
+        <button class="btn" onclick="copyCode('sediment')">Copy</button>
+      </div>
+    </div>
+    <div class="component-body">
+      <div class="component-demo">
+        <p class="demo-label">Hover layers to excavate — time compressed into bands</p>
+        <div class="demo-area" data-demo="sediment"></div>
+      </div>
+      <div class="component-code">
+        <textarea class="code-editor" data-editor="sediment" spellcheck="false"><div class="sediment-layers">
+  <div class="sediment-layer">
+    <span>Present</span>
+    <span class="layer-detail">The surface of things</span>
+  </div>
+  <div class="sediment-layer">
+    <span>Recent Past</span>
+    <span class="layer-detail">What we remember</span>
+  </div>
+  <div class="sediment-layer">
+    <span>History</span>
+    <span class="layer-detail">What was recorded</span>
+  </div>
+  <div class="sediment-layer">
+    <span>Deep Time</span>
+    <span class="layer-detail">What was forgotten</span>
+  </div>
+  <div class="sediment-layer">
+    <span>Origin</span>
+    <span class="layer-detail">Where it all began</span>
+  </div>
+</div></textarea>
+        <div class="code-footer"><span>Geological stratigraphy as narrative structure</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== FANTASTIC PLANET ==================== -->
+  <p class="section-title">Fantastic Planet — Alien Surrealism</p>
+
+  <div class="component" data-id="morph">
+    <div class="component-header">
+      <div>
+        <span class="component-name">Morph Card</span>
+        <span class="component-snippet">morph + Tab</span>
+      </div>
+      <div class="btn-group">
+        <button class="btn btn-secondary" onclick="resetCode('morph')">Reset</button>
+        <button class="btn" onclick="copyCode('morph')">Copy</button>
+      </div>
+    </div>
+    <div class="component-body">
+      <div class="component-demo">
+        <p class="demo-label">Click to transform between states</p>
+        <div class="demo-area" data-demo="morph"></div>
+      </div>
+      <div class="component-code">
+        <textarea class="code-editor" data-editor="morph" spellcheck="false"><div class="morph-card">
+  <p class="morph-title">The Familiar</p>
+  <div class="morph-text">
+    <span class="morph-default">What we see on the surface — the expected, the comfortable, the known.</span>
+    <span class="morph-alt">What lies beneath — the strange, the unsettling, the true.</span>
+  </div>
+</div></textarea>
+        <div class="code-footer"><span>Click to shift perspective — content transforms</span></div>
+      </div>
+    </div>
+  </div>
+
   <script>
     // Store original code for reset
     const originalCode = {};
@@ -1167,6 +1332,13 @@
           if (gutPunch) {
             gutPunch.classList.add('revealed');
           }
+        });
+      });
+
+      // Fantastic Planet Morph Cards
+      container.querySelectorAll('.morph-card').forEach(card => {
+        card.addEventListener('click', () => {
+          card.classList.toggle('morphed');
         });
       });
     }

@@ -253,5 +253,59 @@
       "</div>"
     ],
     "description": "George Saunders-style reveal (light content hiding dark truth)"
+  },
+
+  "Robert Smithson Sediment Layers": {
+    "prefix": "sediment",
+    "body": [
+      "<div class=\"sediment-layers\">",
+      "  <div class=\"sediment-layer\">",
+      "    <span>${1:Present}</span>",
+      "    <span class=\"layer-detail\">${2:The surface of things}</span>",
+      "  </div>",
+      "  <div class=\"sediment-layer\">",
+      "    <span>${3:Recent Past}</span>",
+      "    <span class=\"layer-detail\">${4:What we remember}</span>",
+      "  </div>",
+      "  <div class=\"sediment-layer\">",
+      "    <span>${5:History}</span>",
+      "    <span class=\"layer-detail\">${6:What was recorded}</span>",
+      "  </div>",
+      "  <div class=\"sediment-layer\">",
+      "    <span>${7:Deep Time}</span>",
+      "    <span class=\"layer-detail\">${8:What was forgotten}</span>",
+      "  </div>",
+      "  <div class=\"sediment-layer\">",
+      "    <span>${9:Origin}</span>",
+      "    <span class=\"layer-detail\">${10:Where it all began}</span>",
+      "  </div>",
+      "</div>"
+    ],
+    "description": "Robert Smithson-style sediment layers (time as strata)"
+  },
+
+  "Robert Smithson Layer": {
+    "prefix": "layer",
+    "body": [
+      "<div class=\"sediment-layer\">",
+      "  <span>${1:Layer Name}</span>",
+      "  <span class=\"layer-detail\">${2:Hidden detail on hover}</span>",
+      "</div>"
+    ],
+    "description": "Single sediment layer (add to sediment-layers block)"
+  },
+
+  "Fantastic Planet Morph Card": {
+    "prefix": "morph",
+    "body": [
+      "<div class=\"morph-card\">",
+      "  <p class=\"morph-title\">${1:The Familiar}</p>",
+      "  <div class=\"morph-text\">",
+      "    <span class=\"morph-default\">${2:What we see on the surface.}</span>",
+      "    <span class=\"morph-alt\">${3:What lies beneath.}</span>",
+      "  </div>",
+      "</div>"
+    ],
+    "description": "Fantastic Planet-style morph card (click to transform)"
   }
 }
