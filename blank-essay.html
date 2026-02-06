@@ -10,7 +10,7 @@
   <meta property="og:type" content="article">
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&family=Share+Tech+Mono&display=swap" rel="stylesheet">
   
   <style>
     :root {
@@ -80,6 +80,44 @@
     .reader-address::before { content: 'To the reader'; display: block; font-family: var(--font-sans); font-size: 0.7rem; font-style: normal; text-transform: uppercase; letter-spacing: 0.2em; color: var(--twilight); margin-bottom: var(--space-sm); }
     .colophon { margin-top: 6rem; padding-top: var(--space-lg); border-top: 1px solid var(--stone); font-family: var(--font-sans); font-size: 0.75rem; color: var(--stone); text-align: center; }
     .progress-bar { position: fixed; top: 0; left: 0; width: 0%; height: 2px; background: var(--fn-blue); z-index: 1000; transition: width 0.1s; }
+    /* Yoko Ono - Instruction Block */
+    .instruction-block { font-family: var(--font-mono); border: 1px dashed var(--ink); padding: var(--space-lg); text-align: center; background: hsl(45, 20%, 97%); margin: var(--space-lg) 0; }
+    .instruction-block .instruction-label { font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--stone); margin-bottom: 1.5rem; }
+    .instruction-block .instruction-text { font-size: 1rem; line-height: 2; margin-bottom: 1.5rem; font-style: italic; }
+    .instruction-block .instruction-btn { font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; padding: 0.75rem 2rem; background: transparent; border: 1px solid var(--ink); cursor: pointer; transition: all 0.2s; }
+    .instruction-block .instruction-btn:hover { background: var(--ink); color: var(--cream); }
+    .instruction-block .instruction-btn.done { background: var(--ink); color: var(--cream); pointer-events: none; }
+    .instruction-block .instruction-response { margin-top: 1rem; font-size: 0.85rem; color: var(--stone); font-style: italic; min-height: 1.5em; }
+
+    /* Severance - Terminal Block */
+    .terminal-block { font-family: var(--font-mono); background: hsl(180, 20%, 8%); border: 1px solid hsl(140, 80%, 30%); margin: var(--space-lg) 0; overflow: hidden; }
+    .terminal-block .terminal-header { background: hsl(180, 15%, 12%); padding: 0.5rem 1rem; display: flex; justify-content: space-between; font-size: 0.65rem; letter-spacing: 0.1em; color: hsl(140, 80%, 45%); border-bottom: 1px solid hsl(140, 80%, 30%); }
+    .terminal-block .terminal-body { padding: 1rem; font-size: 0.8rem; line-height: 1.8; color: hsl(140, 80%, 45%); }
+    .terminal-block .terminal-line { margin-bottom: 0.25rem; }
+    .terminal-block .terminal-line.prompt::before { content: '> '; opacity: 0.5; }
+    .terminal-block .terminal-line.output { opacity: 0.7; padding-left: 1rem; }
+    .terminal-block .terminal-line.error { color: hsl(355, 70%, 50%); }
+
+    /* Severance - Handbook Notice */
+    .handbook-notice { font-family: var(--font-sans); background: hsl(40, 20%, 92%); border: 1px solid hsl(200, 10%, 70%); padding: 1.5rem; margin: var(--space-lg) 0; }
+    .handbook-notice .handbook-header { font-size: 0.6rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: hsl(220, 50%, 25%); margin-bottom: 0.75rem; padding-bottom: 0.5rem; border-bottom: 1px solid hsl(200, 10%, 80%); }
+    .handbook-notice .handbook-text { font-size: 0.85rem; line-height: 1.7; color: hsl(200, 10%, 35%); }
+    .handbook-notice .handbook-footer { margin-top: 1rem; font-size: 0.7rem; color: hsl(200, 10%, 55%); text-align: right; }
+
+    /* Jenny Holzer - Truism */
+    .truism { font-family: var(--font-mono); font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 1rem 1.25rem; background: hsl(0, 0%, 98%); border-bottom: 1px solid hsl(0, 0%, 85%); cursor: pointer; transition: all 0.3s; margin: 0; }
+    .truism:first-of-type { border-top: 1px solid hsl(0, 0%, 85%); }
+    .truism:hover { background: hsl(0, 0%, 95%); padding-left: 1.5rem; }
+    .truism:active { background: hsl(0, 100%, 50%); color: white; }
+
+    /* Jenny Holzer - LED Marquee */
+    .led-marquee { background: hsl(0, 0%, 5%); padding: 1.5rem; margin: var(--space-lg) 0; overflow: hidden; position: relative; }
+    .led-marquee::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(90deg, transparent 0px, transparent 2px, hsla(0,0%,0%,0.3) 2px, hsla(0,0%,0%,0.3) 3px); pointer-events: none; }
+    .led-marquee .led-text { font-family: var(--font-mono); font-size: 1.1rem; letter-spacing: 0.15em; text-transform: uppercase; color: hsl(0, 100%, 50%); text-shadow: 0 0 10px hsl(0, 100%, 50%), 0 0 20px hsl(0, 100%, 50%); white-space: nowrap; animation: marquee-scroll 12s linear infinite; }
+    .led-marquee .led-text.amber { color: hsl(30, 100%, 50%); text-shadow: 0 0 10px hsl(30, 100%, 50%), 0 0 20px hsl(30, 100%, 50%); }
+    .led-marquee .led-text.green { color: hsl(120, 100%, 40%); text-shadow: 0 0 10px hsl(120, 100%, 40%), 0 0 20px hsl(120, 100%, 40%); }
+    @keyframes marquee-scroll { from { transform: translateX(100%); } to { transform: translateX(-100%); } }
+
     @media print { body { background: white; } .essay { max-width: 100%; padding: 2rem; } .fn-content { max-height: none; opacity: 1; padding: 1rem 1.25rem; } .progress-bar { display: none; } }
   </style>
 </head>
@@ -139,6 +177,15 @@
       });
     });
     const paths = document.querySelectorAll('.path'), pathContents = document.querySelectorAll('.path-content');
+    // Yoko Ono instruction buttons
+    document.querySelectorAll('.instruction-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        btn.textContent = 'Thank you';
+        btn.classList.add('done');
+        const response = btn.parentElement.querySelector('.instruction-response');
+        if (response) response.textContent = 'The imagining was the work.';
+      });
+    });
     paths.forEach(path => {
       path.addEventListener('click', () => {
         paths.forEach(p => p.classList.remove('active'));

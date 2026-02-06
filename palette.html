@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Essay Components — Live Playground</title>
-  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&family=Share+Tech+Mono&display=swap" rel="stylesheet">
   <style>
     :root {
       --bg: hsl(220, 15%, 12%);
@@ -148,152 +148,208 @@
     .demo-area p { margin: 0 0 1rem; }
     .demo-area p:last-child { margin-bottom: 0; }
     
-    /* Footnotes */
-    .demo-area .fn {
-      cursor: pointer;
-      border-bottom: 1px dotted hsl(210, 60%, 45%);
-      transition: background 0.2s;
-    }
+    /* DFW Footnotes */
+    .demo-area .fn { cursor: pointer; border-bottom: 1px dotted hsl(210, 60%, 45%); transition: background 0.2s; }
     .demo-area .fn:hover { background: hsla(210, 60%, 45%, 0.1); }
-    .demo-area .fn::after {
-      content: attr(data-fn);
-      font-family: 'Inter', sans-serif;
-      font-size: 0.65em;
-      font-weight: 500;
-      color: hsl(210, 60%, 45%);
-      vertical-align: super;
-      margin-left: 2px;
-      padding: 1px 4px;
-      background: hsla(210, 60%, 45%, 0.1);
-      border-radius: 2px;
-    }
+    .demo-area .fn::after { content: attr(data-fn); font-family: 'Inter', sans-serif; font-size: 0.65em; font-weight: 500; color: hsl(210, 60%, 45%); vertical-align: super; margin-left: 2px; padding: 1px 4px; background: hsla(210, 60%, 45%, 0.1); border-radius: 2px; }
     .demo-area .fn.active { background: hsla(210, 60%, 45%, 0.15); }
     .demo-area .fn.active::after { background: hsl(210, 60%, 45%); color: white; }
-    
-    .demo-area .fn-content {
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: 0.8rem;
-      line-height: 1.6;
-      background: hsl(45, 15%, 92%);
-      border-left: 3px solid hsl(210, 60%, 45%);
-      margin: 0.75rem 0;
-      max-height: 0;
-      overflow: hidden;
-      opacity: 0;
-      padding: 0 1rem;
-      transition: max-height 0.4s ease-out, opacity 0.3s ease-out, padding 0.3s ease-out;
-    }
-    .demo-area .fn-content.open {
-      max-height: 500px;
-      opacity: 1;
-      padding: 0.75rem 1rem;
-    }
+    .demo-area .fn-content { font-family: 'IBM Plex Mono', monospace; font-size: 0.8rem; line-height: 1.6; background: hsl(45, 15%, 92%); border-left: 3px solid hsl(210, 60%, 45%); margin: 0.75rem 0; max-height: 0; overflow: hidden; opacity: 0; padding: 0 1rem; transition: max-height 0.4s ease-out, opacity 0.3s ease-out, padding 0.3s ease-out; }
+    .demo-area .fn-content.open { max-height: 500px; opacity: 1; padding: 0.75rem 1rem; }
     .demo-area .fn-content p { margin: 0 0 0.5rem; font-family: inherit; }
     .demo-area .fn-content p:last-child { margin: 0; }
     .demo-area .fn-content .fn-content { background: hsl(45, 15%, 88%); }
     
-    /* Reader address */
-    .demo-area .reader-address {
-      background: hsla(260, 30%, 60%, 0.08);
-      border-left: 2px solid hsl(260, 30%, 60%);
-      padding: 1rem;
-      font-size: 1rem;
-      font-style: italic;
-      line-height: 1.8;
-    }
-    .demo-area .reader-address::before {
-      content: 'To the reader';
-      display: block;
-      font-family: 'Inter', sans-serif;
-      font-size: 0.65rem;
-      font-style: normal;
-      text-transform: uppercase;
-      letter-spacing: 0.2em;
-      color: hsl(260, 30%, 60%);
-      margin-bottom: 0.5rem;
-    }
+    /* Calvino Reader Address */
+    .demo-area .reader-address { background: hsla(260, 30%, 60%, 0.08); border-left: 2px solid hsl(260, 30%, 60%); padding: 1rem; font-size: 1rem; font-style: italic; line-height: 1.8; }
+    .demo-area .reader-address::before { content: 'To the reader'; display: block; font-family: 'Inter', sans-serif; font-size: 0.65rem; font-style: normal; text-transform: uppercase; letter-spacing: 0.2em; color: hsl(260, 30%, 60%); margin-bottom: 0.5rem; }
     
-    /* Frames */
+    /* Calvino Frames */
     .demo-area .frame { padding: 1rem; margin: 0; }
     .demo-area .frame--outer { background: hsl(35, 30%, 88%); }
     .demo-area .frame--middle { background: hsl(40, 30%, 94%); margin-left: 0.75rem; }
     .demo-area .frame--inner { background: white; margin-left: 0.75rem; text-align: center; font-style: italic; }
-    .demo-area .frame-label {
-      display: block;
-      font-family: 'Inter', sans-serif;
-      font-size: 0.6rem;
-      text-transform: uppercase;
-      letter-spacing: 0.15em;
-      color: hsl(40, 10%, 55%);
-      margin-bottom: 0.5rem;
-    }
+    .demo-area .frame-label { display: block; font-family: 'Inter', sans-serif; font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.15em; color: hsl(40, 10%, 55%); margin-bottom: 0.5rem; }
     .demo-area .frame--middle .frame-label { color: hsl(260, 30%, 60%); }
     .demo-area .frame--inner .frame-label { color: hsl(210, 60%, 45%); }
     
-    /* Paths */
-    .demo-area .paths {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
-      gap: 1px;
-      background: hsl(40, 10%, 55%);
-    }
-    .demo-area .path {
-      font-family: 'EB Garamond', serif;
-      font-size: 0.9rem;
-      background: hsl(45, 40%, 96%);
-      border: none;
-      padding: 0.75rem;
-      cursor: pointer;
-      text-align: center;
-      transition: background 0.3s, color 0.3s;
-    }
+    /* Calvino Paths */
+    .demo-area .paths { display: grid; grid-template-columns: repeat(auto-fit, minmax(80px, 1fr)); gap: 1px; background: hsl(40, 10%, 55%); }
+    .demo-area .path { font-family: 'EB Garamond', serif; font-size: 0.9rem; background: hsl(45, 40%, 96%); border: none; padding: 0.75rem; cursor: pointer; text-align: center; transition: background 0.3s, color 0.3s; }
     .demo-area .path:hover { background: hsla(260, 30%, 60%, 0.1); }
     .demo-area .path.active { background: hsl(30, 10%, 15%); color: hsl(45, 40%, 96%); }
-    .demo-area .path-content {
-      background: hsla(260, 30%, 60%, 0.05);
-      padding: 1rem;
-      margin-top: -1px;
-      display: none;
-      font-size: 0.9rem;
-    }
+    .demo-area .path-content { background: hsla(260, 30%, 60%, 0.05); padding: 1rem; margin-top: -1px; display: none; font-size: 0.9rem; }
     .demo-area .path-content.visible { display: block; }
     
     /* Divider */
-    .demo-area .divider {
+    .demo-area .divider { text-align: center; margin: 1.5rem 0; color: hsl(40, 10%, 55%); font-size: 0.9rem; letter-spacing: 0.3em; }
+    .demo-area .divider::before, .demo-area .divider::after { content: ''; display: inline-block; width: 40px; height: 1px; background: hsl(40, 10%, 55%); vertical-align: middle; margin: 0 0.75rem; opacity: 0.5; }
+    
+    /* Headings & Blockquote */
+    .demo-area h2 { font-family: 'EB Garamond', serif; font-size: 1.25rem; font-weight: 500; color: hsl(260, 30%, 60%); margin: 0 0 0.75rem; }
+    .demo-area blockquote { border-left: 2px solid hsl(40, 10%, 55%); padding-left: 1rem; font-style: italic; color: hsl(40, 10%, 55%); margin: 0; }
+
+    /* ========================================
+       YOKO ONO STYLES
+       ======================================== */
+    .demo-area .instruction-block {
+      font-family: 'IBM Plex Mono', monospace;
+      border: 1px dashed hsl(30, 10%, 15%);
+      padding: 2rem;
       text-align: center;
-      margin: 1.5rem 0;
-      color: hsl(40, 10%, 55%);
-      font-size: 0.9rem;
-      letter-spacing: 0.3em;
+      background: hsl(45, 20%, 97%);
     }
-    .demo-area .divider::before, .demo-area .divider::after {
-      content: '';
-      display: inline-block;
-      width: 40px;
-      height: 1px;
-      background: hsl(40, 10%, 55%);
-      vertical-align: middle;
-      margin: 0 0.75rem;
-      opacity: 0.5;
+    .demo-area .instruction-block .instruction-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: hsl(0, 0%, 50%);
+      margin-bottom: 1.5rem;
     }
-    
-    /* Headings */
-    .demo-area h2 {
-      font-family: 'EB Garamond', serif;
-      font-size: 1.25rem;
-      font-weight: 500;
-      color: hsl(260, 30%, 60%);
-      margin: 0 0 0.75rem;
-    }
-    
-    /* Blockquote */
-    .demo-area blockquote {
-      border-left: 2px solid hsl(40, 10%, 55%);
-      padding-left: 1rem;
+    .demo-area .instruction-block .instruction-text {
+      font-size: 1rem;
+      line-height: 2;
+      margin-bottom: 1.5rem;
       font-style: italic;
-      color: hsl(40, 10%, 55%);
-      margin: 0;
     }
+    .demo-area .instruction-block .instruction-btn {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 0.75rem 2rem;
+      background: transparent;
+      border: 1px solid hsl(30, 10%, 15%);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .demo-area .instruction-block .instruction-btn:hover {
+      background: hsl(30, 10%, 15%);
+      color: hsl(45, 20%, 97%);
+    }
+    .demo-area .instruction-block .instruction-btn.done {
+      background: hsl(30, 10%, 15%);
+      color: hsl(45, 20%, 97%);
+      pointer-events: none;
+    }
+    .demo-area .instruction-block .instruction-response {
+      margin-top: 1rem;
+      font-size: 0.85rem;
+      color: hsl(0, 0%, 50%);
+      font-style: italic;
+      min-height: 1.5em;
+    }
+
+    /* ========================================
+       SEVERANCE STYLES
+       ======================================== */
+    .demo-area .terminal-block {
+      font-family: 'IBM Plex Mono', monospace;
+      background: hsl(180, 20%, 8%);
+      border: 1px solid hsl(140, 80%, 30%);
+      overflow: hidden;
+    }
+    .demo-area .terminal-block .terminal-header {
+      background: hsl(180, 15%, 12%);
+      padding: 0.5rem 1rem;
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      color: hsl(140, 80%, 45%);
+      border-bottom: 1px solid hsl(140, 80%, 30%);
+    }
+    .demo-area .terminal-block .terminal-body {
+      padding: 1rem;
+      font-size: 0.8rem;
+      line-height: 1.8;
+      color: hsl(140, 80%, 45%);
+    }
+    .demo-area .terminal-block .terminal-line { margin-bottom: 0.25rem; }
+    .demo-area .terminal-block .terminal-line.prompt::before { content: '> '; opacity: 0.5; }
+    .demo-area .terminal-block .terminal-line.output { opacity: 0.7; padding-left: 1rem; }
+    .demo-area .terminal-block .terminal-line.error { color: hsl(355, 70%, 50%); }
+
+    .demo-area .handbook-notice {
+      font-family: 'Inter', sans-serif;
+      background: hsl(40, 20%, 92%);
+      border: 1px solid hsl(200, 10%, 70%);
+      padding: 1.5rem;
+    }
+    .demo-area .handbook-notice .handbook-header {
+      font-size: 0.6rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: hsl(220, 50%, 25%);
+      margin-bottom: 0.75rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid hsl(200, 10%, 80%);
+    }
+    .demo-area .handbook-notice .handbook-text {
+      font-size: 0.85rem;
+      line-height: 1.7;
+      color: hsl(200, 10%, 35%);
+    }
+    .demo-area .handbook-notice .handbook-footer {
+      margin-top: 1rem;
+      font-size: 0.7rem;
+      color: hsl(200, 10%, 55%);
+      text-align: right;
+    }
+
+    /* ========================================
+       JENNY HOLZER STYLES
+       ======================================== */
+    .demo-area .truism {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.85rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 1rem 1.25rem;
+      background: hsl(0, 0%, 98%);
+      border-bottom: 1px solid hsl(0, 0%, 85%);
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    .demo-area .truism:hover {
+      background: hsl(0, 0%, 95%);
+      padding-left: 1.5rem;
+    }
+    .demo-area .truism:active {
+      background: hsl(0, 100%, 50%);
+      color: white;
+    }
+
+    .demo-area .led-marquee {
+      background: hsl(0, 0%, 5%);
+      padding: 1.5rem;
+      overflow: hidden;
+      position: relative;
+    }
+    .demo-area .led-marquee::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(90deg, transparent 0px, transparent 2px, hsla(0,0%,0%,0.3) 2px, hsla(0,0%,0%,0.3) 3px);
+      pointer-events: none;
+    }
+    .demo-area .led-marquee .led-text {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 1.1rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: hsl(0, 100%, 50%);
+      text-shadow: 0 0 10px hsl(0, 100%, 50%), 0 0 20px hsl(0, 100%, 50%);
+      white-space: nowrap;
+      animation: marquee-scroll 12s linear infinite;
+    }
+    @keyframes marquee-scroll {
+      from { transform: translateX(100%); }
+      to { transform: translateX(-100%); }
+    }
+    .demo-area .led-marquee .led-text.amber { color: hsl(30, 100%, 50%); text-shadow: 0 0 10px hsl(30, 100%, 50%), 0 0 20px hsl(30, 100%, 50%); }
+    .demo-area .led-marquee .led-text.green { color: hsl(120, 100%, 40%); text-shadow: 0 0 10px hsl(120, 100%, 40%), 0 0 20px hsl(120, 100%, 40%); }
   </style>
 </head>
 <body>
@@ -324,9 +380,7 @@
 <aside class="fn-content" data-fn="1">
   <p>What would it mean to translate an artist's vision into code?</p>
 </aside></textarea>
-        <div class="code-footer">
-          <span>Auto-updates as you type</span>
-        </div>
+        <div class="code-footer"><span>Auto-updates as you type</span></div>
       </div>
     </div>
   </div>
@@ -352,12 +406,10 @@
 <aside class="fn-content" data-fn="1">
   <p>Recursion is when something <span class="fn" data-fn="1a">contains itself</span>.</p>
   <aside class="fn-content" data-fn="1a">
-    <p>Like this footnote inside a footnote. You can nest infinitely.</p>
+    <p>Like this footnote inside a footnote.</p>
   </aside>
 </aside></textarea>
-        <div class="code-footer">
-          <span>Auto-updates as you type</span>
-        </div>
+        <div class="code-footer"><span>Auto-updates as you type</span></div>
       </div>
     </div>
   </div>
@@ -385,9 +437,7 @@
         <textarea class="code-editor" data-editor="reader" spellcheck="false"><aside class="reader-address">
   You, reader, have reached a point of decision. What you expected to find here may not be what you find.
 </aside></textarea>
-        <div class="code-footer">
-          <span>Auto-updates as you type</span>
-        </div>
+        <div class="code-footer"><span>Auto-updates as you type</span></div>
       </div>
     </div>
   </div>
@@ -419,9 +469,7 @@
     </div>
   </div>
 </div></textarea>
-        <div class="code-footer">
-          <span>Auto-updates as you type</span>
-        </div>
+        <div class="code-footer"><span>Auto-updates as you type</span></div>
       </div>
     </div>
   </div>
@@ -446,20 +494,163 @@
         <textarea class="code-editor" data-editor="paths" spellcheck="false"><div class="paths">
   <button class="path" data-path="craft">The Craft</button>
   <button class="path" data-path="meaning">The Meaning</button>
-  <button class="path" data-path="process">The Process</button>
 </div>
 <div class="path-content" data-path="craft">
   <p>Here you explain the technical details.</p>
 </div>
 <div class="path-content" data-path="meaning">
   <p>Here you explore what it represents.</p>
-</div>
-<div class="path-content" data-path="process">
-  <p>Here you share the journey.</p>
 </div></textarea>
-        <div class="code-footer">
-          <span>Auto-updates as you type</span>
-        </div>
+        <div class="code-footer"><span>Auto-updates as you type</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== YOKO ONO ==================== -->
+  <p class="section-title">Yoko Ono — Participation</p>
+
+  <div class="component" data-id="instruction">
+    <div class="component-header">
+      <div>
+        <span class="component-name">Instruction Block</span>
+        <span class="component-snippet">instruct + Tab</span>
+      </div>
+      <div class="btn-group">
+        <button class="btn btn-secondary" onclick="resetCode('instruction')">Reset</button>
+        <button class="btn" onclick="copyCode('instruction')">Copy</button>
+      </div>
+    </div>
+    <div class="component-body">
+      <div class="component-demo">
+        <p class="demo-label">Click the button to participate</p>
+        <div class="demo-area" data-demo="instruction"></div>
+      </div>
+      <div class="component-code">
+        <textarea class="code-editor" data-editor="instruction" spellcheck="false"><div class="instruction-block">
+  <p class="instruction-label">Participation Piece</p>
+  <p class="instruction-text">Think of a color you have never seen.</p>
+  <button class="instruction-btn">I imagined it</button>
+  <p class="instruction-response"></p>
+</div></textarea>
+        <div class="code-footer"><span>Auto-updates as you type</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== SEVERANCE ==================== -->
+  <p class="section-title">Severance — Corporate</p>
+
+  <div class="component" data-id="terminal">
+    <div class="component-header">
+      <div>
+        <span class="component-name">Terminal Block</span>
+        <span class="component-snippet">term + Tab</span>
+      </div>
+      <div class="btn-group">
+        <button class="btn btn-secondary" onclick="resetCode('terminal')">Reset</button>
+        <button class="btn" onclick="copyCode('terminal')">Copy</button>
+      </div>
+    </div>
+    <div class="component-body">
+      <div class="component-demo">
+        <p class="demo-label">For technical asides or logs</p>
+        <div class="demo-area" data-demo="terminal"></div>
+      </div>
+      <div class="component-code">
+        <textarea class="code-editor" data-editor="terminal" spellcheck="false"><div class="terminal-block">
+  <div class="terminal-header">
+    <span>PROCESS LOG</span>
+    <span>SESSION 047</span>
+  </div>
+  <div class="terminal-body">
+    <div class="terminal-line prompt">initializing style-translation/</div>
+    <div class="terminal-line output">analyzing source material...</div>
+    <div class="terminal-line output">extracting: color palettes</div>
+    <div class="terminal-line output">extracting: typography rules</div>
+    <div class="terminal-line prompt">translation complete</div>
+  </div>
+</div></textarea>
+        <div class="code-footer"><span>Auto-updates as you type</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="component" data-id="handbook">
+    <div class="component-header">
+      <div>
+        <span class="component-name">Handbook Notice</span>
+        <span class="component-snippet">handbook + Tab</span>
+      </div>
+      <div class="btn-group">
+        <button class="btn btn-secondary" onclick="resetCode('handbook')">Reset</button>
+        <button class="btn" onclick="copyCode('handbook')">Copy</button>
+      </div>
+    </div>
+    <div class="component-body">
+      <div class="component-demo">
+        <p class="demo-label">Institutional messaging / meta-commentary</p>
+        <div class="demo-area" data-demo="handbook"></div>
+      </div>
+      <div class="component-code">
+        <textarea class="code-editor" data-editor="handbook" spellcheck="false"><div class="handbook-notice">
+  <p class="handbook-header">Notice to Reader</p>
+  <p class="handbook-text">The following section contains information that may alter your perception of previous sections. Proceeding constitutes acknowledgment of this possibility.</p>
+  <p class="handbook-footer">— The Management</p>
+</div></textarea>
+        <div class="code-footer"><span>Auto-updates as you type</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== JENNY HOLZER ==================== -->
+  <p class="section-title">Jenny Holzer — Text as Art</p>
+
+  <div class="component" data-id="truism">
+    <div class="component-header">
+      <div>
+        <span class="component-name">Truism</span>
+        <span class="component-snippet">truism + Tab</span>
+      </div>
+      <div class="btn-group">
+        <button class="btn btn-secondary" onclick="resetCode('truism')">Reset</button>
+        <button class="btn" onclick="copyCode('truism')">Copy</button>
+      </div>
+    </div>
+    <div class="component-body">
+      <div class="component-demo">
+        <p class="demo-label">Click for emphasis effect</p>
+        <div class="demo-area" data-demo="truism"></div>
+      </div>
+      <div class="component-code">
+        <textarea class="code-editor" data-editor="truism" spellcheck="false"><div class="truism">Protect me from what I want</div>
+<div class="truism">Abuse of power comes as no surprise</div>
+<div class="truism">Money creates taste</div></textarea>
+        <div class="code-footer"><span>Auto-updates as you type</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="component" data-id="ledmarquee">
+    <div class="component-header">
+      <div>
+        <span class="component-name">LED Marquee</span>
+        <span class="component-snippet">led + Tab</span>
+      </div>
+      <div class="btn-group">
+        <button class="btn btn-secondary" onclick="resetCode('ledmarquee')">Reset</button>
+        <button class="btn" onclick="copyCode('ledmarquee')">Copy</button>
+      </div>
+    </div>
+    <div class="component-body">
+      <div class="component-demo">
+        <p class="demo-label">Scrolling proclamation</p>
+        <div class="demo-area" data-demo="ledmarquee"></div>
+      </div>
+      <div class="component-code">
+        <textarea class="code-editor" data-editor="ledmarquee" spellcheck="false"><div class="led-marquee">
+  <div class="led-text">The beginning of the war will be secret</div>
+</div></textarea>
+        <div class="code-footer"><span>Add class "amber" or "green" to led-text for color</span></div>
       </div>
     </div>
   </div>
@@ -487,9 +678,7 @@
         <textarea class="code-editor" data-editor="divider" spellcheck="false"><p>End of one section...</p>
 <div class="divider">◆</div>
 <p>Beginning of another.</p></textarea>
-        <div class="code-footer">
-          <span>Auto-updates as you type</span>
-        </div>
+        <div class="code-footer"><span>Auto-updates as you type</span></div>
       </div>
     </div>
   </div>
@@ -513,12 +702,8 @@
       <div class="component-code">
         <textarea class="code-editor" data-editor="heading" spellcheck="false"><h2>The Question of Translation</h2>
 <p>As Calvino wrote:</p>
-<blockquote>
-  The work doesn't exist until you participate.
-</blockquote></textarea>
-        <div class="code-footer">
-          <span>Auto-updates as you type</span>
-        </div>
+<blockquote>The work doesn't exist until you participate.</blockquote></textarea>
+        <div class="code-footer"><span>Auto-updates as you type</span></div>
       </div>
     </div>
   </div>
@@ -535,12 +720,11 @@
       const editor = document.querySelector(`[data-editor="${id}"]`);
       const demo = document.querySelector(`[data-demo="${id}"]`);
       if (!editor || !demo) return;
-      
       demo.innerHTML = editor.value;
       attachInteractivity(demo);
     }
 
-    // Attach click handlers for footnotes and paths
+    // Attach click handlers
     function attachInteractivity(container) {
       // Footnotes
       container.querySelectorAll('.fn').forEach(fn => {
@@ -548,9 +732,8 @@
           e.stopPropagation();
           const content = container.querySelector(`.fn-content[data-fn="${fn.dataset.fn}"]`);
           if (content) {
-            const isOpen = content.classList.contains('open');
-            content.classList.toggle('open', !isOpen);
-            fn.classList.toggle('active', !isOpen);
+            content.classList.toggle('open');
+            fn.classList.toggle('active');
           }
         });
       });
@@ -566,6 +749,18 @@
           });
         });
       });
+
+      // Yoko Ono instruction buttons
+      container.querySelectorAll('.instruction-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          btn.textContent = 'Thank you';
+          btn.classList.add('done');
+          const response = container.querySelector('.instruction-response');
+          if (response) {
+            response.textContent = 'The imagining was the work.';
+          }
+        });
+      });
     }
 
     // Copy code
@@ -575,10 +770,7 @@
         const btn = document.querySelector(`[data-id="${id}"] .btn:not(.btn-secondary)`);
         btn.textContent = 'Copied!';
         btn.classList.add('copied');
-        setTimeout(() => {
-          btn.textContent = 'Copy';
-          btn.classList.remove('copied');
-        }, 1500);
+        setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 1500);
       });
     }
 
@@ -589,32 +781,22 @@
       renderDemo(id);
     }
 
-    // Debounce helper
+    // Debounce
     function debounce(fn, ms) {
       let timeout;
-      return (...args) => {
-        clearTimeout(timeout);
-        timeout = setTimeout(() => fn(...args), ms);
-      };
+      return (...args) => { clearTimeout(timeout); timeout = setTimeout(() => fn(...args), ms); };
     }
 
-    // Set up live editing
+    // Set up editors
     document.querySelectorAll('.code-editor').forEach(editor => {
       const id = editor.dataset.editor;
-      
-      // Initial render
       renderDemo(id);
-      
-      // Update on input (debounced)
       editor.addEventListener('input', debounce(() => renderDemo(id), 150));
-      
-      // Handle tab key for indentation
       editor.addEventListener('keydown', e => {
         if (e.key === 'Tab') {
           e.preventDefault();
           const start = editor.selectionStart;
-          const end = editor.selectionEnd;
-          editor.value = editor.value.substring(0, start) + '  ' + editor.value.substring(end);
+          editor.value = editor.value.substring(0, start) + '  ' + editor.value.substring(editor.selectionEnd);
           editor.selectionStart = editor.selectionEnd = start + 2;
           renderDemo(id);
         }

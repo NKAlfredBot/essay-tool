@@ -167,5 +167,69 @@
     "prefix": "link",
     "body": "<a href=\"${1:url}\">${2:link text}</a>",
     "description": "Hyperlink"
+  },
+
+  "Yoko Ono Instruction Block": {
+    "prefix": "instruct",
+    "body": [
+      "<div class=\"instruction-block\">",
+      "  <p class=\"instruction-label\">${1:Participation Piece}</p>",
+      "  <p class=\"instruction-text\">${2:Think of a color you have never seen.}</p>",
+      "  <button class=\"instruction-btn\">${3:I imagined it}</button>",
+      "  <p class=\"instruction-response\"></p>",
+      "</div>"
+    ],
+    "description": "Yoko Ono-style participation instruction"
+  },
+
+  "Severance Terminal Block": {
+    "prefix": "term",
+    "body": [
+      "<div class=\"terminal-block\">",
+      "  <div class=\"terminal-header\">",
+      "    <span>${1:PROCESS LOG}</span>",
+      "    <span>${2:SESSION 001}</span>",
+      "  </div>",
+      "  <div class=\"terminal-body\">",
+      "    <div class=\"terminal-line prompt\">${3:initializing...}</div>",
+      "    <div class=\"terminal-line output\">${4:process complete}</div>",
+      "  </div>",
+      "</div>"
+    ],
+    "description": "Severance-style terminal/log block"
+  },
+
+  "Severance Terminal Line": {
+    "prefix": "termline",
+    "body": "<div class=\"terminal-line ${1|prompt,output,error|}\">${2:content}</div>",
+    "description": "Single terminal line (prompt/output/error)"
+  },
+
+  "Severance Handbook Notice": {
+    "prefix": "handbook",
+    "body": [
+      "<div class=\"handbook-notice\">",
+      "  <p class=\"handbook-header\">${1:Notice to Reader}</p>",
+      "  <p class=\"handbook-text\">${2:The following section contains important information.}</p>",
+      "  <p class=\"handbook-footer\">— ${3:The Management}</p>",
+      "</div>"
+    ],
+    "description": "Severance-style corporate/institutional notice"
+  },
+
+  "Jenny Holzer Truism": {
+    "prefix": "truism",
+    "body": "<div class=\"truism\">${1:PROTECT ME FROM WHAT I WANT}</div>",
+    "description": "Jenny Holzer-style truism statement"
+  },
+
+  "Jenny Holzer LED Marquee": {
+    "prefix": "led",
+    "body": [
+      "<div class=\"led-marquee\">",
+      "  <div class=\"led-text${1| ,amber,green|}\">${2:The beginning of the war will be secret}</div>",
+      "</div>"
+    ],
+    "description": "Jenny Holzer-style LED scrolling marquee"
   }
 }
