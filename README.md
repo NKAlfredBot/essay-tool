@@ -4,11 +4,43 @@ A single-file essay template combining David Foster Wallace–style expanding fo
 
 ## Quick Start
 
-1. Copy `essay-template.html`
-2. Rename it for your essay (e.g., `teaching-ai-taste.html`)
-3. Replace the example content with your writing
-4. Open in browser to preview
-5. Deploy to your website
+1. Clone the repo: `git clone https://github.com/NKAlfredBot/essay-tool.git`
+2. Open the folder in VS Code
+3. Install the "Live Server" extension (if you don't have it)
+4. Copy `blank-essay.html` → rename for your essay
+5. Right-click → "Open with Live Server" for live preview
+6. Start writing! Use snippets (see below) or copy from `palette.html`
+
+## Files
+
+| File | Purpose |
+|------|---------|
+| `blank-essay.html` | Minimal starter — start here |
+| `essay-template.html` | Full example with all components |
+| `palette.html` | Visual component palette with copy buttons |
+| `.vscode/html.code-snippets` | VS Code snippets for fast authoring |
+| `README.md` | This file |
+
+## VS Code Snippets
+
+With the folder open in VS Code, type these shortcuts then press **Tab**:
+
+| Shortcut | Component |
+|----------|-----------|
+| `fn` | Basic footnote |
+| `fnn` | Nested footnote |
+| `div` | Section divider (◆) |
+| `h2` | Section heading |
+| `pp` | Paragraph |
+| `reader` | Reader address block |
+| `frame` | Full nested frame |
+| `paths` | Multiple paths (3 options) |
+| `bq` | Blockquote |
+| `link` | Hyperlink |
+
+## Component Palette
+
+Open `palette.html` in your browser for a visual reference with **copy buttons** for each component.
 
 ---
 
