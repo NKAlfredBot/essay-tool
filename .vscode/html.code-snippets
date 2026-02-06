@@ -197,15 +197,61 @@
     "description": "Radiohead-style glitch text (animates on hover)"
   },
 
-  "Radiohead Fragment Block": {
-    "prefix": "fragment",
+  "Sol LeWitt Wall Drawing": {
+    "prefix": "walldraw",
     "body": [
-      "<div class=\"fragment-block\">",
-      "  <span class=\"fragment\">${1:I'm not here}</span>",
-      "  <span class=\"fragment\">${2:This isn't happening}</span>",
-      "  <span class=\"fragment\">${3:I'm not here}</span>",
+      "<div class=\"wall-instruction\">",
+      "  <div class=\"instruction-number\">${1:Wall Drawing #118}</div>",
+      "  <p class=\"instruction-content\">",
+      "    ${2:On a wall surface, any continuous stretch of wall,}",
+      "    ${3:using a hard pencil, draw fifty straight lines at random.}",
+      "  </p>",
+      "  <div class=\"instruction-meta\">${4:First drawn: 1971 / First installation: SFMOMA}</div>",
+      "  <button class=\"execute-btn\">Execute Instruction</button>",
+      "  <p class=\"execution-result\"></p>",
       "</div>"
     ],
-    "description": "Radiohead-style fragmented, layered text"
+    "description": "Sol LeWitt-style conceptual instruction (click to execute)"
+  },
+
+  "George Saunders Memo Block": {
+    "prefix": "memo",
+    "body": [
+      "<div class=\"memo-block\">",
+      "  <div class=\"memo-header\">",
+      "    <span><strong>${1:CONFIDENTIAL}</strong> — ${2:Internal Use Only}</span>",
+      "    <span>TO: ${3:All Associates}</span>",
+      "    <span>RE: ${4:Subject Line}</span>",
+      "  </div>",
+      "  <div class=\"memo-body\">",
+      "    ${5:It has come to our attention that certain associates have been}",
+      "    ${6:displaying <span class=\"redacted\">concerning</span> behaviors.}",
+      "  </div>",
+      "  <div class=\"memo-footer\">${7:cc: Human Resources, Legal}</div>",
+      "</div>"
+    ],
+    "description": "George Saunders-style corporate memo with redactable text"
+  },
+
+  "George Saunders Redacted Text": {
+    "prefix": "redact",
+    "body": "<span class=\"redacted\">${1:hidden text}</span>",
+    "description": "Redacted text (hover to reveal)"
+  },
+
+  "George Saunders Gut Punch": {
+    "prefix": "gutpunch",
+    "body": [
+      "<div class=\"gut-punch\">",
+      "  <div class=\"punch-light\">",
+      "    <p>${1:Ha ha, isn't it funny how...}</p>",
+      "    <button class=\"reveal-btn\">${2:What really happened →}</button>",
+      "  </div>",
+      "  <div class=\"punch-dark\">",
+      "    <p>${3:The darker truth underneath the comedy.}</p>",
+      "  </div>",
+      "</div>"
+    ],
+    "description": "George Saunders-style reveal (light content hiding dark truth)"
   }
 }

@@ -164,15 +164,6 @@
     .demo-area .reader-address { background: hsla(260, 30%, 60%, 0.08); border-left: 2px solid hsl(260, 30%, 60%); padding: 1rem; font-size: 1rem; font-style: italic; line-height: 1.8; }
     .demo-area .reader-address::before { content: 'To the reader'; display: block; font-family: 'Inter', sans-serif; font-size: 0.65rem; font-style: normal; text-transform: uppercase; letter-spacing: 0.2em; color: hsl(260, 30%, 60%); margin-bottom: 0.5rem; }
     
-    /* Calvino Frames */
-    .demo-area .frame { padding: 1rem; margin: 0; }
-    .demo-area .frame--outer { background: hsl(35, 30%, 88%); }
-    .demo-area .frame--middle { background: hsl(40, 30%, 94%); margin-left: 0.75rem; }
-    .demo-area .frame--inner { background: white; margin-left: 0.75rem; text-align: center; font-style: italic; }
-    .demo-area .frame-label { display: block; font-family: 'Inter', sans-serif; font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.15em; color: hsl(40, 10%, 55%); margin-bottom: 0.5rem; }
-    .demo-area .frame--middle .frame-label { color: hsl(260, 30%, 60%); }
-    .demo-area .frame--inner .frame-label { color: hsl(210, 60%, 45%); }
-    
     /* Calvino Paths */
     .demo-area .paths { display: grid; grid-template-columns: repeat(auto-fit, minmax(80px, 1fr)); gap: 1px; background: hsl(40, 10%, 55%); }
     .demo-area .path { font-family: 'EB Garamond', serif; font-size: 0.9rem; background: hsl(45, 40%, 96%); border: none; padding: 0.75rem; cursor: pointer; text-align: center; transition: background 0.3s, color 0.3s; }
@@ -184,10 +175,6 @@
     /* Divider */
     .demo-area .divider { text-align: center; margin: 1.5rem 0; color: hsl(40, 10%, 55%); font-size: 0.9rem; letter-spacing: 0.3em; }
     .demo-area .divider::before, .demo-area .divider::after { content: ''; display: inline-block; width: 40px; height: 1px; background: hsl(40, 10%, 55%); vertical-align: middle; margin: 0 0.75rem; opacity: 0.5; }
-    
-    /* Headings & Blockquote */
-    .demo-area h2 { font-family: 'EB Garamond', serif; font-size: 1.25rem; font-weight: 500; color: hsl(260, 30%, 60%); margin: 0 0 0.75rem; }
-    .demo-area blockquote { border-left: 2px solid hsl(40, 10%, 55%); padding-left: 1rem; font-style: italic; color: hsl(40, 10%, 55%); margin: 0; }
 
     /* ========================================
        YOKO ONO STYLES
@@ -301,26 +288,6 @@
     /* ========================================
        JENNY HOLZER STYLES
        ======================================== */
-    .demo-area .truism {
-      font-family: 'Share Tech Mono', monospace;
-      font-size: 0.85rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      padding: 1rem 1.25rem;
-      background: hsl(0, 0%, 98%);
-      border-bottom: 1px solid hsl(0, 0%, 85%);
-      cursor: pointer;
-      transition: all 0.3s;
-    }
-    .demo-area .truism:hover {
-      background: hsl(0, 0%, 95%);
-      padding-left: 1.5rem;
-    }
-    .demo-area .truism:active {
-      background: hsl(0, 100%, 50%);
-      color: white;
-    }
-
     .demo-area .led-marquee {
       background: hsl(0, 0%, 5%);
       padding: 1.5rem;
@@ -477,23 +444,173 @@
       66% { transform: translate(-2px, -1px); }
     }
 
-    .demo-area .fragment-block {
-      background: hsl(220, 30%, 10%);
-      padding: 1.5rem;
+    /* ========================================
+       SOL LEWITT STYLES
+       ======================================== */
+    .demo-area .wall-instruction {
+      font-family: 'IBM Plex Mono', monospace;
+      background: hsl(0, 0%, 100%);
+      border: 1px solid hsl(0, 0%, 85%);
+      padding: 2rem;
+      max-width: 100%;
+    }
+    .demo-area .wall-instruction .instruction-number {
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: hsl(0, 0%, 50%);
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid hsl(0, 0%, 15%);
+    }
+    .demo-area .wall-instruction .instruction-content {
+      font-size: 0.95rem;
+      line-height: 2;
+      font-weight: 300;
+      color: hsl(0, 0%, 15%);
+    }
+    .demo-area .wall-instruction .instruction-meta {
+      font-size: 0.65rem;
+      color: hsl(0, 0%, 50%);
+      margin-top: 1.5rem;
+      padding-top: 0.75rem;
+      border-top: 1px solid hsl(0, 0%, 85%);
+    }
+    .demo-area .wall-instruction .execute-btn {
+      display: block;
+      margin: 1.5rem auto 0;
+      padding: 0.75rem 2rem;
+      background: hsl(0, 0%, 15%);
+      color: hsl(0, 0%, 100%);
+      border: none;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .demo-area .wall-instruction .execute-btn:hover {
+      background: hsl(220, 100%, 50%);
+    }
+    .demo-area .wall-instruction .execute-btn.executed {
+      background: hsl(150, 60%, 40%);
+      pointer-events: none;
+    }
+    .demo-area .wall-instruction .execution-result {
+      margin-top: 1rem;
+      font-size: 0.8rem;
+      color: hsl(150, 60%, 35%);
+      font-style: italic;
+      min-height: 1.2em;
+    }
+
+    /* ========================================
+       GEORGE SAUNDERS STYLES
+       ======================================== */
+    .demo-area .memo-block {
+      font-family: 'IBM Plex Mono', monospace;
+      background: hsl(55, 80%, 85%);
+      padding: 1.5rem 2rem;
+      box-shadow: 2px 3px 8px hsla(0, 0%, 0%, 0.1);
+      transform: rotate(-0.5deg);
+      position: relative;
+    }
+    .demo-area .memo-block .memo-header {
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border-bottom: 1px solid hsl(30, 10%, 15%);
+      padding-bottom: 1rem;
+      margin-bottom: 1rem;
+    }
+    .demo-area .memo-block .memo-header span {
+      display: block;
+      margin-bottom: 0.25rem;
+    }
+    .demo-area .memo-block .memo-header strong {
+      color: hsl(0, 70%, 50%);
+    }
+    .demo-area .memo-block .memo-body {
+      font-size: 0.85rem;
+      line-height: 1.8;
+    }
+    .demo-area .memo-block .redacted {
+      background: hsl(30, 10%, 15%);
+      color: hsl(30, 10%, 15%);
+      padding: 0 4px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      border-radius: 2px;
+    }
+    .demo-area .memo-block .redacted:hover {
+      background: transparent;
+      color: hsl(0, 70%, 50%);
+    }
+    .demo-area .memo-block .memo-footer {
+      margin-top: 1rem;
+      padding-top: 0.75rem;
+      border-top: 1px solid hsl(30, 10%, 15%);
+      font-size: 0.65rem;
+      color: hsl(0, 0%, 50%);
+    }
+
+    .demo-area .gut-punch {
       position: relative;
       overflow: hidden;
     }
-    .demo-area .fragment-block .fragment {
-      display: block;
-      font-family: 'Inter', system-ui, sans-serif;
-      font-size: 0.9rem;
-      color: hsla(200, 20%, 90%, 0.7);
-      margin: 0.25rem 0;
-      transform: translateX(var(--offset, 0));
+    .demo-area .gut-punch .punch-light {
+      background: hsl(55, 80%, 90%);
+      padding: 1.5rem;
+      text-align: center;
     }
-    .demo-area .fragment-block .fragment:nth-child(1) { --offset: 0; opacity: 1; }
-    .demo-area .fragment-block .fragment:nth-child(2) { --offset: 20px; opacity: 0.5; }
-    .demo-area .fragment-block .fragment:nth-child(3) { --offset: 40px; opacity: 0.3; }
+    .demo-area .gut-punch .punch-light p {
+      font-size: 0.95rem;
+      line-height: 1.8;
+      margin-bottom: 1rem;
+    }
+    .demo-area .gut-punch .punch-light p:last-of-type {
+      margin-bottom: 0;
+    }
+    .demo-area .gut-punch .reveal-btn {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 0.5rem 1.5rem;
+      background: transparent;
+      border: 1px solid hsl(30, 10%, 25%);
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .demo-area .gut-punch .reveal-btn:hover {
+      background: hsl(30, 10%, 25%);
+      color: white;
+    }
+    .demo-area .gut-punch .punch-dark {
+      background: hsl(280, 30%, 25%);
+      padding: 1.5rem;
+      color: hsla(0, 0%, 100%, 0.9);
+      text-align: center;
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      transition: max-height 0.6s ease, opacity 0.4s ease, padding 0.6s ease;
+    }
+    .demo-area .gut-punch .punch-dark p {
+      font-size: 1rem;
+      line-height: 1.7;
+      font-style: italic;
+    }
+    .demo-area .gut-punch.revealed .punch-dark {
+      max-height: 300px;
+      opacity: 1;
+      padding: 1.5rem;
+    }
+    .demo-area .gut-punch.revealed .reveal-btn {
+      display: none;
+    }
   </style>
 </head>
 <body>
@@ -856,29 +973,108 @@
     </div>
   </div>
 
-  <div class="component" data-id="fragmentblock">
+  <!-- ==================== SOL LEWITT ==================== -->
+  <p class="section-title">Sol LeWitt — Conceptual Instructions</p>
+
+  <div class="component" data-id="walldrawing">
     <div class="component-header">
       <div>
-        <span class="component-name">Fragment Block</span>
-        <span class="component-snippet">fragment + Tab</span>
+        <span class="component-name">Wall Drawing Instruction</span>
+        <span class="component-snippet">walldraw + Tab</span>
       </div>
       <div class="btn-group">
-        <button class="btn btn-secondary" onclick="resetCode('fragmentblock')">Reset</button>
-        <button class="btn" onclick="copyCode('fragmentblock')">Copy</button>
+        <button class="btn btn-secondary" onclick="resetCode('walldrawing')">Reset</button>
+        <button class="btn" onclick="copyCode('walldrawing')">Copy</button>
       </div>
     </div>
     <div class="component-body">
       <div class="component-demo">
-        <p class="demo-label">Fragmented, layered text</p>
-        <div class="demo-area" data-demo="fragmentblock"></div>
+        <p class="demo-label">Click "Execute" to mark the instruction complete</p>
+        <div class="demo-area" data-demo="walldrawing"></div>
       </div>
       <div class="component-code">
-        <textarea class="code-editor" data-editor="fragmentblock" spellcheck="false"><div class="fragment-block">
-  <span class="fragment">I'm not here</span>
-  <span class="fragment">This isn't happening</span>
-  <span class="fragment">I'm not here</span>
+        <textarea class="code-editor" data-editor="walldrawing" spellcheck="false"><div class="wall-instruction">
+  <div class="instruction-number">Wall Drawing #118</div>
+  <p class="instruction-content">
+    On a wall surface, any continuous stretch of wall, 
+    using a hard pencil, draw fifty straight lines at random.
+  </p>
+  <div class="instruction-meta">First drawn: 1971 / First installation: SFMOMA</div>
+  <button class="execute-btn">Execute Instruction</button>
+  <p class="execution-result"></p>
 </div></textarea>
-        <div class="code-footer"><span>Staggered, overlapping text</span></div>
+        <div class="code-footer"><span>The idea becomes the machine that makes the art</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== GEORGE SAUNDERS ==================== -->
+  <p class="section-title">George Saunders — Corporate Empathy</p>
+
+  <div class="component" data-id="memo">
+    <div class="component-header">
+      <div>
+        <span class="component-name">Memo Block</span>
+        <span class="component-snippet">memo + Tab</span>
+      </div>
+      <div class="btn-group">
+        <button class="btn btn-secondary" onclick="resetCode('memo')">Reset</button>
+        <button class="btn" onclick="copyCode('memo')">Copy</button>
+      </div>
+    </div>
+    <div class="component-body">
+      <div class="component-demo">
+        <p class="demo-label">Hover over redacted text to reveal</p>
+        <div class="demo-area" data-demo="memo"></div>
+      </div>
+      <div class="component-code">
+        <textarea class="code-editor" data-editor="memo" spellcheck="false"><div class="memo-block">
+  <div class="memo-header">
+    <span><strong>CONFIDENTIAL</strong> — Internal Use Only</span>
+    <span>TO: All Associates, Sectors 7-12</span>
+    <span>RE: Mandatory Positivity Recalibration</span>
+  </div>
+  <div class="memo-body">
+    It has come to our attention that certain associates have been 
+    displaying <span class="redacted">sadness</span> unauthorized 
+    emotional states during peak Guest Interaction Windows.
+  </div>
+  <div class="memo-footer">cc: Human Resources, Legal, Feelings Compliance</div>
+</div></textarea>
+        <div class="code-footer"><span>Hover .redacted text to reveal hidden content</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="component" data-id="gutpunch">
+    <div class="component-header">
+      <div>
+        <span class="component-name">Gut Punch</span>
+        <span class="component-snippet">gutpunch + Tab</span>
+      </div>
+      <div class="btn-group">
+        <button class="btn btn-secondary" onclick="resetCode('gutpunch')">Reset</button>
+        <button class="btn" onclick="copyCode('gutpunch')">Copy</button>
+      </div>
+    </div>
+    <div class="component-body">
+      <div class="component-demo">
+        <p class="demo-label">Light content hides something darker</p>
+        <div class="demo-area" data-demo="gutpunch"></div>
+      </div>
+      <div class="component-code">
+        <textarea class="code-editor" data-editor="gutpunch" spellcheck="false"><div class="gut-punch">
+  <div class="punch-light">
+    <p>Ha ha, isn't it funny how Gary from Accounting wore 
+    the same shirt three days in a row? Classic Gary.</p>
+    <button class="reveal-btn">What happened to Gary →</button>
+  </div>
+  <div class="punch-dark">
+    <p>Gary's wife had left him that week. He slept on the 
+    couch in his clothes because the bedroom smelled like her.</p>
+  </div>
+</div></textarea>
+        <div class="code-footer"><span>Click to reveal the darker truth underneath</span></div>
       </div>
     </div>
   </div>
@@ -949,6 +1145,28 @@
         ganz.addEventListener('mouseleave', () => {
           ganz.style.setProperty('--gx', '50%');
           ganz.style.setProperty('--gy', '50%');
+        });
+      });
+
+      // Sol LeWitt Execute buttons
+      container.querySelectorAll('.wall-instruction .execute-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          btn.textContent = 'Executed';
+          btn.classList.add('executed');
+          const result = container.querySelector('.execution-result');
+          if (result) {
+            result.textContent = 'The instruction has been executed. The work now exists.';
+          }
+        });
+      });
+
+      // George Saunders Gut Punch
+      container.querySelectorAll('.gut-punch .reveal-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const gutPunch = btn.closest('.gut-punch');
+          if (gutPunch) {
+            gutPunch.classList.add('revealed');
+          }
         });
       });
     }
